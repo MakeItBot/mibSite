@@ -1,0 +1,164 @@
+/* TrustFlow Scoped Design System */
+.trustflow-scope {
+  /* Light Mode - TrustFlow Brand Colors */
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+
+  --primary: 221 83% 53%;  /* Trust Blue */
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 214 95% 93%;  /* Light blue */
+  --secondary-foreground: 221 83% 40%;
+
+  --accent: 160 84% 39%;  /* Success Green */
+  --accent-foreground: 0 0% 100%;
+
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 9% 46%;
+
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 221 83% 53%;
+
+  /* TrustFlow Specific Colors */
+  --trust-blue: 221 83% 53%;
+  --trust-blue-dark: 221 83% 40%;
+  --trust-blue-light: 214 95% 93%;
+  --success-green: 160 84% 39%;
+  --success-green-dark: 160 84% 32%;
+  --success-green-light: 158 64% 92%;
+  --section-alt: 220 14% 96%;
+
+  /* Destructive */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Radius */
+  --radius: 0.5rem;
+
+  /* Sidebar */
+  --sidebar-background: 0 0% 100%;
+  --sidebar-foreground: 222 47% 11%;
+  --sidebar-primary: 221 83% 53%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 160 84% 39%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 220 13% 91%;
+  --sidebar-ring: 221 83% 53%;
+}
+
+.trustflow-scope.dark {
+  /* Dark Mode - TrustFlow Colors */
+  --background: 222 47% 6%;
+  --foreground: 210 40% 98%;
+
+  --card: 222 47% 8%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 222 47% 8%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 217 91% 60%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 217 33% 17%;
+  --secondary-foreground: 210 40% 98%;
+
+  --accent: 160 84% 39%;
+  --accent-foreground: 0 0% 100%;
+
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 20% 65%;
+
+  --border: 217 33% 17%;
+  --input: 217 33% 17%;
+  --ring: 221 83% 53%;
+
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 210 40% 98%;
+
+  --sidebar-background: 222 47% 6%;
+  --sidebar-foreground: 210 40% 98%;
+  --sidebar-primary: 221 83% 53%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 160 84% 39%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 217 33% 17%;
+  --sidebar-ring: 221 83% 53%;
+}
+
+/* TrustFlow Specific Utilities */
+.trustflow-scope .container-tight {
+  @apply max-w-6xl mx-auto;
+}
+
+.trustflow-scope .section-padding {
+  @apply py-16 md:py-24 px-4 md:px-8;
+}
+
+.trustflow-scope .gradient-text {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+}
+
+.trustflow-scope .animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Smooth animations for scroll reveal */
+.trustflow-scope .opacity-0 {
+  opacity: 0;
+}
+
+.trustflow-scope .translate-y-8 {
+  transform: translateY(2rem);
+}
+
+.trustflow-scope .transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 700ms;
+}
+
+.trustflow-scope .duration-700 {
+  transition-duration: 700ms;
+}
+
+/* Success Dark Color Utility */
+.trustflow-scope .bg-success-dark {
+  background-color: hsl(var(--success-green-dark));
+}
+
+.trustflow-scope .hover\:bg-success-dark:hover {
+  background-color: hsl(var(--success-green-dark));
+}
+
+/* Trust Blue Utility */
+.trustflow-scope .text-trust-blue {
+  color: hsl(var(--trust-blue));
+}
+
+.trustflow-scope .bg-trust-blue {
+  background-color: hsl(var(--trust-blue));
+}
+
+/* Ensure all sections are properly scoped */
+.trustflow-scope * {
+  @apply border-border;
+}
