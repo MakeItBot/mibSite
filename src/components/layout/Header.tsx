@@ -6,31 +6,8 @@ import { usePathname } from "next/navigation";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/use-theme";
-
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about/" },
-  {
-    name: "Soluções",
-    href: "/solucoes/",
-    submenu: [
-      { name: "Veterinárias", href: "/solucoes/veterinarias/" },
-      { name: "Agendamento Inteligente", href: "/solucoes/veterinarias/agendamento-inteligente/" },
-    ],
-  },
-  {
-    name: "Services",
-    href: "/services/",
-    submenu: [
-      { name: "Shopify Apps", href: "/services/shopify/" },
-      { name: "AI Chatbots", href: "/services/chatbots/" },
-      { name: "PWA Development", href: "/services/pwa/" },
-    ],
-  },
-  { name: "Portfolio", href: "/portfolio/" },
-  { name: "Blog", href: "/blog/" },
-  { name: "Contact", href: "/contact/" },
-];
+import { useI18n } from "@/i18n";
+import { LanguageSelector } from "./LanguageSelector";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,6 +15,32 @@ export function Header() {
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
+  const { t } = useI18n();
+
+  const navigation = [
+    { name: t.nav.home, href: "/" },
+    { name: t.nav.about, href: "/about/" },
+    {
+      name: t.nav.solutions,
+      href: "/solucoes/",
+      submenu: [
+        { name: "Veterinarias", href: "/solucoes/veterinarias/" },
+        { name: "Agendamento Inteligente", href: "/solucoes/veterinarias/agendamento-inteligente/" },
+      ],
+    },
+    {
+      name: t.nav.services,
+      href: "/services/",
+      submenu: [
+        { name: t.services.iaFirst.title, href: "/services/ia-first/" },
+        { name: t.services.chatbots.title, href: "/services/chatbots/" },
+        { name: t.services.pwa.title, href: "/services/pwa/" },
+      ],
+    },
+    { name: t.nav.portfolio, href: "/portfolio/" },
+    { name: t.nav.blog, href: "/blog/" },
+    { name: t.nav.contact, href: "/contact/" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -118,6 +121,9 @@ export function Header() {
 
           {/* Actions */}
           <div className="flex items-center gap-3">
+            {/* Language Selector */}
+            <LanguageSelector />
+
             {/* Theme Toggle */}
             <Button
               variant="ghost"
@@ -136,7 +142,7 @@ export function Header() {
             {/* CTA Button */}
             <Link href="/contact" className="hidden sm:block">
               <Button className="gradient-primary text-primary-foreground hover:opacity-90 glow-blue">
-                Get a Quote
+                {t.nav.getQuote}
               </Button>
             </Link>
 
@@ -195,7 +201,7 @@ export function Header() {
               <div className="pt-4 mt-4 border-t border-border">
                 <Link href="/contact">
                   <Button className="w-full gradient-primary text-primary-foreground">
-                    Get a Quote
+                    {t.nav.getQuote}
                   </Button>
                 </Link>
               </div>

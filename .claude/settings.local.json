@@ -18,7 +18,11 @@
       "Bash(git commit:*)",
       "Bash(ls -la \"/c/Users/aryha/Documents/MIB/site/app/\\(site\\)/\")",
       "Bash(mv VetMib vetmib-temp)",
-      "Bash(mv vetmib-temp:*)"
+      "Bash(mv vetmib-temp:*)",
+      "Bash(ls \"C:/Users/aryha/Documents/MIB/site/app/\\(site\\)/services/shopify/\")",
+      "Bash(npx tsc:*)",
+      "Bash(ls \"C:/Users/aryha/Documents/MIB/site/app/\\(site\\)/services/\")",
+      "Bash(npx next:*)"
     ]
   }
 }

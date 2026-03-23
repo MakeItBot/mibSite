@@ -357,6 +357,69 @@ function FaqSection() {
   );
 }
 
+// ── Pricing ─────────────────────────────────────────
+function PricingSection() {
+  const p = t.pricing;
+  return (
+    <section id="precos" className="py-20 md:py-28">
+      <div className="container mx-auto px-4">
+        <ScrollReveal className="text-center mb-6">
+          <div className="inline-flex items-center gap-2 bg-green-500/10 rounded-full px-4 py-1.5 mb-4">
+            <Sparkles className="h-4 w-4 text-green-500" />
+            <span className="text-sm font-semibold text-green-600">{p.trialBadge}</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">{p.title}</h2>
+          <p className="text-muted-foreground max-w-md mx-auto">{p.subtitle}</p>
+        </ScrollReveal>
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {p.plans.map((plan, i) => (
+            <ScrollReveal key={i}>
+              <div className={`relative bg-card rounded-3xl border p-8 h-full flex flex-col ${
+                plan.popular ? "border-primary shadow-xl scale-105" : "border-border"
+              }`}>
+                {plan.popular && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-4 py-1 rounded-full">
+                    Mais Popular
+                  </div>
+                )}
+                <h3 className="text-xl font-bold">{plan.name}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
+                <div className="mb-6">
+                  <span className="text-2xl font-bold text-primary">{plan.price}</span>
+                </div>
+                <ul className="space-y-2 mb-8 flex-1">
+                  {plan.features.map((f, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm">
+                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <Button
+                  className={`w-full rounded-full ${
+                    plan.popular ? "gradient-primary text-primary-foreground" : ""
+                  }`}
+                  variant={plan.popular ? "default" : "outline"}
+                  asChild
+                >
+                  <a href={p.whatsappUrl} target="_blank" rel="noopener noreferrer">{plan.cta}</a>
+                </Button>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+        <ScrollReveal className="text-center mt-10">
+          <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white rounded-full px-10" asChild>
+            <a href={p.whatsappUrl} target="_blank" rel="noopener noreferrer">
+              {p.whatsappCta}
+            </a>
+          </Button>
+        </ScrollReveal>
+      </div>
+    </section>
+  );
+}
+
 // ── CTA Final ────────────────────────────────────────
 function CtaFinalSection() {
   return (
@@ -391,6 +454,7 @@ export default function VetMibPage() {
       <BenefitsSection />
       <DemoSection />
       <FaqSection />
+      <PricingSection />
       <CtaFinalSection />
     </Layout>
   );

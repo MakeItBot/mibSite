@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/services/shopify/', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/services/chatbots/', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/services/pwa/', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/services/ia-first/', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/portfolio/', priority: 0.6, changeFrequency: 'monthly' as const },
     { path: '/contact/', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/blog/', priority: 0.8, changeFrequency: 'weekly' as const },
