@@ -110,4 +110,30 @@ export interface Translations {
     ctaButton: string
     viewDetails: string
   }
+  cluster2: {
+    hubTitle: string
+    hubSubtitle: string
+    posCastracaoTitle: string
+    posCastracaoDesc: string
+    posOrtopedicaTitle: string
+    posOrtopedicaDesc: string
+    alertasTitle: string
+    alertasDesc: string
+    porAnimalTitle: string
+    porAnimalDesc: string
+    checklistTitle: string
+    checklistDesc: string
+    readMore: string
+    whyCluster: {
+      title: string
+      subtitle: string
+      benefit1Title: string
+      benefit1Desc: string
+      benefit2Title: string
+      benefit2Desc: string
+      benefit3Title: string
+      benefit3Desc: string
+    }
+    cta: string
+  }
 }

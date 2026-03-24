@@ -1,0 +1,331 @@
+{
+  "cluster_id": "followup-pos-cirurgia",
+  "cluster_name": "Follow-up Pós-Cirurgia",
+  "hub": {
+    "slug": "followup-pos-cirurgia",
+    "url": "/solucoes/veterinarias/followup-pos-cirurgia/",
+    "title": "Follow-up Pós-Cirurgia Automático para Veterinárias | makeit.bot",
+    "h1": "Acompanhamento Pós-Operatório Automático para a Sua Clínica Veterinária",
+    "meta_description": "Sistema de follow-up pós-cirurgia com check-ins automáticos, alertas de complicações e agendamento de consultas de controlo. O tutor nunca fica sem apoio.",
+    "keyword_primary": "follow-up pós-cirurgia veterinário",
+    "keywords_secondary": [
+      "acompanhamento pós-operatório veterinária",
+      "follow-up cirurgia animal automático",
+      "sistema pós-operatório clínica vet"
+    ]
+  },
+  "spokes": [
+    {
+      "id": "C2-S01",
+      "slug": "pos-castracao",
+      "url": "/solucoes/veterinarias/followup-pos-cirurgia/pos-castracao/",
+      "template": "procedure-specific",
+      "title": "Follow-up Pós-Castração Automático para Clínicas Veterinárias",
+      "h1": "Acompanhamento Automático Pós-Castração para a Sua Clínica",
+      "meta_description": "Protocolo automático de acompanhamento pós-castração para cães e gatos. Check-ins diários, alertas de complicação e consulta de controlo agendada automaticamente.",
+      "keyword_primary": "acompanhamento pós castração animal",
+      "keywords_secondary": [
+        "protocolo pós-castração automático",
+        "follow-up castração veterinária",
+        "check-in pós-castração cão gato"
+      ],
+      "variables": {
+        "procedure": "Castração / Esterilização",
+        "recovery_time": "7-14 dias",
+        "control_visits": "1-2 (retirada de pontos + check-up)",
+        "control_schedule": "Dia 3 (check-in remoto), Dia 7-10 (retirada de pontos), Dia 14 (alta)",
+        "annual_procedures_estimate": "80.000-120.000 por ano em Portugal",
+        "complication_rate": "5-10% com follow-up adequado",
+        "complication_rate_without": "15-20% sem acompanhamento",
+        "tutor_satisfaction": "92%",
+        "key_stat_1": "30-40%",
+        "key_stat_1_label": "Tutores que não voltam ao controlo sem sistema",
+        "key_stat_2": "90-95%",
+        "key_stat_2_label": "Comparência com follow-up automático",
+        "key_stat_3": "€80-€200",
+        "key_stat_3_label": "Custo típico de castração",
+        "protocol_day_0": "Instruções completas de pós-operatório + medicação + sinais de alarme",
+        "protocol_day_1": "Primeiro check-in: comeu? bebeu água? ferida limpa?",
+        "protocol_day_3": "Pedido de foto da ferida para avaliação remota",
+        "protocol_day_7": "Lembrete de consulta de controlo/retirada de pontos",
+        "protocol_day_14": "Alta — verificação final e encerramento do protocolo"
+      },
+      "faq": [
+        {
+          "question": "O protocolo é diferente para cão e gato?",
+          "answer": "Sim. Cães machos têm recuperação mais rápida (5-7 dias) que fêmeas (ovariohisterectomia, 10-14 dias). Gatos têm incisões mais pequenas mas tendem a esconder sinais de dor. O sistema adapta as mensagens e a timeline automaticamente."
+        },
+        {
+          "question": "O veterinário precisa de responder a todas as mensagens do tutor?",
+          "answer": "Não. O sistema gere automaticamente os check-ins de rotina. O veterinário só é alertado quando o tutor reporta algo preocupante ou quando precisa de avaliar uma foto."
+        },
+        {
+          "question": "Posso personalizar o protocolo por tipo de cirurgia?",
+          "answer": "Sim. Cada tipo de cirurgia tem o seu protocolo: dias de check-in, mensagens específicas, sinais de alarme relevantes. O veterinário configura uma vez e o sistema aplica automaticamente."
+        },
+        {
+          "question": "E se o tutor não responder aos check-ins?",
+          "answer": "Após 2 check-ins sem resposta, o sistema alerta a clínica para que possam contactar directamente. Nenhum tutor fica sem acompanhamento."
+        },
+        {
+          "question": "Isto substitui a consulta de controlo presencial?",
+          "answer": "Não. O follow-up automático complementa a consulta presencial — não a substitui. O objectivo é garantir que o tutor volta ao controlo E que eventuais problemas são detectados entre consultas."
+        }
+      ],
+      "cta": {
+        "primary": { "text": "Experimentar Grátis", "url": "/contact/" },
+        "secondary": { "text": "Ver como funciona", "url": "/contact/" }
+      },
+      "related_spokes": ["por-tipo-animal", "alertas-complicacoes", "checklist-pos-operatorio"],
+      "related_posts": ["pos-operatorio-etapa-critica", "automatizar-followup-toque-humano"]
+    },
+    {
+      "id": "C2-S02",
+      "slug": "pos-cirurgia-ortopedica",
+      "url": "/solucoes/veterinarias/followup-pos-cirurgia/pos-cirurgia-ortopedica/",
+      "template": "procedure-specific",
+      "title": "Monitorização Pós-Cirurgia Ortopédica Veterinária | makeit.bot",
+      "h1": "Follow-up Automático Pós-Cirurgia Ortopédica para a Sua Clínica",
+      "meta_description": "Acompanhamento automático de 6-12 semanas após cirurgia ortopédica veterinária. Check-ins semanais, alertas de complicação e gestão das 3-5 consultas de controlo.",
+      "keyword_primary": "pós-operatório ortopédico cão",
+      "keywords_secondary": [
+        "follow-up cirurgia ortopédica veterinária",
+        "acompanhamento TPLO cão",
+        "monitorização pós-operatório ortopédico"
+      ],
+      "variables": {
+        "procedure": "Cirurgia Ortopédica",
+        "recovery_time": "6-12 semanas",
+        "control_visits": "3-5 (semana 1, semana 2, semana 4, semana 8, semana 12)",
+        "control_schedule": "Semana 1 (check ferida), Semana 2 (raio-X controlo), Semana 4-6 (mobilidade), Semana 8-12 (alta)",
+        "avg_cost_surgery": "€800-€3.000",
+        "missed_control_rate": "35% sem sistema de lembretes",
+        "key_stat_1": "35%",
+        "key_stat_1_label": "Tutores que faltam a consultas de controlo sem acompanhamento",
+        "key_stat_2": "6-12 semanas",
+        "key_stat_2_label": "Período de recuperação típico",
+        "key_stat_3": "€1.000-€3.000",
+        "key_stat_3_label": "Custo de re-intervenção por falha no follow-up",
+        "common_surgeries": "TPLO (ligamento cruzado), Osteossíntese (fractura), Luxação de patela, Remoção de cabeça do fémur",
+        "protocol_week_0": "Instruções detalhadas + plano de recuperação com datas das consultas",
+        "protocol_week_1": "Check-in: ferida, apoio da pata, medicação, foto/vídeo",
+        "protocol_week_2": "Lembrete consulta controlo + raio-X",
+        "protocol_week_3_4": "Check-ins de mobilidade: está a usar mais a pata?",
+        "protocol_week_4_6": "Consulta de avaliação de mobilidade + possível fisioterapia",
+        "protocol_week_6_8": "Aumento gradual de actividade",
+        "protocol_week_8_12": "Consulta final + raio-X de controlo + alta"
+      },
+      "faq": [
+        {
+          "question": "O protocolo adapta-se a diferentes cirurgias ortopédicas?",
+          "answer": "Sim. TPLO, fracturas, luxação de patela — cada uma tem a sua timeline e sinais de alarme específicos. O veterinário pode usar protocolos pré-configurados ou personalizar completamente."
+        },
+        {
+          "question": "As consultas de controlo são agendadas automaticamente?",
+          "answer": "Sim. No momento da alta, o sistema agenda todas as consultas de controlo previstas. Cada uma beneficia dos lembretes em cascata do sistema de agendamento inteligente."
+        },
+        {
+          "question": "E se o tutor precisar de prolongar a recuperação?",
+          "answer": "O veterinário pode estender o protocolo — adicionar mais semanas de check-ins e consultas de controlo. O sistema é flexível para adaptar-se à evolução do paciente."
+        },
+        {
+          "question": "Funciona com protocolos de fisioterapia?",
+          "answer": "O sistema pode incluir instruções de exercícios de fisioterapia nas mensagens e coordenar o agendamento de sessões de reabilitação com o sistema de marcação."
+        },
+        {
+          "question": "Qual é a maior diferença em relação a cirurgias de rotina?",
+          "answer": "A recuperação ortopédica é muito mais longa (6-12 semanas vs 7-14 dias), exige mais consultas de controlo (3-5 vs 1-2) e o risco de complicações tardias é maior. O follow-up contínuo é essencial para proteger o investimento do tutor e a reputação da clínica."
+        }
+      ],
+      "cta": {
+        "primary": { "text": "Experimentar Grátis", "url": "/contact/" },
+        "secondary": { "text": "Proteja os seus pacientes ortopédicos", "url": "/contact/" }
+      },
+      "related_spokes": ["pos-castracao", "alertas-complicacoes", "por-tipo-animal"],
+      "related_posts": ["pos-operatorio-etapa-critica", "roi-followup-pos-cirurgia"]
+    },
+    {
+      "id": "C2-S03",
+      "slug": "alertas-complicacoes",
+      "url": "/solucoes/veterinarias/followup-pos-cirurgia/alertas-complicacoes/",
+      "template": "feature-focus",
+      "title": "Alertas Automáticos de Complicações Pós-Cirurgia | makeit.bot",
+      "h1": "Alertas Automáticos de Complicações: Detecte Problemas Antes de Se Tornarem Urgências",
+      "meta_description": "O sistema detecta respostas preocupantes do tutor e alerta o veterinário automaticamente. Três níveis de triagem: verde, amarelo, vermelho.",
+      "keyword_primary": "sinais complicação pós-cirurgia animal",
+      "keywords_secondary": [
+        "alertas automáticos complicações veterinária",
+        "triagem pós-operatório automático",
+        "sistema alertas clínica veterinária"
+      ],
+      "variables": {
+        "feature_name": "Alertas Automáticos de Complicações",
+        "how_it_works": "O sistema envia mensagens educativas ao tutor com os sinais de alarme específicos para cada tipo de cirurgia. Se o tutor reportar um sintoma preocupante, o sistema triagem automaticamente e alerta o veterinário com prioridade.",
+        "triage_green": "Recuperação normal — mensagem de tranquilização automática ao tutor. Veterinário não é notificado.",
+        "triage_yellow": "Possível problema — veterinário notificado para avaliar remotamente com toda a informação disponível.",
+        "triage_red": "Urgência provável — tutor instruído a ir à clínica imediatamente E veterinário alerta urgente.",
+        "key_differentiator": "Não é um chatbot genérico. Os alertas são configurados por tipo de cirurgia e actualizados com base no dia de recuperação. O contexto é tudo.",
+        "key_metric": "Redução de 40-60% em idas de urgência evitáveis",
+        "channels": ["WhatsApp", "SMS"],
+        "vet_receives": "Nível do alerta, nome do animal, tipo de cirurgia, dia de recuperação, texto do tutor, fotos, timeline completa e botões de acção",
+        "example_green": "Ligeiro inchaço no dia 2 após castração = normal. Mensagem automática de tranquilização.",
+        "example_yellow": "Diminuição de apetite no dia 5 = veterinário notificado para avaliação remota.",
+        "example_red": "Hemorragia activa = tutor instruído a ir à clínica + alerta urgente ao veterinário."
+      },
+      "faq": [
+        {
+          "question": "O sistema toma decisões clínicas?",
+          "answer": "Não. O sistema faz triagem e notifica. A decisão clínica é sempre do veterinário. Os alertas são baseados em protocolos definidos pelo próprio veterinário."
+        },
+        {
+          "question": "Posso ajustar os níveis de alerta?",
+          "answer": "Sim. Cada clínica pode ser mais ou menos conservadora na triagem. Algumas preferem mais alertas amarelos (cautela extra); outras alertam apenas em casos claros. O sistema é totalmente configurável."
+        },
+        {
+          "question": "Funciona fora de horário?",
+          "answer": "O sistema funciona 24/7. Os alertas vermelhos fora de horário podem ser encaminhados para o veterinário de urgência ou para uma mensagem com o contacto de emergência da clínica."
+        },
+        {
+          "question": "O que torna este sistema diferente de um chatbot genérico?",
+          "answer": "O contexto. Um inchaço no dia 2 é normal; o mesmo inchaço no dia 10 é preocupante. O sistema sabe exactamente que cirurgia o animal fez, em que dia está da recuperação, e aplica os limiares correctos automaticamente."
+        },
+        {
+          "question": "Quantos alertas falsos devo esperar?",
+          "answer": "Com os protocolos bem configurados, a taxa de alertas amarelos que se revelam normais ronda os 20-30%. É melhor um alerta a mais do que uma complicação a menos."
+        }
+      ],
+      "cta": {
+        "primary": { "text": "Detectar Complicações Mais Cedo", "url": "/contact/" },
+        "secondary": { "text": "Ver demonstração", "url": "/contact/" }
+      },
+      "related_spokes": ["pos-castracao", "pos-cirurgia-ortopedica", "checklist-pos-operatorio"],
+      "related_posts": ["pos-operatorio-etapa-critica", "automatizar-followup-toque-humano"]
+    },
+    {
+      "id": "C2-S04",
+      "slug": "por-tipo-animal",
+      "url": "/solucoes/veterinarias/followup-pos-cirurgia/por-tipo-animal/",
+      "template": "animal-type",
+      "title": "Follow-up Pós-Cirurgia por Tipo de Animal | makeit.bot",
+      "h1": "Follow-up Pós-Cirurgia Adaptado: Cão, Gato e Exóticos",
+      "meta_description": "O pós-operatório de um cão não é igual ao de um gato. E exóticos são outro mundo. Protocolos de follow-up adaptados por espécie para clínicas veterinárias.",
+      "keyword_primary": "acompanhamento pós-cirurgia gato cão",
+      "keywords_secondary": [
+        "follow-up pós-operatório gato",
+        "cuidados pós-cirurgia cão",
+        "pós-operatório animais exóticos"
+      ],
+      "variables": {
+        "dog_challenge": "Mais activo durante recuperação — maior risco de abertura de pontos. Necessita de restrição de exercício rigorosa.",
+        "dog_tip": "Brinquedos de ocupação mental (Kong com comida, puzzles) são os melhores amigos durante a recuperação. O cão gasta energia sem se mexer.",
+        "dog_surgeries": "Castração, Ligamento cruzado (TPLO/TTA), Remoção de massas, Cirurgia dentária, Torção gástrica",
+        "cat_challenge": "Tende a esconder sinais de dor. Mais difícil de monitorizar. Salta para sítios altos mesmo após cirurgia.",
+        "cat_tip": "Confinar num quarto pequeno sem móveis altos. Muitos gatos toleram melhor um fato pós-cirúrgico do que o colar isabelino.",
+        "cat_surgeries": "Esterilização, Extracção dentária, Remoção de massas, Cirurgia urinária",
+        "cat_alarm": "Gato que não come há mais de 24h — risco de lipidose hepática. Respiração de boca aberta num gato — emergência.",
+        "exotic_challenge": "Metabolismo e recuperação muito diferentes. Sinais de dor subtis. Muitos tutores inexperientes.",
+        "rabbit_tip": "Coelhos devem comer nas primeiras 4-6 horas após cirurgia. Estase gastrointestinal é emergência. Fezes pequenas ou ausentes = problema.",
+        "bird_tip": "Metabolismo rápido — deterioram depressa. Temperatura ambiente controlada (28-30°C) essencial após cirurgia.",
+        "reptile_tip": "Cicatrização muito mais lenta (semanas a meses). Temperatura e humidade do terrário afectam directamente a recuperação.",
+        "system_selection": "O veterinário selecciona espécie + tipo de cirurgia e o sistema adapta automaticamente mensagens, sinais de alarme e frequência de check-ins."
+      },
+      "faq": [
+        {
+          "question": "Os sinais de alarme mudam por espécie?",
+          "answer": "Sim. O que é amarelo para um cão pode ser vermelho para um gato ou coelho. Por exemplo, um gato que não come há mais de 24h é alerta amarelo (risco de lipidose hepática); um cão na mesma situação é normal nas primeiras 24h pós-cirurgia."
+        },
+        {
+          "question": "E se a minha clínica só atende cães e gatos?",
+          "answer": "Perfeitamente funcional. Cães e gatos representam ~95% das cirurgias veterinárias. Os protocolos de exóticos são um extra para clínicas que precisam."
+        },
+        {
+          "question": "Posso criar protocolos para espécies não listadas?",
+          "answer": "Sim. O sistema permite criar protocolos personalizados para qualquer espécie. A clínica define os sinais de alarme, a frequência de check-ins e a timeline de recuperação."
+        }
+      ],
+      "cta": {
+        "primary": { "text": "Protocolos Adaptados por Espécie", "url": "/contact/" },
+        "secondary": { "text": "Falar com a equipa", "url": "/contact/" }
+      },
+      "related_spokes": ["pos-castracao", "pos-cirurgia-ortopedica", "alertas-complicacoes"],
+      "related_posts": ["pos-operatorio-etapa-critica"]
+    },
+    {
+      "id": "C2-S05",
+      "slug": "checklist-pos-operatorio",
+      "url": "/solucoes/veterinarias/followup-pos-cirurgia/checklist-pos-operatorio/",
+      "template": "resource",
+      "title": "Checklist Pós-Operatório para Tutores de Animais | makeit.bot",
+      "h1": "Checklist Pós-Operatório: O Guia Dia a Dia para Tutores",
+      "meta_description": "Checklist prático de cuidados pós-cirúrgicos para tutores de cães e gatos. O que vigiar dia a dia, sinais de alarme, e quando voltar à clínica.",
+      "keyword_primary": "cuidados pós-cirurgia animal checklist",
+      "keywords_secondary": [
+        "checklist pós-operatório animal",
+        "cuidados pós-operatório cão gato",
+        "guia pós-cirurgia tutor"
+      ],
+      "variables": {
+        "resource_type": "Checklist interactivo",
+        "target_audience": "Tutores de animais",
+        "format": "Página interactiva + envio automático por WhatsApp",
+        "lead_capture": "Receba o checklist personalizado por WhatsApp ou email",
+        "day_0_items": "Medicação administrada? | Colar isabelino colocado? | Espaço seguro preparado? | Comida leve oferecida (4-6h após)? | Água disponível?",
+        "day_1_items": "Ferida sem sangramento? | Comeu alguma coisa? | Bebeu água? | Medicação em horário? | Colar no sítio?",
+        "day_2_3_items": "Ferida a cicatrizar (sem vermelhidão intensa)? | Apetite a normalizar? | Mais alerta que ontem? | Foto enviada ao veterinário?",
+        "day_4_7_items": "Ferida a cicatrizar bem? | Energia e apetite quase normais? | Consulta de controlo marcada? | Colar ainda no sítio?",
+        "day_7_14_items": "Consulta de retirada de pontos realizada? | Ferida limpa após remoção de pontos? | Actividade a aumentar gradualmente?",
+        "alarm_red": "Sangramento activo | Ferida aberta | Vómitos persistentes | Prostração extrema | Febre >39.5°C | Respiração de boca aberta (gatos) | Coelho sem comer >6h",
+        "alarm_yellow": "Inchaço que aumenta após dia 3 | Apetite não recuperado após 24h | Letargia após 48h | Lambedura excessiva",
+        "alarm_green": "Sonolência no dia da cirurgia | Menor apetite nas primeiras 24h | Ligeiro inchaço dias 1-3 | Não fazer fezes no dia da cirurgia",
+        "procedures_covered": "Castração/Esterilização, Cirurgia ortopédica, Extracção dentária, Cirurgia de tecidos moles, Cirurgia de urgência (geral)"
+      },
+      "faq": [
+        {
+          "question": "Este checklist substitui as instruções do veterinário?",
+          "answer": "Não. É um complemento. Siga sempre as instruções específicas que o veterinário deu para o seu animal. Cada caso é diferente. O checklist ajuda a não esquecer nada."
+        },
+        {
+          "question": "Como posso receber o checklist personalizado para o meu animal?",
+          "answer": "Se a sua clínica usa o makeit.bot, o checklist personalizado é enviado automaticamente por WhatsApp no momento da alta. Pode também pedir à clínica o link para preenchimento online."
+        },
+        {
+          "question": "O checklist é diferente por tipo de cirurgia?",
+          "answer": "Sim. Castração, cirurgia ortopédica e extracção dentária têm checklists específicos com diferentes timelines e itens. O sistema adapta automaticamente ao procedimento realizado."
+        }
+      ],
+      "cta": {
+        "primary": { "text": "Enviar Checklist Automaticamente", "url": "/contact/" },
+        "secondary": { "text": "Ver demonstração", "url": "/contact/" }
+      },
+      "tool_cta": {
+        "text": "Receber checklist personalizado",
+        "url": "/contact/"
+      },
+      "related_spokes": ["pos-castracao", "alertas-complicacoes", "por-tipo-animal"],
+      "related_posts": ["pos-operatorio-etapa-critica", "roi-followup-pos-cirurgia"]
+    }
+  ],
+  "blog_posts_support": [
+    {
+      "slug": "pos-operatorio-etapa-critica",
+      "title": "Pós-Operatório: A Etapa Mais Crítica e Mais Negligenciada na Veterinária",
+      "category": "gestao-veterinaria",
+      "target_keywords": ["pós-operatório veterinário importância", "complicações pós-cirurgia animal"],
+      "internal_links_to": ["hub-followup", "alertas-complicacoes", "checklist-pos-operatorio"]
+    },
+    {
+      "slug": "automatizar-followup-toque-humano",
+      "title": "Como Automatizar o Follow-up Pós-Cirurgia Sem Perder o Toque Humano",
+      "category": "automacao-ia",
+      "target_keywords": ["automatizar follow-up veterinário", "IA acompanhamento animal"],
+      "internal_links_to": ["hub-followup", "pos-castracao", "alertas-complicacoes"]
+    },
+    {
+      "slug": "roi-followup-pos-cirurgia",
+      "title": "Tutores Satisfeitos Voltam: O ROI do Follow-up Pós-Cirurgia Bem Feito",
+      "category": "dados-insights",
+      "target_keywords": ["ROI follow-up veterinário", "satisfação tutor pós-cirurgia"],
+      "internal_links_to": ["hub-followup", "pos-castracao", "checklist-pos-operatorio"]
+    }
+  ]
+}

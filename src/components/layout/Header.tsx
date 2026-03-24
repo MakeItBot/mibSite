@@ -26,6 +26,7 @@ export function Header() {
       submenu: [
         { name: "Veterinarias", href: "/solucoes/veterinarias/" },
         { name: "Agendamento Inteligente", href: "/solucoes/veterinarias/agendamento-inteligente/" },
+        { name: "Follow-up Pós-Cirurgia", href: "/solucoes/veterinarias/followup-pos-cirurgia/" },
       ],
     },
     {

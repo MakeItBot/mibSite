@@ -1,8 +1,10 @@
 import type { Cluster, Spoke } from '@/types/cluster'
 import agendamentoInteligenteData from '@/data/clusters/agendamento-inteligente.json'
+import followupPosCirurgiaData from '@/data/clusters/followup-pos-cirurgia.json'
 
 const clusters: Record<string, Cluster> = {
   'agendamento-inteligente': agendamentoInteligenteData as Cluster,
+  'followup-pos-cirurgia': followupPosCirurgiaData as Cluster,
 }
 
 export function getCluster(clusterId: string): Cluster | null {

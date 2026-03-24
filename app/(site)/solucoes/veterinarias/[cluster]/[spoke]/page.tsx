@@ -11,6 +11,9 @@ import { FeatureFocus } from '@/components/cluster-templates/FeatureFocus'
 import { Comparison } from '@/components/cluster-templates/Comparison'
 import { DataDriven } from '@/components/cluster-templates/DataDriven'
 import { SolutionByType } from '@/components/cluster-templates/SolutionByType'
+import { ProcedureSpecific } from '@/components/cluster-templates/ProcedureSpecific'
+import { AnimalType } from '@/components/cluster-templates/AnimalType'
+import { Resource } from '@/components/cluster-templates/Resource'
 
 interface PageProps {
   params: Promise<{ cluster: string; spoke: string }>
@@ -59,6 +62,9 @@ export default async function SpokePage({ params }: PageProps) {
     'feature-focus': <FeatureFocus {...templateProps} />,
     comparison: <Comparison {...templateProps} />,
     'data-driven': <DataDriven {...templateProps} />,
+    'procedure-specific': <ProcedureSpecific {...templateProps} />,
+    'animal-type': <AnimalType {...templateProps} />,
+    'resource': <Resource {...templateProps} />,
   }
 
   const templateContent = templateMap[spoke.template] ?? templateMap['solution-by-size']

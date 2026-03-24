@@ -51,6 +51,9 @@ export type TemplateType =
   | 'feature-focus'
   | 'comparison'
   | 'data-driven'
+  | 'procedure-specific'
+  | 'animal-type'
+  | 'resource'
 
 export interface Spoke {
   id: string

@@ -31,6 +31,8 @@ export function Footer() {
       { name: locale === "pt" ? "Agendamento Inteligente" : "Smart Scheduling", href: "/solucoes/veterinarias/agendamento-inteligente/" },
       { name: "Anti No-Show", href: "/solucoes/veterinarias/agendamento-inteligente/anti-no-show/" },
       { name: locale === "pt" ? "Lembretes Automáticos" : "Auto Reminders", href: "/solucoes/veterinarias/agendamento-inteligente/lembretes-automaticos/" },
+      { name: "Follow-up Pós-Cirurgia", href: "/solucoes/veterinarias/followup-pos-cirurgia/" },
+      { name: "Alertas de Complicações", href: "/solucoes/veterinarias/followup-pos-cirurgia/alertas-complicacoes/" },
     ],
     company: [
       { name: locale === "pt" ? "Sobre Nós" : "About Us", href: "/about/" },
