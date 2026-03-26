@@ -1,17 +1,22 @@
+"use client";
+
 import { Layout } from "@/components/layout";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/animations";
+import { useI18n } from "@/i18n";
 
 export default function PrivacyPage() {
+  const { t } = useI18n();
+
   return (
     <Layout>
       <section className="pt-32 pb-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto">
             <ScrollReveal animation="fade-up">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Privacy Policy</h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">{t.privacy.title}</h1>
             </ScrollReveal>
             <ScrollReveal animation="fade-up" delay={0.1}>
-              <p className="text-muted-foreground mb-12">Last updated: January 2025</p>
+              <p className="text-muted-foreground mb-12">{t.privacy.lastUpdated}</p>
             </ScrollReveal>
 
             <StaggerContainer className="prose prose-lg dark:prose-invert max-w-none">

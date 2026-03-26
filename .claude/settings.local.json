@@ -22,7 +22,9 @@
       "Bash(ls \"C:/Users/aryha/Documents/MIB/site/app/\\(site\\)/services/shopify/\")",
       "Bash(npx tsc:*)",
       "Bash(ls \"C:/Users/aryha/Documents/MIB/site/app/\\(site\\)/services/\")",
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "Bash(tree -L 2 -d /c/Users/aryha/Documents/MIB/site --ignore node_modules)",
+      "Bash(wc -l /c/Users/aryha/Documents/MIB/site/src/i18n/locales/*.ts)"
     ]
   }
 }

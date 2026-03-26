@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, Clock, MessageCircle, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useI18n } from "@/i18n";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/animations";
 import {
   Collapsible,
@@ -45,7 +46,7 @@ const contactInfo = [
 const faqs = [
   {
     question: "How long does a typical project take?",
-    answer: "Project timelines vary based on scope. A simple Shopify app might take 4-6 weeks, while a complex AI chatbot could take 8-12 weeks. We'll provide a detailed timeline during our discovery phase.",
+    answer: "Project timelines vary based on scope. A simple AI chatbot could take 4-6 weeks, while a complex custom agent could take 8-12 weeks. We'll provide a detailed timeline during our discovery phase.",
   },
   {
     question: "What's your pricing model?",
@@ -62,6 +63,7 @@ const faqs = [
 ];
 
 export default function ContactPage() {
+  const { t } = useI18n();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -100,8 +102,8 @@ export default function ContactPage() {
       console.log('✅ Success:', successData);
 
       toast({
-        title: "Message sent!",
-        description: "We'll get back to you within 24 hours.",
+        title: t.contact.successTitle,
+        description: t.contact.successDesc,
       });
 
       setFormData({
@@ -114,7 +116,7 @@ export default function ContactPage() {
     } catch (error) {
       console.error('❌ Catch error:', error);
       toast({
-        title: "Error sending message",
+        title: t.contact.errorTitle,
         description: error instanceof Error ? error.message : "Please try again later",
         variant: "destructive",
       });
@@ -141,11 +143,10 @@ export default function ContactPage() {
           <ScrollReveal>
             <div className="max-w-4xl">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                Let's <span className="gradient-text">Talk</span>
+                {t.contact.heroTitle}<span className="gradient-text">{t.contact.heroTitleHighlight}</span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl">
-                Ready to start your next project? Get in touch and let's discuss 
-                how we can help you achieve your goals.
+                {t.contact.heroSubtitle}
               </p>
             </div>
           </ScrollReveal>
@@ -159,11 +160,11 @@ export default function ContactPage() {
             {/* Form */}
             <ScrollReveal animation="fade-right" className="lg:col-span-3">
               <div className="bg-card p-8 rounded-2xl border border-border">
-                <h2 className="text-2xl font-bold mb-6">Send us a message</h2>
+                <h2 className="text-2xl font-bold mb-6">{t.contact.formTitle}</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <Label htmlFor="name">Name *</Label>
+                      <Label htmlFor="name">{t.contact.nameLabel}</Label>
                       <Input
                         id="name"
                         name="name"
@@ -171,11 +172,11 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         className="mt-2"
-                        placeholder="Your name"
+                        placeholder={t.contact.placeholders.name}
                       />
                     </div>
                     <div>
-                      <Label htmlFor="email">Email *</Label>
+                      <Label htmlFor="email">{t.contact.emailLabel}</Label>
                       <Input
                         id="email"
                         name="email"
@@ -184,14 +185,14 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         className="mt-2"
-                        placeholder="your@email.com"
+                        placeholder={t.contact.placeholders.email}
                       />
                     </div>
                   </div>
-                  
+
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <Label htmlFor="phone">Phone</Label>
+                      <Label htmlFor="phone">{t.contact.phoneLabel}</Label>
                       <Input
                         id="phone"
                         name="phone"
@@ -199,11 +200,11 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={handleChange}
                         className="mt-2"
-                        placeholder="+1 (555) 000-0000"
+                        placeholder={t.contact.placeholders.phone}
                       />
                     </div>
                     <div>
-                      <Label htmlFor="projectType">Project Type</Label>
+                      <Label htmlFor="projectType">{t.contact.projectTypeLabel}</Label>
                       <select
                         id="projectType"
                         name="projectType"
@@ -211,17 +212,16 @@ export default function ContactPage() {
                         onChange={handleChange}
                         className="mt-2 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring"
                       >
-                        <option value="">Select a service</option>
-                        <option value="shopify">Shopify App Development</option>
-                        <option value="chatbot">AI Chatbot</option>
-                        <option value="pwa">Progressive Web App</option>
-                        <option value="other">Other</option>
+                        <option value="">{t.contact.selectService}</option>
+                        <option value="chatbot">{t.contact.aiChatbot}</option>
+                        <option value="pwa">{t.contact.pwa}</option>
+                        <option value="other">{t.contact.other}</option>
                       </select>
                     </div>
                   </div>
                   
                   <div>
-                    <Label htmlFor="message">Project Details *</Label>
+                    <Label htmlFor="message">{t.contact.projectDetailsLabel}</Label>
                     <Textarea
                       id="message"
                       name="message"
@@ -229,17 +229,17 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       className="mt-2 min-h-[150px]"
-                      placeholder="Tell us about your project, goals, and any specific requirements..."
+                      placeholder={t.contact.placeholders.message}
                     />
                   </div>
-                  
+
                   <Button
                     type="submit"
                     size="lg"
                     disabled={isSubmitting}
                     className="w-full gradient-primary text-primary-foreground"
                   >
-                    {isSubmitting ? "Sending..." : "Send Message"}
+                    {isSubmitting ? t.contact.sending : t.contact.sendMessage}
                   </Button>
                 </form>
               </div>
@@ -249,7 +249,7 @@ export default function ContactPage() {
             <ScrollReveal animation="fade-left" delay={0.2} className="lg:col-span-2">
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
+                  <h2 className="text-2xl font-bold mb-6">{t.contact.contactTitle}</h2>
                   <StaggerContainer className="space-y-4">
                     {contactInfo.map((info) => (
                       <StaggerItem key={info.title}>
@@ -276,12 +276,12 @@ export default function ContactPage() {
                 <ScrollReveal delay={0.3}>
                   <div className="p-6 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 border border-primary/20">
                     <MessageCircle className="h-8 w-8 text-primary mb-4" />
-                    <h3 className="text-lg font-semibold mb-2">Prefer a quick chat?</h3>
+                    <h3 className="text-lg font-semibold mb-2">{t.contact.preferChat}</h3>
                     <p className="text-sm text-muted-foreground mb-4">
-                      Schedule a free 15-minute call to discuss your project.
+                      {t.contact.preferChatDesc}
                     </p>
                     <Button variant="secondary" className="w-full">
-                      Book a Call
+                      {t.contact.bookCall}
                     </Button>
                   </div>
                 </ScrollReveal>
@@ -296,10 +296,10 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 lg:px-8">
           <ScrollReveal className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Frequently Asked Questions
+              {t.contact.faqTitle}
             </h2>
             <p className="text-muted-foreground">
-              Quick answers to common questions
+              {t.contact.faqSubtitle}
             </p>
           </ScrollReveal>
 

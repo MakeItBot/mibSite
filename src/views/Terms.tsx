@@ -1,17 +1,22 @@
+"use client";
+
 import { Layout } from "@/components/layout";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/animations";
+import { useI18n } from "@/i18n";
 
 export default function TermsPage() {
+  const { t } = useI18n();
+
   return (
     <Layout>
       <section className="pt-32 pb-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto">
             <ScrollReveal animation="fade-up">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Terms of Service</h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">{t.terms.title}</h1>
             </ScrollReveal>
             <ScrollReveal animation="fade-up" delay={0.1}>
-              <p className="text-muted-foreground mb-12">Last updated: January 2025</p>
+              <p className="text-muted-foreground mb-12">{t.terms.lastUpdated}</p>
             </ScrollReveal>
 
             <StaggerContainer className="prose prose-lg dark:prose-invert max-w-none">
@@ -26,8 +31,7 @@ export default function TermsPage() {
               <StaggerItem>
                 <h2 className="text-2xl font-bold mt-8 mb-4">2. Services</h2>
                 <p className="text-muted-foreground mb-4">
-                  Make It Bot provides software development services including but not limited to Shopify 
-                  app development, AI chatbot development, and Progressive Web App development. The specific 
+                  Make It Bot provides software development services including but not limited to AI chatbot development, custom AI agents, and Progressive Web App development. The specific
                   scope of services will be defined in individual project agreements.
                 </p>
               </StaggerItem>

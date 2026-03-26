@@ -136,4 +136,68 @@ export interface Translations {
     }
     cta: string
   }
+  notFound: {
+    title: string
+    message: string
+    backHome: string
+  }
+  blog: {
+    heroTitle: string
+    heroSubtitleStart: string
+    heroSubtitle: string
+    stayUpdated: string
+    stayUpdatedDesc: string
+    emailPlaceholder: string
+    subscribe: string
+    loadMore: string
+    readArticle: string
+  }
+  contact: {
+    heroTitle: string
+    heroTitleHighlight: string
+    heroSubtitle: string
+    formTitle: string
+    contactTitle: string
+    email: string
+    phone: string
+    location: string
+    responseTime: string
+    withinHours: string
+    remoteGlobal: string
+    phoneNumber: string
+    emailAddress: string
+    nameLabel: string
+    emailLabel: string
+    phoneLabel: string
+    projectTypeLabel: string
+    projectDetailsLabel: string
+    selectService: string
+    aiChatbot: string
+    pwa: string
+    other: string
+    placeholders: {
+      name: string
+      email: string
+      phone: string
+      message: string
+    }
+    sending: string
+    sendMessage: string
+    preferChat: string
+    preferChatDesc: string
+    bookCall: string
+    faqTitle: string
+    faqSubtitle: string
+    successTitle: string
+    successDesc: string
+    errorTitle: string
+  }
+  privacy: {
+    title: string
+    lastUpdated: string
+  }
+  terms: {
+    title: string
+    lastUpdated: string
+  }
 }

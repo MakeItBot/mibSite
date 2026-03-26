@@ -8,7 +8,7 @@ import { ExternalLink, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/animations";
 
-const categories = ["All", "Shopify", "Chatbots", "PWA"];
+const categories = ["All", "Chatbots", "PWA", "Custom Solutions"];
 
 const projects = [
   {
@@ -37,14 +37,6 @@ const projects = [
     tags: ["PWA", "React", "JavaScript"],
     link: "https://mib-history.vercel.app/",
     external: true,
-  },
-  {
-    id: 4,
-    title: "Subscription Box Platform",
-    category: "Shopify",
-    description: "Custom subscription management system for a D2C brand.",
-    image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&h=400&fit=crop",
-    tags: ["Shopify", "Subscriptions", "Cloudfare Workers"],
   },
   {
     id: 5,

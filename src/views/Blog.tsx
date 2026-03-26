@@ -1,11 +1,14 @@
+"use client";
+
 import { Layout } from "@/components/layout";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/animations";
 import { Button } from "@/components/ui/button";
 import { ImageWithSkeleton } from "@/components/ui/image-skeleton";
 import Link from "next/link";
 import { ArrowRight, Calendar, Clock, User } from "lucide-react";
+import { useI18n } from "@/i18n";
 
-const posts = [
+const defaultPosts = [
   {
     id: 1,
     title: "How AI Chatbots Are Revolutionizing Customer Service",
@@ -18,16 +21,6 @@ const posts = [
   },
   {
     id: 2,
-    title: "Building Scalable Shopify Apps: Best Practices",
-    excerpt: "Learn the key principles and patterns for developing Shopify applications that can handle thousands of merchants seamlessly.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop",
-    category: "Development",
-    author: "Make It Bot Team",
-    date: "Dec 10, 2024",
-    readTime: "8 min read",
-  },
-  {
-    id: 3,
     title: "PWA vs Native Apps: Making the Right Choice",
     excerpt: "A comprehensive comparison to help you decide whether a Progressive Web App or native development is right for your project.",
     image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=400&fit=crop",
@@ -37,38 +30,39 @@ const posts = [
     readTime: "6 min read",
   },
   {
-    id: 4,
-    title: "The Future of E-commerce: Trends for 2025",
-    excerpt: "Explore the emerging technologies and strategies that will shape online retail in the coming year.",
+    id: 3,
+    title: "The Future of Digital Solutions: Trends for 2025",
+    excerpt: "Explore the emerging technologies and strategies that will shape digital innovation in the coming year.",
     image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=400&fit=crop",
-    category: "E-commerce",
+    category: "Technology",
     author: "Make It Bot Team",
     date: "Nov 28, 2024",
     readTime: "7 min read",
   },
 ];
 
-const categories = ["All", "AI & Technology", "Development", "E-commerce", "Web Development"];
-
 export default function BlogPage() {
+  const { t } = useI18n();
+  const posts = defaultPosts;
+  const categories = ["All", "AI & Technology", "Web Development", "Technology"];
+
   return (
     <Layout>
       {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-30" />
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-        
+
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="max-w-4xl">
             <ScrollReveal animation="fade-up">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                Our <span className="gradient-text">Blog</span>
+                {t.blog.heroTitle}<span className="gradient-text">{t.blog.heroSubtitleStart}</span>
               </h1>
             </ScrollReveal>
             <ScrollReveal animation="fade-up" delay={0.1}>
               <p className="text-xl text-muted-foreground max-w-2xl">
-                Insights, tutorials, and updates from the Make It Bot team. 
-                Stay informed about the latest in software development.
+                {t.blog.heroSubtitle}
               </p>
             </ScrollReveal>
           </div>
@@ -123,7 +117,7 @@ export default function BlogPage() {
                       </span>
                     </div>
                     <Button variant="outline" className="w-fit">
-                      Read Article
+                      {t.blog.readArticle}
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
@@ -173,7 +167,7 @@ export default function BlogPage() {
           <ScrollReveal animation="fade-up">
             <div className="text-center mt-12">
               <Button variant="outline" size="lg">
-                Load More Articles
+                {t.blog.loadMore}
               </Button>
             </div>
           </ScrollReveal>
@@ -186,19 +180,19 @@ export default function BlogPage() {
           <ScrollReveal animation="scale">
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Stay Updated
+                {t.blog.stayUpdated}
               </h2>
               <p className="text-muted-foreground mb-8">
-                Subscribe to our newsletter for the latest articles, tutorials, and industry insights.
+                {t.blog.stayUpdatedDesc}
               </p>
               <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder={t.blog.emailPlaceholder}
                   className="flex-1 h-12 rounded-lg border border-input bg-background px-4 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
                 <Button size="lg" className="gradient-primary text-primary-foreground">
-                  Subscribe
+                  {t.blog.subscribe}
                 </Button>
               </form>
             </div>
