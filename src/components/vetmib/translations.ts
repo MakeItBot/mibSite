@@ -147,7 +147,7 @@ export const translations = {
       plans: [
         {
           name: "Starter",
-          price: "Sob consulta",
+          price: "€79/mês",
           description: "Ideal para clínicas pequenas",
           features: [
             "Até 100 mensagens/mês",
@@ -161,7 +161,7 @@ export const translations = {
         },
         {
           name: "Profissional",
-          price: "Sob consulta",
+          price: "a partir de €99/mês",
           description: "Para clínicas em crescimento",
           features: [
             "Até 500 mensagens/mês",

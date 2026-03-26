@@ -2,7 +2,6 @@ import type { Spoke } from '@/types/cluster'
 import { DataPointsGrid } from '@/components/seo/DataPointsGrid'
 import { FAQSection } from '@/components/seo/FAQSection'
 import { CTASection } from '@/components/seo/CTASection'
-import { SocialProof } from '@/components/seo/SocialProof'
 import { RelatedLinks } from '@/components/seo/RelatedLinks'
 import type { Cluster } from '@/types/cluster'
 import { getRelatedSpokes } from '@/lib/clusters'
@@ -71,9 +70,6 @@ export function SolutionBySize({ spoke, cluster }: Props) {
           </div>
         </section>
       )}
-
-      {/* Social Proof */}
-      {content?.social_proof && <SocialProof data={content.social_proof} />}
 
       {/* FAQ */}
       {spoke.faq.length > 0 && <FAQSection faqs={spoke.faq} />}

@@ -19,13 +19,6 @@ export interface Feature {
   description: string
 }
 
-export interface SocialProof {
-  quote: string
-  author: string
-  role: string
-  note?: string
-}
-
 export interface ContentSection {
   title: string
   content: string
@@ -37,7 +30,6 @@ export interface SpokeContent {
   intro?: string
   problem_section?: ContentSection
   solution_section?: ContentSection & { features?: Feature[] }
-  social_proof?: SocialProof
 }
 
 export interface SpokeVariables {
