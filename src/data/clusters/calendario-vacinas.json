@@ -1,0 +1,329 @@
+{
+  "cluster_id": "calendario-vacinas",
+  "cluster_name": "Calendário de Vacinas & Preventivos",
+  "hub": {
+    "slug": "calendario-vacinas",
+    "url": "/solucoes/veterinarias/calendario-vacinas/",
+    "title": "Calendário de Vacinas e Preventivos Automático | makeit.bot",
+    "h1": "Calendário de Vacinas e Preventivos Automático para a Sua Clínica",
+    "meta_description": "Sistema de gestão vacinal com lembretes automáticos, calendário por animal e marcação integrada. Nunca mais perca uma vacina de reforço.",
+    "keyword_primary": "calendário vacinas cão gato",
+    "keywords_secondary": [
+      "lembretes vacinação automáticos veterinária",
+      "gestão calendário vacinas clínica vet",
+      "sistema vacinação animal automático"
+    ]
+  },
+  "spokes": [
+    {
+      "id": "C3-S01",
+      "slug": "vacinas-cachorro-filhote",
+      "url": "/solucoes/veterinarias/calendario-vacinas/vacinas-cachorro-filhote/",
+      "template": "lifecycle-stage",
+      "title": "Vacinas para Cachorros e Gatinhos: Primo-Vacinação | makeit.bot",
+      "h1": "Primo-Vacinação de Filhotes: Como Garantir Que Nenhuma Dose É Perdida",
+      "meta_description": "A primo-vacinação de cachorros e gatinhos exige várias consultas em poucas semanas. Descubra como garantir que nenhum tutor perde uma dose.",
+      "keyword_primary": "vacinas cachorro filhote quando",
+      "keywords_secondary": [
+        "primo-vacinação cachorro automático",
+        "vacinas gatinho filhote protocolo",
+        "lembrete vacina filhote veterinária"
+      ],
+      "variables": {
+        "lifecycle_stage": "Filhote",
+        "stage_description": "Período de primo-vacinação — várias consultas num curto espaço de tempo",
+        "challenge": "O tutor tem entusiasmo alto na primeira consulta mas perde-se nas doses seguintes. Sem lembretes, muitos não completam o protocolo.",
+        "key_message": "São necessárias várias doses — uma única vacina raramente é suficiente para protecção completa. Os intervalos importam.",
+        "step_1": "Na primeira consulta: O veterinário regista a vacina. O sistema calcula as datas das próximas doses com base no protocolo da clínica.",
+        "step_2": "Lembretes automáticos: Antes de cada dose, o tutor recebe lembrete por WhatsApp com link para marcação.",
+        "step_3": "Se o tutor não marca: Lembrete de follow-up. Se continua sem marcar, a clínica é notificada.",
+        "step_4": "Após a última dose: Mensagem de parabéns + informação sobre o reforço seguinte.",
+        "step_5": "Informação educativa: Junto com cada lembrete, informação relevante definida pelo veterinário.",
+        "disclaimer": "O protocolo vacinal deve ser definido pelo veterinário, adaptado a cada animal (espécie, raça, idade, estilo de vida, região). A informação nesta página é genérica e não substitui consulta profissional.",
+        "cta_headline": "Nunca mais perca uma dose de primo-vacinação."
+      },
+      "faq": [
+        {
+          "question": "Quantas consultas de vacinação precisa um filhote?",
+          "answer": "Depende do protocolo definido pelo veterinário — tipicamente entre 2 e 4 consultas nas primeiras semanas de vida. Consulte o seu veterinário para o plano específico do seu animal."
+        },
+        {
+          "question": "O que acontece se atrasar uma dose?",
+          "answer": "Depende do atraso e da vacina. O veterinário avalia caso a caso. O sistema de lembretes existe exactamente para evitar que isto aconteça."
+        },
+        {
+          "question": "Quando posso passear o cachorro na rua?",
+          "answer": "O veterinário indicará quando é seguro. Normalmente, após completar o protocolo de primo-vacinação."
+        },
+        {
+          "question": "O sistema define o protocolo vacinal?",
+          "answer": "Não. O protocolo é sempre definido pelo veterinário. O sistema limita-se a gerir as datas e enviar lembretes."
+        }
+      ],
+      "cta": {
+        "primary": { "text": "Experimentar Grátis", "url": "/contact/" },
+        "secondary": { "text": "Ver como funciona", "url": "/contact/" }
+      },
+      "related_spokes": ["vacinas-adulto", "vacina-antirrabica-obrigatoria-portugal", "lembretes-automaticos-vacinacao"],
+      "related_posts": ["clientes-perdidos-vacina", "receita-recorrente-vacinas"]
+    },
+    {
+      "id": "C3-S02",
+      "slug": "vacinas-adulto",
+      "url": "/solucoes/veterinarias/calendario-vacinas/vacinas-adulto/",
+      "template": "lifecycle-stage",
+      "title": "Vacinas Anuais para Cães e Gatos Adultos | makeit.bot",
+      "h1": "Reforço Vacinal Periódico: O Motor de Receita Recorrente da Sua Clínica",
+      "meta_description": "O reforço vacinal periódico é o motor de receita recorrente da clínica. Automatize lembretes e garanta que os tutores não se esquecem.",
+      "keyword_primary": "vacina anual cão gato",
+      "keywords_secondary": [
+        "reforço vacinal automático veterinária",
+        "lembrete vacinação anual cão",
+        "sistema vacinas adulto clínica"
+      ],
+      "variables": {
+        "lifecycle_stage": "Adulto",
+        "stage_description": "Reforço periódico durante toda a vida do animal — a consulta mais previsível e repetível",
+        "challenge": "A maioria dos tutores que não faz o reforço simplesmente esqueceu-se. Não porque não se importa. Não porque mudou de clínica. Simplesmente porque ninguém lembrou.",
+        "key_message": "A primo-vacinação acontece uma vez. O reforço acontece periodicamente — durante toda a vida do animal. Cada reforço perdido é uma consulta que desaparece.",
+        "reminder_sequence": "Com antecedência: mensagem informativa + link para marcar. Próximo da data: pedido de marcação mais directo. Se não marcou: follow-up gentil. Em atraso: lembrete com nota sobre importância do reforço.",
+        "added_value": "detectar problemas precoces | recomendar desparasitação e antiparasitários | actualizar peso e prontuário | recomendar exames geriátricos | renovar a relação com o tutor",
+        "disclaimer": "O protocolo vacinal deve ser definido pelo veterinário. Esta informação é genérica.",
+        "cta_headline": "Nunca mais perca um reforço."
+      },
+      "faq": [
+        {
+          "question": "O sistema sabe quando vence o reforço?",
+          "answer": "Sim. A partir da data da última vacinação e do protocolo definido pelo veterinário, calcula automaticamente a data do próximo reforço."
+        },
+        {
+          "question": "E se o veterinário usar vacinas com validade de 3 anos?",
+          "answer": "O protocolo é configurável. Se determinada vacina tem reforço trianual e outra é anual, o sistema gere as duas frequências separadamente."
+        },
+        {
+          "question": "O tutor pode ver o calendário do animal?",
+          "answer": "O tutor recebe os lembretes directamente por WhatsApp, com as datas relevantes. Para detalhes, consulte o veterinário."
+        }
+      ],
+      "cta": {
+        "primary": { "text": "Recuperar Reforços em Atraso", "url": "/contact/" },
+        "secondary": { "text": "Experimentar Grátis", "url": "/contact/" }
+      },
+      "related_spokes": ["vacinas-cachorro-filhote", "lembretes-automaticos-vacinacao", "vacina-antirrabica-obrigatoria-portugal"],
+      "related_posts": ["clientes-perdidos-vacina", "receita-recorrente-vacinas"]
+    },
+    {
+      "id": "C3-S03",
+      "slug": "lembretes-automaticos-vacinacao",
+      "url": "/solucoes/veterinarias/calendario-vacinas/lembretes-automaticos-vacinacao/",
+      "template": "feature-focus",
+      "title": "Lembretes Automáticos de Vacinação para Veterinárias | makeit.bot",
+      "h1": "Lembretes Automáticos de Vacinação para a Sua Clínica",
+      "meta_description": "Envie lembretes automáticos de vacinação por WhatsApp e SMS. O tutor recebe aviso antes da data de reforço. Nunca mais perca uma vacina.",
+      "keyword_primary": "lembrete vacina animal automático",
+      "keywords_secondary": [
+        "lembretes automáticos vacinação WhatsApp",
+        "notificação vacina reforço animal",
+        "sistema lembretes veterinária"
+      ],
+      "variables": {
+        "feature_name": "Lembretes Automáticos de Vacinação",
+        "how_it_works": "O veterinário define o protocolo vacinal de cada animal. O sistema calcula a data do próximo reforço e envia lembretes com antecedência configurável, incluindo link directo para marcação online.",
+        "key_metric": "Redução de trabalho manual da recepcionista — de horas por semana a zero",
+        "channels": ["WhatsApp", "SMS"],
+        "differentiator": "Proactivo vs reactivo. Lembretes de vacinação contactam o tutor ANTES de haver marcação — o objectivo é gerar a marcação, não confirmar uma existente.",
+        "personalization": "Antecedência configurável | Número de follow-ups | Canal preferido | Mensagens personalizáveis por vacina",
+        "integration": "Cada lembrete inclui link para o sistema de marcação. O tutor recebe, clica, marca. Os lembretes de consulta activam-se automaticamente.",
+        "comparison_reminder_appointment": "Lembretes de consulta: consulta já marcada, objetivo reduzir no-show. Lembretes de vacinação: sem marcação, objetivo gerar marcação.",
+        "rgpd_note": "Opt-out gerido automaticamente — requisito RGPD cumprido."
+      },
+      "faq": [
+        {
+          "question": "Quanto custa enviar lembretes?",
+          "answer": "O custo por mensagem WhatsApp ronda alguns cêntimos. Para a maioria das clínicas, o custo mensal total é uma fracção de uma única consulta de vacinação."
+        },
+        {
+          "question": "O tutor pode pedir para não receber?",
+          "answer": "Sim. É um requisito RGPD e o sistema gere opt-out automaticamente."
+        },
+        {
+          "question": "Qual a diferença entre lembretes de vacinação e lembretes de consulta?",
+          "answer": "Os lembretes de consulta confirmam uma marcação que já existe. Os lembretes de vacinação são proactivos — contactam o tutor antes de haver marcação, para que a faça. São dois sistemas complementares."
+        }
+      ],
+      "cta": {
+        "primary": { "text": "Activar Lembretes de Vacinação", "url": "/contact/" },
+        "secondary": { "text": "Ver demonstração", "url": "/contact/" }
+      },
+      "related_spokes": ["vacinas-cachorro-filhote", "vacinas-adulto", "desparasitacao"],
+      "related_posts": ["clientes-perdidos-vacina", "receita-recorrente-vacinas"]
+    },
+    {
+      "id": "C3-S04",
+      "slug": "desparasitacao",
+      "url": "/solucoes/veterinarias/calendario-vacinas/desparasitacao/",
+      "template": "preventive-type",
+      "title": "Desparasitação: Automatize os Lembretes para os Seus Clientes | makeit.bot",
+      "h1": "Desparasitação: Automatize os Lembretes para os Seus Clientes",
+      "meta_description": "Automatize lembretes de desparasitação para os tutores da sua clínica. O sistema lembra quando é altura — conforme o protocolo definido pelo veterinário.",
+      "keyword_primary": "desparasitação cão gato",
+      "keywords_secondary": [
+        "lembrete desparasitação automático animal",
+        "gestão desparasitação clínica veterinária",
+        "quando desparasitar cão gato"
+      ],
+      "variables": {
+        "preventive_type": "Desparasitação",
+        "sub_types": "Interna (comprimido/pasta) | Externa (pipeta/coleira/spray)",
+        "challenge": "A desparasitação é feita em casa pelo tutor. Sem lembrete externo, é das coisas mais fáceis de esquecer. O tutor não sabe se era mensal ou trimestral. Ou deu a interna mas esqueceu a externa.",
+        "config_by_vet": "Tipo (interna, externa ou ambas) | Frequência conforme protocolo | Produto habitual (opcional)",
+        "reminder_content": "Tipo de desparasitação a fazer | Produto recomendado se configurado | Opção de comprar na clínica ou confirmar que já tem em casa",
+        "revenue_impact_1": "Venda de produto: os tutores que recebem lembrete tendem a comprar na clínica.",
+        "revenue_impact_2": "Consultas: tutores que passam na clínica para comprar muitas vezes agendam check-up.",
+        "protocol_note": "A frequência e o tipo de desparasitação dependem de: espécie e idade, estilo de vida, região geográfica, época do ano, condição de saúde. O veterinário é quem define.",
+        "disclaimer": "A frequência e tipo de desparasitação devem ser definidos pelo veterinário. A informação nesta página é genérica."
+      },
+      "faq": [
+        {
+          "question": "O sistema decide a frequência de desparasitação?",
+          "answer": "Não. O veterinário define. O sistema gere as datas e envia lembretes conforme esse protocolo."
+        },
+        {
+          "question": "Lembra de interna E externa separadamente?",
+          "answer": "Sim. São ciclos independentes, cada um com a sua própria frequência e datas de lembrete."
+        },
+        {
+          "question": "Posso configurar frequências diferentes por animal?",
+          "answer": "Sim. Cada animal pode ter o seu protocolo personalizado conforme o veterinário definir."
+        },
+        {
+          "question": "E se o tutor comprar o produto online ou na farmácia?",
+          "answer": "O lembrete funciona independentemente de onde compra. A clínica pode incluir opção de compra directa na mensagem."
+        }
+      ],
+      "cta": {
+        "primary": { "text": "Automatizar Lembretes de Desparasitação", "url": "/contact/" },
+        "secondary": { "text": "Experimentar Grátis", "url": "/contact/" }
+      },
+      "related_spokes": ["antiparasitarios-protocolo", "lembretes-automaticos-vacinacao"],
+      "related_posts": ["receita-recorrente-vacinas"]
+    },
+    {
+      "id": "C3-S05",
+      "slug": "antiparasitarios-protocolo",
+      "url": "/solucoes/veterinarias/calendario-vacinas/antiparasitarios-protocolo/",
+      "template": "preventive-type",
+      "title": "Antiparasitários: Protocolo Adaptado à Região | makeit.bot",
+      "h1": "Antiparasitários: Protocolo Adaptado à Sua Região",
+      "meta_description": "O risco parasitário varia por região e estação. O makeit.bot adapta os lembretes ao protocolo definido pelo veterinário conforme a realidade local.",
+      "keyword_primary": "antiparasitários quando aplicar",
+      "keywords_secondary": [
+        "antiparasitários cão gato portugal",
+        "protocolo antiparasitário regional",
+        "lembretes antiparasitários automáticos"
+      ],
+      "variables": {
+        "preventive_type": "Antiparasitários",
+        "sub_types": "Pulgas | Carraças | Flebótomos (leishmaniose) | Mosquitos (filariose)",
+        "challenge": "Portugal tem climas diversos e o risco parasitário varia por região. O protocolo de uma clínica no norte pode ser diferente do de uma no Algarve.",
+        "config_by_vet": "Protocolo base (frequência e tipo) | Variações sazonais se aplicável | Alertas para doenças endémicas da região",
+        "seasonality": "A actividade parasitária tende a ser mais intensa nos meses mais quentes. Em zonas do sul e litoral pode manter-se durante todo o ano.",
+        "seasonal_alert": "O sistema pode enviar alertas sazonais para lembrar tutores de reforçar a protecção na mudança de estação.",
+        "protocol_factors": "Localização geográfica | Estilo de vida (interior/exterior, rural/urbano) | Época do ano | Espécie e raça | Doenças endémicas da região",
+        "disclaimer": "O protocolo antiparasitário deve ser definido pelo veterinário conforme a região, espécie e estilo de vida do animal. Para informação sobre doenças endémicas, consulte o veterinário ou a DGAV."
+      },
+      "faq": [
+        {
+          "question": "O protocolo é igual para cães e gatos?",
+          "answer": "Geralmente não. Gatos indoor precisam de menos protecção externa que gatos outdoor ou cães. O veterinário define o protocolo adequado para cada animal."
+        },
+        {
+          "question": "E animais que viajam?",
+          "answer": "O veterinário pode ajustar o protocolo temporariamente para animais que viajam para regiões com maior risco parasitário."
+        },
+        {
+          "question": "O sistema recomenda produtos específicos?",
+          "answer": "O sistema pode incluir o nome do produto habitual no lembrete, se o veterinário o configurar. Não faz recomendações autónomas de produtos."
+        }
+      ],
+      "cta": {
+        "primary": { "text": "Proteger os Seus Pacientes", "url": "/contact/" },
+        "secondary": { "text": "Experimentar Grátis", "url": "/contact/" }
+      },
+      "related_spokes": ["desparasitacao", "lembretes-automaticos-vacinacao"],
+      "related_posts": ["receita-recorrente-vacinas"]
+    },
+    {
+      "id": "C3-S06",
+      "slug": "vacina-antirrabica-obrigatoria-portugal",
+      "url": "/solucoes/veterinarias/calendario-vacinas/vacina-antirrabica-obrigatoria-portugal/",
+      "template": "compliance",
+      "title": "Vacina Antirrábica Obrigatória em Portugal | makeit.bot",
+      "h1": "Vacina Antirrábica em Portugal: O Que Precisa de Saber",
+      "meta_description": "A vacina antirrábica é obrigatória para cães em Portugal. Saiba como garantir que nenhum paciente da sua clínica fica em incumprimento.",
+      "keyword_primary": "vacina antirrábica cão obrigatória portugal",
+      "keywords_secondary": [
+        "antirrábica obrigatória cão portugal",
+        "passaporte europeu animal viagem",
+        "vacina antirrábica reforço veterinária"
+      ],
+      "variables": {
+        "compliance_topic": "Vacina Antirrábica",
+        "legal_status": "Obrigatória por lei para cães em Portugal",
+        "certain_facts": "A vacina antirrábica é obrigatória para cães em Portugal | O incumprimento pode resultar em sanções para o tutor | É necessária para o Passaporte Europeu para Animais de Companhia | O reforço é periódico conforme indicação do veterinário e legislação",
+        "official_sources": "DGAV — dgav.pt | OMV — omv.pt | Legislação — dre.pt",
+        "legal_warning": "Não incluir valores de coimas (podem mudar). Sempre redirigir para DGAV para detalhes actualizados.",
+        "passport_requirements": "Microchip (identificação electrónica) + Vacina antirrábica em dia + Passaporte Europeu emitido por veterinário autorizado",
+        "clinic_risk": "Sem sistema automático, a clínica não tem forma prática de identificar quais pacientes têm antirrábica em atraso.",
+        "compliance_panel": "Vista de todos os cães com estado: Em dia (verde) | A vencer em breve (amarelo) | Em atraso (vermelho)",
+        "seasonal_opportunity": "Antes da época de férias: alertar tutores cujos cães têm antirrábica a expirar — essencial para quem viaja.",
+        "cat_note": "Para gatos: não obrigatória em Portugal em situação normal, mas necessária para viagens com Passaporte Europeu. Confirmar com veterinário.",
+        "disclaimer": "A informação legal nesta página é de carácter informativo e genérico. A legislação pode ser alterada. Para informação vinculativa, consulte as fontes oficiais."
+      },
+      "faq": [
+        {
+          "question": "A antirrábica é mesmo obrigatória?",
+          "answer": "Sim, para cães em Portugal. Consulte o site da DGAV (dgav.pt) para detalhes sobre a legislação em vigor."
+        },
+        {
+          "question": "E para gatos?",
+          "answer": "Em Portugal, a antirrábica não é obrigatória para gatos em situação normal — mas é necessária para viagens internacionais com Passaporte Europeu. Consulte o veterinário."
+        },
+        {
+          "question": "Qual a multa por não vacinar?",
+          "answer": "Existem sanções previstas na lei. Para valores actualizados, consulte a DGAV (dgav.pt)."
+        },
+        {
+          "question": "Com que frequência é o reforço?",
+          "answer": "Conforme indicação do veterinário e legislação em vigor. O sistema envia lembrete automaticamente antes da data de reforço."
+        },
+        {
+          "question": "O meu cão nunca sai de casa. Precisa na mesma?",
+          "answer": "A obrigação legal aplica-se a todos os cães, independentemente do estilo de vida. Consulte o veterinário."
+        }
+      ],
+      "cta": {
+        "primary": { "text": "Garantir Compliance Automático", "url": "/contact/" },
+        "secondary": { "text": "Ver painel de cobertura vacinal", "url": "/contact/" }
+      },
+      "related_spokes": ["vacinas-cachorro-filhote", "vacinas-adulto", "lembretes-automaticos-vacinacao"],
+      "related_posts": ["clientes-perdidos-vacina"]
+    }
+  ],
+  "blog_posts_support": [
+    {
+      "slug": "clientes-perdidos-vacina",
+      "title": "Quantos Clientes Perde por Não Lembrar da Vacina?",
+      "category": "gestao-veterinaria",
+      "target_keywords": ["receita perdida vacinas veterinária", "clientes esquecem vacinas"],
+      "internal_links_to": ["hub-calendario-vacinas", "lembretes-automaticos-vacinacao", "vacinas-adulto"]
+    },
+    {
+      "slug": "receita-recorrente-vacinas",
+      "title": "Receita Recorrente: Vacinas como Motor Financeiro da Clínica",
+      "category": "dados-insights",
+      "target_keywords": ["receita recorrente clínica veterinária", "vacinas motor financeiro"],
+      "internal_links_to": ["hub-calendario-vacinas", "vacinas-adulto", "desparasitacao"]
+    }
+  ]
+}

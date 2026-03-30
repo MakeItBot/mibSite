@@ -46,6 +46,9 @@ export type TemplateType =
   | 'procedure-specific'
   | 'animal-type'
   | 'resource'
+  | 'lifecycle-stage'
+  | 'preventive-type'
+  | 'compliance'
 
 export interface Spoke {
   id: string

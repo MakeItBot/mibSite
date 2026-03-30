@@ -33,6 +33,8 @@ export function Footer() {
       { name: locale === "pt" ? "Lembretes Automáticos" : "Auto Reminders", href: "/solucoes/veterinarias/agendamento-inteligente/lembretes-automaticos/" },
       { name: "Follow-up Pós-Cirurgia", href: "/solucoes/veterinarias/followup-pos-cirurgia/" },
       { name: "Alertas de Complicações", href: "/solucoes/veterinarias/followup-pos-cirurgia/alertas-complicacoes/" },
+      { name: "Calendário de Vacinas", href: "/solucoes/veterinarias/calendario-vacinas/" },
+      { name: "Antirrábica Obrigatória", href: "/solucoes/veterinarias/calendario-vacinas/vacina-antirrabica-obrigatoria-portugal/" },
     ],
     company: [
       { name: locale === "pt" ? "Sobre Nós" : "About Us", href: "/about/" },

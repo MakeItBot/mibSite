@@ -14,6 +14,9 @@ import { SolutionByType } from '@/components/cluster-templates/SolutionByType'
 import { ProcedureSpecific } from '@/components/cluster-templates/ProcedureSpecific'
 import { AnimalType } from '@/components/cluster-templates/AnimalType'
 import { Resource } from '@/components/cluster-templates/Resource'
+import { LifecycleStage } from '@/components/cluster-templates/LifecycleStage'
+import { PreventiveType } from '@/components/cluster-templates/PreventiveType'
+import { ComplianceTemplate } from '@/components/cluster-templates/ComplianceTemplate'
 
 interface PageProps {
   params: Promise<{ cluster: string; spoke: string }>
@@ -65,6 +68,9 @@ export default async function SpokePage({ params }: PageProps) {
     'procedure-specific': <ProcedureSpecific {...templateProps} />,
     'animal-type': <AnimalType {...templateProps} />,
     'resource': <Resource {...templateProps} />,
+    'lifecycle-stage': <LifecycleStage {...templateProps} />,
+    'preventive-type': <PreventiveType {...templateProps} />,
+    'compliance': <ComplianceTemplate {...templateProps} />,
   }
 
   const templateContent = templateMap[spoke.template] ?? templateMap['solution-by-size']

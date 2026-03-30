@@ -136,6 +136,34 @@ export interface Translations {
     }
     cta: string
   }
+  cluster3: {
+    hubTitle: string
+    hubSubtitle: string
+    filhoteTitle: string
+    filhoteDesc: string
+    adultoTitle: string
+    adultoDesc: string
+    lembretesTitle: string
+    lembretesDesc: string
+    desparasitacaoTitle: string
+    desparasitacaoDesc: string
+    antiparasitariosTitle: string
+    antiparasitariosDesc: string
+    antirrabicaTitle: string
+    antirrabicaDesc: string
+    readMore: string
+    whyCluster: {
+      title: string
+      subtitle: string
+      benefit1Title: string
+      benefit1Desc: string
+      benefit2Title: string
+      benefit2Desc: string
+      benefit3Title: string
+      benefit3Desc: string
+    }
+    cta: string
+  }
   notFound: {
     title: string
     message: string
