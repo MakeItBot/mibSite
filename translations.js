@@ -23,7 +23,6 @@ window.MIB_I18N = {
         "No dark patterns",
         "Made for grown-ups",
       ],
-      portfolio_note: "A 10-game portfolio is on the workbench. Releases will roll out through 2026 and 2027.",
     },
     games: {
       heading: "The roster",
@@ -108,7 +107,6 @@ window.MIB_I18N = {
         "Sem dark patterns",
         "Feito para adultos",
       ],
-      portfolio_note: "Um portfólio de 10 jogos está em construção. Lançamentos ao longo de 2026 e 2027.",
     },
     games: {
       heading: "O catálogo",
@@ -193,7 +191,6 @@ window.MIB_I18N = {
         "Sin dark patterns",
         "Hecho para adultos",
       ],
-      portfolio_note: "Un portfolio de 10 juegos está en marcha. Lanzamientos durante 2026 y 2027.",
     },
     games: {
       heading: "El catálogo",
@@ -278,7 +275,6 @@ window.MIB_I18N = {
         "Keine Dark Patterns",
         "Für Erwachsene gemacht",
       ],
-      portfolio_note: "Ein 10-Spiele-Portfolio ist in Arbeit. Veröffentlichungen rollen durch 2026 und 2027.",
     },
     games: {
       heading: "Das Lineup",
@@ -363,7 +359,6 @@ window.MIB_I18N = {
         "Pas de dark patterns",
         "Fait pour les adultes",
       ],
-      portfolio_note: "Un portfolio de 10 jeux est en chantier. Sorties échelonnées sur 2026 et 2027.",
     },
     games: {
       heading: "Le catalogue",
@@ -448,7 +443,6 @@ window.MIB_I18N = {
         "Niente dark pattern",
         "Fatto per adulti",
       ],
-      portfolio_note: "Un portfolio di 10 giochi è in lavorazione. Uscite distribuite tra 2026 e 2027.",
     },
     games: {
       heading: "La lineup",

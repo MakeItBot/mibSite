@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<title>Press Kit — makeit.bot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Press kit for makeit.bot. Logos, screenshots, factsheets and contact for press and creators.">
+<meta name="theme-color" content="#0f1f0e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0f1f0e;
+    --bg-2:      #1a3018;
+    --panel:     #234221;
+    --ink-dim:   #5d8159;
+    --ink:       #9ec188;
+    --ink-bright:#d5e4a8;
+    --pop:       #f5d76e;
+    --pop-2:     #e85d4d;
+    --rule:      #305030;
+  }
+  [data-theme="light"] {
+    --bg:        #e8e9c4;
+    --bg-2:      #d9da9c;
+    --panel:     #f4f5d8;
+    --ink-dim:   #6b7a4a;
+    --ink:       #3a4828;
+    --ink-bright:#1a2010;
+    --pop:       #c97c1a;
+    --pop-2:     #9a3a28;
+    --rule:      #b8b878;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink-bright); }
+  body {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 18px; line-height: 1.4;
+    overflow-x: hidden; min-height: 100vh;
+    image-rendering: pixelated; -webkit-font-smoothing: none;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.08) 1px, transparent 1px);
+    background-size: 4px 4px; pointer-events: none; z-index: 100;
+  }
+  /* topbar */
+  .topbar {
+    padding: 18px 40px; display: flex; align-items: center; gap: 28px;
+    background: var(--bg-2); border-bottom: 4px solid var(--bg);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .logo-lockup {
+    display: inline-flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .logo-mark {
+    display: inline-flex; align-items: baseline; gap: 0.3em;
+    background: var(--pop); color: var(--bg);
+    padding: 0.42em 0.55em 0.36em;
+    font-family: 'Silkscreen', monospace; font-weight: 700;
+    font-size: 13px; line-height: 1;
+    box-shadow: 0.14em 0.14em 0 var(--ink-dim);
+    flex-shrink: 0;
+  }
+  .logo-word { display: flex; flex-direction: column; gap: 2px; }
+  .logo-word .name {
+    font-family: 'Silkscreen', monospace; font-weight: 700;
+    font-size: 16px; color: var(--ink-bright); line-height: 1;
+  }
+  .logo-word .name .accent { color: var(--pop); }
+  .logo-word .tag { font-family: 'Pixelify Sans', monospace; font-size: 11px; color: var(--ink-dim); }
+  .topbar-right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+  .theme-toggle {
+    font-family: 'Silkscreen', monospace; font-size: 9px;
+    background: var(--panel); color: var(--ink-bright);
+    border: 0; box-shadow: inset 0 -3px 0 var(--bg);
+    padding: 8px 12px; cursor: pointer; text-transform: uppercase;
+    transition: background .15s;
+  }
+  .theme-toggle:hover { background: var(--ink-dim); }
+  .back-link {
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    color: var(--ink-dim); text-decoration: none; text-transform: uppercase;
+    letter-spacing: 0.06em; transition: color .15s;
+  }
+  .back-link::before { content: "◀ "; }
+  .back-link:hover { color: var(--pop); }
+
+  /* page */
+  .page { max-width: 900px; margin: 0 auto; padding: 80px 40px 120px; }
+  .page-eyebrow {
+    font-family: 'Silkscreen', monospace; font-size: 10px;
+    color: var(--pop); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .page-title {
+    font-family: 'Silkscreen', monospace; font-weight: 700;
+    font-size: clamp(28px, 4vw, 48px); line-height: 1.1;
+    color: var(--ink-bright); margin-bottom: 16px;
+    text-shadow: 3px 3px 0 var(--bg), 3px 0 0 var(--bg), 0 3px 0 var(--bg);
+  }
+  .page-sub {
+    font-family: 'Pixelify Sans', monospace; font-size: 20px;
+    line-height: 1.5; color: var(--ink); margin-bottom: 64px;
+    max-width: 620px;
+  }
+
+  /* sections */
+  .press-section { margin-bottom: 60px; }
+  .press-section h2 {
+    font-family: 'Silkscreen', monospace; font-size: 18px;
+    color: var(--pop); text-transform: uppercase; letter-spacing: 0.05em;
+    margin-bottom: 24px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--rule);
+  }
+
+  /* factsheet */
+  .factsheet { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .fact {
+    padding: 16px 20px; background: var(--panel);
+    box-shadow: inset 0 -1px 0 var(--bg-2);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .fact:nth-child(odd) { background: var(--panel); }
+  .fact:nth-child(even) { background: var(--bg-2); }
+  .fact-label {
+    font-family: 'Silkscreen', monospace; font-size: 8px;
+    color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .fact-value { font-family: 'Pixelify Sans', monospace; font-size: 17px; color: var(--ink-bright); }
+
+  /* asset placeholders */
+  .asset-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .asset-box {
+    background: var(--panel);
+    aspect-ratio: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+    box-shadow: inset 0 -5px 0 var(--bg-2);
+    text-align: center; padding: 20px;
+  }
+  .asset-box .asset-label {
+    font-family: 'Silkscreen', monospace; font-size: 9px;
+    color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .asset-icon { font-size: 28px; color: var(--rule); }
+  .asset-note {
+    font-family: 'Pixelify Sans', monospace; font-size: 14px;
+    color: var(--ink-dim); font-style: italic; text-align: center;
+    padding: 24px; background: var(--bg-2);
+    box-shadow: inset 0 0 0 2px var(--rule);
+    margin-top: 16px;
+  }
+
+  /* contact */
+  .press-contact {
+    background: var(--panel); padding: 28px 32px;
+    box-shadow: inset 0 -6px 0 var(--bg-2);
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    flex-wrap: wrap;
+  }
+  .press-contact p { font-family: 'Pixelify Sans', monospace; font-size: 18px; color: var(--ink); }
+  .press-contact a {
+    font-family: 'Silkscreen', monospace; font-size: 12px;
+    color: var(--bg); background: var(--pop);
+    padding: 12px 20px; text-decoration: none; text-transform: uppercase;
+    box-shadow: inset 0 -4px 0 rgba(0,0,0,0.18), 3px 3px 0 var(--bg-2);
+    transition: transform .12s, box-shadow .12s; white-space: nowrap;
+  }
+  .press-contact a:hover { transform: translate(-2px,-2px); box-shadow: inset 0 -4px 0 rgba(0,0,0,0.18), 5px 5px 0 var(--bg-2); }
+
+  footer {
+    padding: 32px 40px; background: var(--bg-2); border-top: 4px solid var(--bg);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Silkscreen', monospace; font-size: 10px;
+    color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  @media (max-width: 700px) {
+    .page { padding: 48px 20px 80px; }
+    .factsheet { grid-template-columns: 1fr; }
+    .asset-grid { grid-template-columns: repeat(2, 1fr); }
+    .topbar { padding: 14px 20px; }
+    footer { flex-direction: column; gap: 10px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="index.html" class="logo-lockup" aria-label="makeit.bot — home">
+      <span class="logo-mark">
+        <span>▶</span>
+        <span>.MIB</span>
+      </span>
+      <span class="logo-word">
+        <span class="name">makeit<span class="accent">.bot</span></span>
+        <span class="tag">indie puzzle studio</span>
+      </span>
+    </a>
+    <div class="topbar-right">
+      <a href="index.html" class="back-link">Home</a>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">◐ <span id="theme-label">DARK</span></button>
+    </div>
+  </div>
+
+  <main>
+  <div class="page">
+
+    <div class="page-eyebrow">─ PRESS KIT ─</div>
+    <h1 class="page-title">Press resources.</h1>
+    <p class="page-sub">Everything press and creators need to cover a makeit.bot release. Logos, screenshots, and factsheets. More assets will be added as games ship.</p>
+
+    <div class="press-section">
+      <h2>Factsheet</h2>
+      <div class="factsheet">
+        <div class="fact">
+          <span class="fact-label">Studio</span>
+          <span class="fact-value">makeit.bot</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Developer</span>
+          <span class="fact-value">Solo (1 person)</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Location</span>
+          <span class="fact-value">On the road · Brazil</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Founded</span>
+          <span class="fact-value">2025</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Platform</span>
+          <span class="fact-value">Android (Google Play)</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Genre focus</span>
+          <span class="fact-value">Puzzle · Logic · Casual</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Current release</span>
+          <span class="fact-value">Nonogram Zen</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Business model</span>
+          <span class="fact-value">Free · Optional IAP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="press-section">
+      <h2>Nonogram Zen — Game factsheet</h2>
+      <div class="factsheet">
+        <div class="fact">
+          <span class="fact-label">Title</span>
+          <span class="fact-value">Nonogram Zen</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Genre</span>
+          <span class="fact-value">Logic · Picross · Solo</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Platform</span>
+          <span class="fact-value">Android</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Price</span>
+          <span class="fact-value">Free · Optional IAP</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Grid sizes</span>
+          <span class="fact-value">5×5 to 15×15</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Content</span>
+          <span class="fact-value">100+ procedural puzzles</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Offline</span>
+          <span class="fact-value">Fully offline play</span>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Timers / streaks</span>
+          <span class="fact-value">None</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="press-section">
+      <h2>Brand assets</h2>
+      <div class="asset-grid">
+        <div class="asset-box">
+          <span class="asset-icon" aria-hidden="true">▶.MIB</span>
+          <span class="asset-label">Wordmark</span>
+        </div>
+        <div class="asset-box">
+          <span class="asset-icon" aria-hidden="true">▦</span>
+          <span class="asset-label">App icon</span>
+        </div>
+        <div class="asset-box">
+          <span class="asset-icon" aria-hidden="true">▤</span>
+          <span class="asset-label">Screenshots</span>
+        </div>
+      </div>
+      <p class="asset-note">Full asset pack (SVG logos, PNG icons, screenshots) coming soon. In the meantime reach out directly at press@makeit.bot.</p>
+    </div>
+
+    <div class="press-section">
+      <h2>Press contact</h2>
+      <div class="press-contact">
+        <p>Interviews, review copies, and asset requests.</p>
+        <a href="mailto:press@makeit.bot">press@makeit.bot ▶</a>
+      </div>
+    </div>
+
+  </div>
+  </main>
+
+  <footer>
+    <div>© 2026 makeit.bot</div>
+    <div>Made by hand · MIB-Games publisher</div>
+  </footer>
+
+  <script src="translations.js"></script>
+  <script>
+    (function () {
+      const html  = document.documentElement;
+      const btn   = document.getElementById("theme-toggle");
+      const label = document.getElementById("theme-label");
+      let theme = "dark";
+      try { theme = localStorage.getItem("mib_theme") || "dark"; } catch (_) {}
+      apply(theme);
+      btn.addEventListener("click", () => apply(theme === "dark" ? "light" : "dark"));
+      function apply(t) {
+        theme = t;
+        html.dataset.theme = t;
+        label.textContent  = t === "dark" ? "DARK" : "LIGHT";
+        try { localStorage.setItem("mib_theme", t); } catch (_) {}
+      }
+    })();
+  </script>
+</body>
+</html>

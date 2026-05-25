@@ -40,9 +40,7 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
   html, body { background: var(--bg); color: var(--ink-bright); }
   body {
     font-family: 'Pixelify Sans', monospace;
@@ -57,6 +55,20 @@
   .pixel { font-family: 'Silkscreen', monospace; letter-spacing: 0.02em; }
   .pixel-display { font-family: 'DotGothic16', monospace; }
 
+  /* skip-to-content */
+  .skip-link {
+    position: absolute; left: -9999px; top: auto;
+    width: 1px; height: 1px; overflow: hidden;
+  }
+  .skip-link:focus {
+    position: fixed; top: 8px; left: 8px; z-index: 9999;
+    width: auto; height: auto; overflow: visible;
+    background: var(--pop); color: var(--bg);
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    padding: 8px 12px; text-decoration: none;
+    box-shadow: 3px 3px 0 var(--bg-2);
+  }
+
   /* Dithered overlay — classic LCD texture */
   body::before {
     content: "";
@@ -68,7 +80,7 @@
   }
   [data-theme="light"] body::before { opacity: 0.5; }
 
-  /* ============= LOGO MARK (from brand system) ============= */
+  /* ============= LOGO MARK ============= */
   .logo-lockup {
     display: inline-flex; align-items: center; gap: 12px;
     text-decoration: none;
@@ -84,9 +96,7 @@
     flex-shrink: 0;
   }
   .logo-mark .arrow { font-size: 0.8em; opacity: 0.85; }
-  .logo-word {
-    display: flex; flex-direction: column; gap: 2px;
-  }
+  .logo-word { display: flex; flex-direction: column; gap: 2px; }
   .logo-word .name {
     font-family: 'Silkscreen', monospace; font-weight: 700;
     font-size: 16px; color: var(--ink-bright); line-height: 1;
@@ -141,34 +151,58 @@
   }
   .theme-toggle:hover { background: var(--ink-dim); }
 
-  /* ============= HERO ============= */
+  /* hamburger */
+  .nav-toggle {
+    display: none;
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    background: var(--panel); color: var(--ink-bright);
+    border: 0; box-shadow: inset 0 -3px 0 var(--bg);
+    padding: 8px 12px; cursor: pointer; text-transform: uppercase;
+    transition: background .15s;
+  }
+  .nav-toggle:hover { background: var(--ink-dim); }
+  .nav-close {
+    display: none; position: absolute; top: 20px; right: 20px;
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    background: var(--panel); color: var(--ink-bright);
+    border: 0; box-shadow: inset 0 -3px 0 var(--bg);
+    padding: 8px 14px; cursor: pointer; text-transform: uppercase;
+    transition: background .15s;
+  }
+  .nav-close:hover { background: var(--ink-dim); }
+
+  /* ============= HERO — two-column ============= */
   .hero {
     padding: 88px 40px 108px;
-    text-align: center;
     background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%);
     position: relative;
   }
-  .hero-inner { max-width: 980px; margin: 0 auto; }
+  .hero-inner {
+    max-width: 1140px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 380px;
+    gap: 80px; align-items: center;
+  }
   .eyebrow {
     font-family: 'Silkscreen', monospace; font-size: 11px;
     color: var(--pop); letter-spacing: 0.1em;
     text-transform: uppercase; margin-bottom: 36px;
+    display: inline-block;
   }
   .eyebrow::before { content: "▰▱▰ "; color: var(--ink-dim); }
   .eyebrow::after  { content: " ▰▱▰"; color: var(--ink-dim); }
   .hero-title {
     font-family: 'Silkscreen', monospace; font-weight: 700;
-    font-size: clamp(40px, 5.5vw, 64px); line-height: 1.1;
+    font-size: clamp(36px, 4.8vw, 60px); line-height: 1.1;
     color: var(--ink-bright); margin-bottom: 24px;
     text-shadow: 4px 4px 0 var(--bg), 4px 0 0 var(--bg), 0 4px 0 var(--bg);
   }
   .hero-title .row2 { color: var(--pop); display: block; margin-top: 12px; }
   .hero-sub {
-    font-family: 'Pixelify Sans', monospace; font-size: 22px;
+    font-family: 'Pixelify Sans', monospace; font-size: 20px;
     line-height: 1.55; color: var(--ink);
-    max-width: 700px; margin: 0 auto 44px;
+    max-width: 560px; margin: 0 0 44px;
   }
-  .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; }
   .btn {
     font-family: 'Silkscreen', monospace; font-size: 14px;
     padding: 18px 28px; background: var(--pop); color: var(--bg);
@@ -184,16 +218,9 @@
     box-shadow: inset 0 -6px 0 var(--bg), 4px 4px 0 var(--bg);
   }
   .btn--ghost:hover { background: var(--ink-dim); color: var(--ink-bright); }
+  .hero-visual { display: flex; align-items: center; justify-content: center; }
 
-  /* ============= FEATURED GAME ============= */
-  .featured { padding: 100px 40px; background: var(--bg); }
-  .featured-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 440px 1fr;
-    gap: 80px; align-items: center;
-  }
-
-  /* Game Boy device mockup */
+  /* ============= GAME BOY MOCKUP ============= */
   .gameboy {
     width: 100%; max-width: 380px; margin: 0 auto;
     background: var(--ink-bright);
@@ -276,7 +303,9 @@
     font-size: 11px; color: var(--ink-dim); letter-spacing: 0.04em; font-style: italic;
   }
 
-  /* Featured copy */
+  /* ============= FEATURED GAME (metadata strip) ============= */
+  .featured { padding: 70px 40px 100px; background: var(--bg); }
+  .featured-inner { max-width: 820px; margin: 0 auto; }
   .feat-meta .game-tag {
     font-family: 'Silkscreen', monospace; font-size: 10px;
     color: var(--bg); background: var(--pop);
@@ -301,11 +330,11 @@
     color: var(--ink-bright); padding: 6px 0 6px 26px; position: relative;
   }
   .features-list li::before { content: "★"; position: absolute; left: 0; color: var(--pop); }
-  .stat-row { display: flex; gap: 24px; margin-bottom: 28px; }
-  .stat { flex: 1; background: var(--panel); padding: 14px 16px; box-shadow: inset 0 -4px 0 var(--bg-2); }
+  .stat-row { display: flex; gap: 16px; margin-bottom: 32px; }
+  .stat { flex: 1; background: var(--panel); padding: 16px 18px; box-shadow: inset 0 -4px 0 var(--bg-2); }
   .stat .label {
     font-family: 'Silkscreen', monospace; font-size: 8px;
-    color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;
+    color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;
   }
   .stat .value { font-family: 'Pixelify Sans', monospace; font-size: 16px; color: var(--ink-bright); }
 
@@ -327,7 +356,7 @@
   }
   .manifesto-text {
     font-family: 'Pixelify Sans', monospace; font-size: 22px;
-    line-height: 1.55; color: var(--ink-bright);
+    line-height: 1.6; color: var(--ink-bright);
     max-width: 700px; margin: 0 auto 48px;
   }
   .principles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; text-align: left; }
@@ -377,6 +406,12 @@
     color: var(--pop); letter-spacing: 0.08em;
   }
   .cart-sticker image-slot { width: 100%; height: 100%; }
+  /* pixel placeholder for coming-soon stickers */
+  .cart-ph {
+    font-family: 'Silkscreen', monospace; font-size: 28px;
+    color: var(--rule); user-select: none; pointer-events: none;
+    position: relative; z-index: 1;
+  }
   .cart-label {
     background: var(--ink-bright); margin: 0 4px;
     padding: 12px 14px 14px; box-shadow: inset 0 0 0 1px var(--ink);
@@ -473,17 +508,29 @@
 
   /* ============= RESPONSIVE ============= */
   @media (max-width: 900px) {
-    .featured-inner { grid-template-columns: 1fr; gap: 48px; }
+    .nav { display: none; }
+    .nav.open {
+      display: flex;
+      position: fixed; inset: 0; z-index: 200;
+      background: var(--bg-2); border-bottom: 4px solid var(--bg);
+      flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+    }
+    .nav.open a { font-size: 16px; padding: 8px 0; }
+    .nav-toggle { display: block; }
+    .nav-close { display: block; }
+    .topbar-right { margin-left: 0; }
+    .topbar { gap: 12px; padding: 14px 20px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 52px; }
+    .hero-text { text-align: center; }
+    .hero-sub { margin: 0 auto 44px; max-width: 100%; }
+    .cta-row { justify-content: center; }
+    .hero-visual { max-width: 300px; margin: 0 auto; }
     .gameboy { max-width: 300px; }
     .feat-meta h2 { font-size: 32px; }
     .roster-grid { grid-template-columns: repeat(2, 1fr); }
     .hub-inner { grid-template-columns: 1fr; }
     .email-grid { grid-template-columns: 1fr; }
     .principles { grid-template-columns: 1fr; }
-    .hero-title { font-size: 36px; }
-    .hero-sub { font-size: 18px; }
-    .topbar { gap: 16px; padding: 14px 20px; }
-    .nav { display: none; }
     footer { flex-direction: column; gap: 10px; text-align: center; }
   }
   @media (max-width: 560px) {
@@ -497,6 +544,8 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <!-- ============= TOP BAR ============= -->
   <div class="topbar">
     <a href="#" class="logo-lockup" aria-label="makeit.bot — home">
@@ -509,7 +558,8 @@
         <span class="tag">indie puzzle studio</span>
       </span>
     </a>
-    <nav class="nav" aria-label="Main navigation">
+    <nav class="nav" id="main-nav" aria-label="Main navigation">
+      <button class="nav-close" id="nav-close" aria-label="Close menu">✕ CLOSE</button>
       <a href="#studio"  data-i18n="nav.studio">Studio</a>
       <a href="#games"   data-i18n="nav.games">Games</a>
       <a href="privacy/index.html" data-i18n="nav.privacy">Privacy</a>
@@ -519,30 +569,28 @@
     <div class="topbar-right">
       <div class="lang-switch" id="lang-switch" aria-label="Language selector"></div>
       <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">◐ <span id="theme-label">DARK</span></button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">☰ MENU</button>
     </div>
   </div>
 
-  <!-- ============= HERO ============= -->
+  <main id="main">
+
+  <!-- ============= HERO — two-column ============= -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="eyebrow" data-i18n="hero.eyebrow">Indie puzzle studio · Android</div>
-      <h1 class="hero-title">
-        <span data-i18n="hero.title_a">Puzzles that</span>
-        <span class="row2" data-i18n="hero.title_b">respect your time.</span>
-      </h1>
-      <p class="hero-sub" data-i18n="hero.subtitle">makeit.bot is a one-person studio building calm, considered puzzle games for Android. No timers. No nags. Just logic, made well.</p>
-      <div class="cta-row">
-        <a href="#games"  class="btn"        data-i18n="hero.cta_play">Get Nonogram Zen</a>
-        <a href="#studio" class="btn btn--ghost" data-i18n="hero.cta_about">Read the manifesto</a>
+      <div class="hero-text">
+        <div class="eyebrow" data-i18n="hero.eyebrow">Indie puzzle studio · Android</div>
+        <h1 class="hero-title">
+          <span data-i18n="hero.title_a">Puzzles that</span>
+          <span class="row2" data-i18n="hero.title_b">respect your time.</span>
+        </h1>
+        <p class="hero-sub" data-i18n="hero.subtitle">makeit.bot is a one-person studio building calm, considered puzzle games for Android. No timers. No nags. Just logic, made well.</p>
+        <div class="cta-row">
+          <a href="#games" class="btn" data-i18n="hero.cta_play">Get Nonogram Zen</a>
+          <a href="#studio" class="btn btn--ghost" data-i18n="hero.cta_about">Read the manifesto</a>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ============= FEATURED GAME ============= -->
-  <section class="featured" id="games">
-    <div class="featured-inner">
-      <!-- Game Boy mockup -->
-      <div>
+      <div class="hero-visual">
         <div class="gameboy" aria-hidden="true">
           <div class="gb-top-strip"></div>
           <div class="gb-screen-frame">
@@ -563,7 +611,12 @@
           <div class="gb-brand">MIB-Games</div>
         </div>
       </div>
-      <!-- Game metadata -->
+    </div>
+  </section>
+
+  <!-- ============= FEATURED GAME ============= -->
+  <section class="featured" id="games">
+    <div class="featured-inner">
       <div class="feat-meta">
         <span class="game-tag" data-i18n="hero.now_playing">Now shipping</span>
         <h2 data-i18n="nonogram.title">Nonogram Zen</h2>
@@ -594,9 +647,8 @@
     <div class="studio-inner">
       <div class="section-eyebrow">─ MANIFESTO ─</div>
       <h2 class="section-title" data-i18n="studio.heading">A studio of one.</h2>
-      <p class="manifesto-text" data-i18n="studio.manifesto">Solo developer. Working between projects from a motorhome.</p>
+      <p class="manifesto-text" data-i18n="studio.manifesto">Solo developer. Working between projects from a motorhome, on the road. Every release is built and shipped by one pair of hands — slowly, with care, for an audience that just wants a good puzzle in the evening.</p>
       <ul class="principles" data-i18n-list="studio.principles"></ul>
-      <p class="portfolio-note" data-i18n="studio.portfolio_note">A 10-game portfolio is on the workbench.</p>
     </div>
   </section>
 
@@ -623,7 +675,7 @@
 
         <article class="cart">
           <div class="cart-sticker coming">
-            <image-slot id="gb-color" shape="rect" placeholder=""></image-slot>
+            <span class="cart-ph" aria-hidden="true">?</span>
           </div>
           <div class="cart-label">
             <div class="cart-status" data-i18n="games.coming_soon">Coming soon</div>
@@ -635,7 +687,7 @@
 
         <article class="cart">
           <div class="cart-sticker coming">
-            <image-slot id="gb-hex" shape="rect" placeholder=""></image-slot>
+            <span class="cart-ph" aria-hidden="true">?</span>
           </div>
           <div class="cart-label">
             <div class="cart-status" data-i18n="games.coming_soon">Coming soon</div>
@@ -647,7 +699,7 @@
 
         <article class="cart">
           <div class="cart-sticker coming">
-            <image-slot id="gb-wordlink" shape="rect" placeholder=""></image-slot>
+            <span class="cart-ph" aria-hidden="true">?</span>
           </div>
           <div class="cart-label">
             <div class="cart-status" data-i18n="games.coming_soon">Coming soon</div>
@@ -659,7 +711,7 @@
 
         <article class="cart">
           <div class="cart-sticker coming">
-            <image-slot id="gb-idle" shape="rect" placeholder=""></image-slot>
+            <span class="cart-ph" aria-hidden="true">?</span>
           </div>
           <div class="cart-label">
             <div class="cart-status" data-i18n="games.coming_soon">Coming soon</div>
@@ -724,6 +776,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ============= FOOTER ============= -->
   <footer>
     <div>© 2026 makeit.bot <span class="hearts"><span></span><span></span><span></span></span></div>
@@ -759,6 +813,28 @@
           grid.appendChild(s);
         }
       });
+    })();
+
+    // ── Mobile nav toggle ──
+    (function () {
+      const nav    = document.getElementById("main-nav");
+      const toggle = document.getElementById("nav-toggle");
+      const close  = document.getElementById("nav-close");
+      if (!nav || !toggle) return;
+      function open() {
+        nav.classList.add("open");
+        toggle.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+      }
+      function shut() {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+      toggle.addEventListener("click", open);
+      close.addEventListener("click", shut);
+      nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", shut));
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") shut(); });
     })();
 
     // ── Language switcher ──
