@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<title>Nonogram Zen — Privacy Policy · makeit.bot</title>
+<meta name="viewport" content="width=1024">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050a05; --bg-2: #0a140a; --panel: #0e1a0e;
+    --ink: #4aff88; --ink-bright: #aaffbb; --ink-dim: #2c8a4a; --ink-dimmer: #1c4a2a;
+    --rule: #1a3a1a; --amber: #ffb86c; --red: #ff5577;
+  }
+  [data-theme="light"] {
+    --bg: #f4f2e8; --bg-2: #ebe7d5; --panel: #ffffff;
+    --ink: #1a3a1a; --ink-bright: #052005; --ink-dim: #4a6a4a; --ink-dimmer: #7a8a7a;
+    --rule: #c8c8b8; --amber: #8a5a00; --red: #b8334d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink); }
+  body { font-family: 'IBM Plex Mono', monospace; font-size: 15px; line-height: 1.7; min-height: 100vh; }
+  body::before { content: ""; position: fixed; inset: 0; background-image: repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0,0,0,0.18) 2px, rgba(0,0,0,0.18) 3px); pointer-events: none; z-index: 100; mix-blend-mode: multiply; }
+  [data-theme="light"] body::before { opacity: 0.15; }
+
+  .topbar { padding: 18px 40px; display: flex; gap: 28px; align-items: center; background: var(--bg-2); border-bottom: 1px solid var(--rule); }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink-bright); font-weight: 500; }
+  .brand-led { width: 10px; height: 10px; background: var(--ink); border-radius: 50%; box-shadow: 0 0 6px var(--ink); }
+  .brand-name { font-family: 'VT323', monospace; font-size: 22px; }
+  .nav { display: flex; gap: 24px; font-size: 13px; }
+  .nav a { color: var(--ink-dim); text-decoration: none; }
+  .nav a:hover { color: var(--ink-bright); }
+  .nav a::before { content: "/"; color: var(--ink-dimmer); margin-right: 4px; }
+  .nav a.active { color: var(--amber); }
+  .topbar-right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+  .lang-switch { display: flex; gap: 1px; border: 1px solid var(--rule); }
+  .lang-switch button { background: transparent; color: var(--ink-dim); border: 0; padding: 5px 8px; font: inherit; font-size: 11px; cursor: pointer; text-transform: uppercase; }
+  .lang-switch button.active { background: var(--ink); color: var(--bg); }
+  .theme-toggle { background: transparent; border: 1px solid var(--rule); color: var(--ink); font: inherit; font-size: 11px; padding: 5px 10px; cursor: pointer; text-transform: uppercase; }
+
+  .layout {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 56px 40px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 56px;
+  }
+
+  /* Sidebar TOC */
+  aside {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+    font-size: 13px;
+  }
+  aside .label { color: var(--ink-dim); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px dashed var(--rule); }
+  aside ol { list-style: none; counter-reset: toc; }
+  aside ol li { counter-increment: toc; padding: 5px 0; }
+  aside ol li::before {
+    content: counter(toc, decimal-leading-zero);
+    color: var(--ink-dimmer);
+    margin-right: 10px;
+    font-size: 11px;
+  }
+  aside ol li a { color: var(--ink-dim); text-decoration: none; }
+  aside ol li a:hover { color: var(--ink-bright); }
+
+  article { min-width: 0; }
+  .crumb { font-size: 12px; color: var(--ink-dim); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .crumb a { color: var(--ink); text-decoration: none; }
+  .crumb a:hover { color: var(--ink-bright); }
+
+  .doc-head {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+  }
+  .doc-eyebrow {
+    font-size: 11px; color: var(--amber);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+  .doc-title {
+    font-family: 'VT323', monospace;
+    font-size: 64px;
+    line-height: 0.95;
+    color: var(--ink-bright);
+    margin-bottom: 16px;
+  }
+  .doc-meta {
+    display: flex; gap: 32px;
+    font-size: 12px;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .doc-meta strong { color: var(--ink-bright); font-weight: 500; margin-right: 6px; }
+
+  .tldr {
+    background: var(--panel);
+    border-left: 4px solid var(--amber);
+    padding: 22px 26px;
+    margin-bottom: 56px;
+  }
+  .tldr-title { font-size: 11px; color: var(--amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 700; }
+  .tldr-body { font-family: 'VT323', monospace; font-size: 22px; color: var(--ink-bright); line-height: 1.4; }
+
+  h2 {
+    font-family: 'VT323', monospace;
+    font-size: 38px;
+    line-height: 1;
+    color: var(--ink-bright);
+    margin-top: 56px;
+    margin-bottom: 16px;
+    padding-top: 16px;
+  }
+  h2::before {
+    content: counter(section, decimal-leading-zero) " · ";
+    counter-increment: section;
+    color: var(--ink-dim);
+    font-size: 28px;
+    margin-right: 4px;
+  }
+  body { counter-reset: section; }
+
+  h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--amber);
+    margin-top: 28px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  p { color: var(--ink); margin-bottom: 14px; }
+  ul, ol.list { margin-left: 20px; margin-bottom: 16px; color: var(--ink); }
+  ul li, ol.list li { padding: 4px 0; }
+  ul li::marker { color: var(--amber); }
+  strong { color: var(--ink-bright); font-weight: 500; }
+  code {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    padding: 1px 6px;
+    font-size: 13px;
+    color: var(--amber);
+  }
+  a.link { color: var(--amber); text-decoration: underline; text-decoration-style: dotted; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 14px;
+  }
+  table th, table td {
+    text-align: left;
+    padding: 10px 14px;
+    border: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  table th {
+    background: var(--panel);
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+  table td { color: var(--ink); }
+  table td strong { color: var(--ink-bright); }
+
+  .contact-box {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    padding: 22px 26px;
+    margin-top: 32px;
+  }
+  .contact-box .role { font-size: 11px; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-box .addr { font-size: 18px; color: var(--ink-bright); margin-top: 4px; }
+
+  footer {
+    margin-top: 64px;
+    padding: 28px 40px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <a href="../v2-crt-terminal.html" class="brand">
+      <span class="brand-led"></span>
+      <span class="brand-name">makeit.bot</span>
+    </a>
+    <nav class="nav">
+      <a href="../v2-crt-terminal.html#studio">studio</a>
+      <a href="../v2-crt-terminal.html#games">games</a>
+      <a href="index.html" class="active">privacy</a>
+      <a href="../press.html">press</a>
+      <a href="../v2-crt-terminal.html#contact">contact</a>
+    </nav>
+    <div class="topbar-right">
+      <div class="lang-switch" id="lang-switch"></div>
+      <button class="theme-toggle" id="theme-toggle">◐ <span id="theme-label">DARK</span></button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <aside>
+      <div class="label">Contents</div>
+      <ol>
+        <li><a href="#scope">Scope</a></li>
+        <li><a href="#data">What we collect</a></li>
+        <li><a href="#how">How we use it</a></li>
+        <li><a href="#third">Third parties</a></li>
+        <li><a href="#ads">Ads & purchases</a></li>
+        <li><a href="#kids">Children</a></li>
+        <li><a href="#rights">Your rights</a></li>
+        <li><a href="#retention">Retention</a></li>
+        <li><a href="#changes">Changes</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+    </aside>
+
+    <article>
+      <div class="crumb"><a href="../v2-crt-terminal.html">~</a> / <a href="index.html">privacy</a> / nonogram-zen</div>
+
+      <header class="doc-head">
+        <div class="doc-eyebrow">Privacy Policy</div>
+        <h1 class="doc-title">Nonogram Zen</h1>
+        <div class="doc-meta">
+          <div><strong>Effective:</strong> 23 May 2026</div>
+          <div><strong>Version:</strong> 1.0</div>
+          <div><strong>Publisher:</strong> MIB-Games</div>
+        </div>
+      </header>
+
+      <div class="tldr">
+        <div class="tldr-title">TL;DR</div>
+        <div class="tldr-body">Nonogram Zen runs offline by default. We don't sell or share your personal data. We use Google Play Services and AdMob for app delivery, optional ads, and crash diagnostics. You can play without an account.</div>
+      </div>
+
+      <h2 id="scope">Scope</h2>
+      <p>This policy applies to <strong>Nonogram Zen</strong>, a logic puzzle game published on the Google Play Store by <strong>MIB-Games</strong> ("we", "us") through the domain <code>makeit.bot</code>.</p>
+      <p>It describes the information the app collects, why, with whom it is shared, and the rights you have under the GDPR, UK GDPR, CCPA/CPRA and Brazilian LGPD.</p>
+
+      <h2 id="data">What we collect</h2>
+      <p>Nonogram Zen is designed to work offline. The app stores the following <strong>locally on your device</strong> and does not transmit it to us:</p>
+      <ul>
+        <li>Puzzle progress, completed levels, and your settings</li>
+        <li>Local statistics (number of puzzles solved, daily streak)</li>
+        <li>Theme and language preferences</li>
+      </ul>
+      <p>The following limited information is processed by third parties on our behalf when relevant features are active:</p>
+      <table>
+        <thead>
+          <tr><th>Data</th><th>When</th><th>Processor</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Crash and ANR reports</strong><br>Device model, OS version, stack trace</td><td>Always (you may opt out)</td><td>Firebase Crashlytics (Google)</td></tr>
+          <tr><td><strong>Aggregated analytics</strong><br>Session length, level completion events, country</td><td>Always (you may opt out)</td><td>Firebase Analytics (Google)</td></tr>
+          <tr><td><strong>Advertising identifier</strong><br>Android Ad ID (resettable)</td><td>Only when ads are shown</td><td>Google AdMob</td></tr>
+          <tr><td><strong>Purchase records</strong><br>Receipt, SKU, status</td><td>Only on in-app purchase</td><td>Google Play Billing</td></tr>
+        </tbody>
+      </table>
+      <p>We do <strong>not</strong> ask for your name, email, phone number, contacts, photos, microphone or precise location.</p>
+
+      <h2 id="how">How we use it</h2>
+      <ul>
+        <li><strong>Diagnose crashes</strong> and improve stability across Android devices.</li>
+        <li><strong>Understand which puzzles are too hard or too easy</strong> (aggregate event counts only).</li>
+        <li><strong>Show ads and process optional purchases</strong> ("Remove Ads", hint packs).</li>
+        <li><strong>Comply with our obligations</strong> to the Google Play Store and our payment processor.</li>
+      </ul>
+      <p>We do not use your data to build advertising profiles, train AI models, or sell to data brokers.</p>
+
+      <h2 id="third">Third parties</h2>
+      <p>The app integrates the following Google services. Each has its own privacy policy that applies in addition to this one:</p>
+      <ul>
+        <li><strong>Google Play Services</strong> — required by Android. <a class="link" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></li>
+        <li><strong>Firebase Analytics & Crashlytics</strong> — usage and stability. <a class="link" href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a></li>
+        <li><strong>Google AdMob</strong> — banner, interstitial and rewarded ads. <a class="link" href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a></li>
+        <li><strong>Google Play Billing</strong> — in-app purchases. <a class="link" href="https://play.google.com/intl/en/about/play-terms/" target="_blank" rel="noopener">play.google.com/about/play-terms</a></li>
+      </ul>
+      <p>We do not share data with any party not listed above.</p>
+
+      <h2 id="ads">Ads & purchases</h2>
+      <p>Nonogram Zen is free to play. The free version may show:</p>
+      <ul>
+        <li><strong>Banner ads</strong> outside the active play area</li>
+        <li><strong>Interstitial ads</strong> between levels (capped, not during play)</li>
+        <li><strong>Rewarded ads</strong> you choose to watch in exchange for in-game hints</li>
+      </ul>
+      <p>Ads are served by Google AdMob and may be personalised based on your Android Advertising ID. In the EEA, UK, Switzerland, and Brazil you will see a consent dialog on first launch where you can choose <strong>personalised</strong>, <strong>non-personalised</strong>, or <strong>no</strong> ads — your choice is respected for the lifetime of the install. You can reset your Advertising ID at any time in Android Settings → Privacy → Ads.</p>
+      <p>The in-app purchase <strong>"Remove Ads"</strong> permanently disables all advertising and the AdMob SDK from running. The purchase receipt is processed by Google Play Billing only.</p>
+
+      <h2 id="kids">Children</h2>
+      <p>Nonogram Zen is rated <strong>PEGI 3 / ESRB Everyone</strong> but is designed for an adult audience (30–55). It is <strong>not directed at children under 13</strong> and does not knowingly collect data from them. The app does not appear in the Google Play "Designed for Families" programme.</p>
+      <p>If you believe a child has used the app, you can delete all local data by uninstalling. There is nothing else for us to delete.</p>
+
+      <h2 id="rights">Your rights</h2>
+      <p>Depending on where you live, you may have the right to:</p>
+      <ul>
+        <li><strong>Access</strong> the data processed about you</li>
+        <li><strong>Rectify</strong> inaccurate data</li>
+        <li><strong>Erase</strong> data we hold ("right to be forgotten")</li>
+        <li><strong>Object</strong> to processing or <strong>withdraw consent</strong></li>
+        <li><strong>Port</strong> your data to another service</li>
+      </ul>
+      <p>You can also <strong>opt out of analytics and crash reporting</strong> at any time inside the app: <code>Settings → Privacy → Share diagnostics</code>.</p>
+      <p>To exercise a right that requires our action, email <a class="link" href="mailto:privacy@makeit.bot">privacy@makeit.bot</a>. We respond within 30 days.</p>
+
+      <h2 id="retention">Retention</h2>
+      <p>Local data lives on your device until you uninstall the app or clear its storage. Aggregated analytics events are retained by Firebase for up to 14 months. Crash reports are retained for 90 days. Purchase receipts are kept by Google Play for the duration required by tax and consumer-protection law in your jurisdiction.</p>
+
+      <h2 id="changes">Changes</h2>
+      <p>If we change this policy materially we will publish a new version at <code>makeit.bot/privacy/nonogram-zen</code> and bump the version number above. Continued use of the app after a change means you accept the new terms.</p>
+
+      <h2 id="contact">Contact</h2>
+      <p>For any privacy-related question or request:</p>
+      <div class="contact-box">
+        <div class="role">Data controller</div>
+        <div class="addr">MIB-Games · makeit.bot</div>
+        <div class="role" style="margin-top:14px;">Email</div>
+        <div class="addr">privacy@makeit.bot</div>
+      </div>
+    </article>
+  </div>
+
+  <footer>
+    <div>© 2026 makeit.bot · all rights reserved</div>
+    <div>privacy@makeit.bot</div>
+  </footer>
+
+  <script src="../translations.js"></script>
+  <script>
+    (function() {
+      const langs = ["en","pt","es","de","fr","it"];
+      const root = document.getElementById("lang-switch");
+      langs.forEach(l => {
+        const b = document.createElement("button");
+        b.textContent = l.toUpperCase();
+        b.dataset.lang = l;
+        b.addEventListener("click", () => { window.MIB_APPLY(l); upd(l); });
+        root.appendChild(b);
+      });
+      function upd(l) { root.querySelectorAll("button").forEach(b => b.classList.toggle("active", b.dataset.lang === l)); }
+      const initial = window.MIB_INIT_LANG("en");
+      window.MIB_APPLY(initial);
+      upd(initial);
+    })();
+    (function() {
+      const html = document.documentElement;
+      const btn = document.getElementById("theme-toggle");
+      const label = document.getElementById("theme-label");
+      let theme = "dark";
+      try { theme = localStorage.getItem("mib_theme_v2") || "dark"; } catch (e) {}
+      apply(theme);
+      btn.addEventListener("click", () => apply(theme === "dark" ? "light" : "dark"));
+      function apply(t) { theme = t; html.dataset.theme = t; label.textContent = t === "dark" ? "DARK" : "LIGHT"; try { localStorage.setItem("mib_theme_v2", t); } catch (e) {} }
+    })();
+  </script>
+</body>
+</html>

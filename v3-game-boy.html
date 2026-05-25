@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<title>makeit.bot — Game Boy Console</title>
+<meta name="viewport" content="width=1280">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Pixelify+Sans:wght@400;500;600;700&family=DotGothic16&display=swap" rel="stylesheet">
+<style>
+  /* Game Boy DMG palette base */
+  :root {
+    --bg: #0f1f0e;         /* darkest */
+    --bg-2: #1a3018;       /* dark */
+    --panel: #234221;      /* mid-dark */
+    --ink-dim: #5d8159;    /* mid */
+    --ink: #9ec188;        /* mid-light */
+    --ink-bright: #d5e4a8; /* lightest */
+    --pop: #f5d76e;        /* warm accent (cartridge sticker) */
+    --pop-2: #e85d4d;      /* red label */
+    --rule: #305030;
+    --shadow: rgba(0,0,0,0.4);
+  }
+  [data-theme="light"] {
+    --bg: #e8e9c4;         /* cream / DMG screen off */
+    --bg-2: #d9da9c;       /* cream darker */
+    --panel: #f4f5d8;
+    --ink-dim: #6b7a4a;
+    --ink: #3a4828;
+    --ink-bright: #1a2010;
+    --pop: #c97c1a;
+    --pop-2: #9a3a28;
+    --rule: #b8b878;
+    --shadow: rgba(58,72,40,0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink-bright); }
+  body {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 18px;
+    line-height: 1.4;
+    overflow-x: hidden;
+    min-height: 100vh;
+    image-rendering: pixelated;
+    -webkit-font-smoothing: none;
+  }
+
+  .pixel { font-family: 'Silkscreen', monospace; letter-spacing: 0.02em; }
+  .pixel-display { font-family: 'DotGothic16', monospace; }
+
+  /* Dotted/dithered overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(0,0,0,0.08) 1px, transparent 1px);
+    background-size: 4px 4px;
+    pointer-events: none;
+    z-index: 100;
+  }
+  [data-theme="light"] body::before { opacity: 0.5; }
+
+  /* ============= TOP BAR ============= */
+  .topbar {
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    background: var(--bg-2);
+    border-bottom: 4px solid var(--bg);
+    position: relative;
+    z-index: 5;
+  }
+  .topbar::after {
+    content: "";
+    position: absolute;
+    bottom: -4px; left: 0; right: 0; height: 1px;
+    background: var(--ink-dim);
+    opacity: 0.4;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .brand-cart {
+    width: 36px; height: 28px;
+    background: var(--ink-bright);
+    position: relative;
+    box-shadow:
+      inset 0 -4px 0 var(--ink-dim),
+      inset 0 4px 0 var(--ink);
+  }
+  .brand-cart::before {
+    content: ""; position: absolute;
+    left: 6px; right: 6px; top: 6px;
+    height: 8px;
+    background: var(--pop-2);
+  }
+  .brand-cart::after {
+    content: ""; position: absolute;
+    left: 6px; right: 6px; bottom: 6px;
+    height: 4px;
+    background: var(--ink-dim);
+  }
+  .brand-name {
+    font-family: 'Silkscreen', monospace;
+    font-size: 18px;
+    color: var(--ink-bright);
+    letter-spacing: 0.02em;
+  }
+  .brand-tag {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    margin-top: 2px;
+  }
+
+  .nav { display: flex; gap: 24px; }
+  .nav a {
+    font-family: 'Silkscreen', monospace;
+    font-size: 11px;
+    color: var(--ink-dim);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 6px 0;
+    transition: color .15s;
+  }
+  .nav a:hover { color: var(--pop); }
+  .topbar-right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+  .lang-switch {
+    display: flex; gap: 1px;
+    background: var(--bg);
+    padding: 3px;
+    box-shadow: inset 0 0 0 1px var(--rule);
+  }
+  .lang-switch button {
+    font-family: 'Silkscreen', monospace;
+    font-size: 9px;
+    background: transparent;
+    color: var(--ink-dim);
+    border: 0;
+    padding: 5px 8px;
+    cursor: pointer;
+  }
+  .lang-switch button.active {
+    background: var(--ink-bright);
+    color: var(--bg);
+  }
+  .theme-toggle {
+    font-family: 'Silkscreen', monospace;
+    font-size: 9px;
+    background: var(--panel);
+    color: var(--ink-bright);
+    border: 0;
+    box-shadow: inset 0 -3px 0 var(--bg);
+    padding: 8px 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  .theme-toggle:hover { background: var(--ink-dim); }
+
+  /* ============= HERO — looks like Game Boy boot screen ============= */
+  .hero {
+    padding: 80px 40px 100px;
+    text-align: center;
+    background:
+      linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%);
+    position: relative;
+  }
+  .hero-inner { max-width: 980px; margin: 0 auto; }
+  .eyebrow {
+    font-family: 'Silkscreen', monospace;
+    font-size: 11px;
+    color: var(--pop);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+  .eyebrow::before { content: "▰▱▰ "; color: var(--ink-dim); }
+  .eyebrow::after { content: " ▰▱▰"; color: var(--ink-dim); }
+
+  .hero-title {
+    font-family: 'Silkscreen', monospace;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 1.1;
+    color: var(--ink-bright);
+    margin-bottom: 24px;
+    text-shadow:
+      4px 4px 0 var(--bg),
+      4px 0 0 var(--bg),
+      0 4px 0 var(--bg);
+  }
+  .hero-title .row2 {
+    color: var(--pop);
+    display: block;
+    margin-top: 12px;
+  }
+  .hero-sub {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: 700px;
+    margin: 0 auto 44px;
+  }
+  .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    font-family: 'Silkscreen', monospace;
+    font-size: 14px;
+    padding: 18px 28px;
+    background: var(--pop);
+    color: var(--bg);
+    border: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    box-shadow:
+      inset 0 -6px 0 rgba(0,0,0,0.18),
+      4px 4px 0 var(--bg);
+    transition: transform .12s, box-shadow .12s;
+  }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: inset 0 -6px 0 rgba(0,0,0,0.18), 6px 6px 0 var(--bg); }
+  .btn:active { transform: translate(2px, 2px); box-shadow: inset 0 -2px 0 rgba(0,0,0,0.18), 2px 2px 0 var(--bg); }
+  .btn--ghost {
+    background: var(--panel);
+    color: var(--ink-bright);
+    box-shadow:
+      inset 0 -6px 0 var(--bg),
+      4px 4px 0 var(--bg);
+  }
+  .btn--ghost:hover { background: var(--ink-dim); color: var(--ink-bright); }
+
+  /* ============= FEATURED GAME — actual Game Boy device ============= */
+  .featured {
+    padding: 100px 40px;
+    background: var(--bg);
+  }
+  .featured-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 440px 1fr; gap: 80px; align-items: center;
+  }
+
+  /* Game Boy mockup */
+  .gameboy {
+    width: 100%; max-width: 380px;
+    margin: 0 auto;
+    background: var(--ink-bright);
+    padding: 36px 28px 80px;
+    border-radius: 12px 12px 12px 56px;
+    box-shadow:
+      inset 0 -8px 0 var(--ink),
+      inset 0 8px 0 #f0f3ce,
+      0 16px 0 rgba(0,0,0,0.2);
+    position: relative;
+  }
+  [data-theme="light"] .gameboy {
+    background: #c8c5b0;
+    box-shadow: inset 0 -8px 0 #9e9a82, inset 0 8px 0 #d8d5c0, 0 16px 0 rgba(0,0,0,0.15);
+  }
+  .gb-top-strip {
+    position: absolute;
+    top: 12px; left: 50%;
+    transform: translateX(-50%);
+    width: 70%; height: 4px;
+    background: var(--ink-dim);
+    opacity: 0.4;
+  }
+  .gb-screen-frame {
+    background: var(--ink-dim);
+    padding: 28px 24px;
+    margin-bottom: 24px;
+    position: relative;
+    box-shadow: inset 0 4px 8px rgba(0,0,0,0.3);
+  }
+  .gb-screen-frame::before {
+    content: "● POWER";
+    position: absolute;
+    left: 16px; bottom: 6px;
+    font-family: 'Silkscreen', monospace;
+    font-size: 7px;
+    color: var(--pop-2);
+    letter-spacing: 0.1em;
+  }
+  .gb-screen-frame::after {
+    content: "DOT MATRIX WITH STEREO SOUND";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 6px;
+    font-family: 'Silkscreen', monospace;
+    font-size: 6px;
+    color: var(--ink-bright);
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+    opacity: 0.7;
+  }
+  .gb-screen {
+    background: #9aac3f;
+    aspect-ratio: 10 / 9;
+    padding: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .gb-screen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 3px);
+    pointer-events: none;
+  }
+  .gb-pixel-grid {
+    display: grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(9, 1fr);
+    gap: 1px; height: 100%;
+  }
+  .gb-pixel-grid span { background: #c6d05c; }
+  .gb-pixel-grid span.d { background: #5a6320; }
+  .gb-pixel-grid span.m { background: #8a9530; }
+
+  /* D-pad + buttons */
+  .gb-controls { display: flex; justify-content: space-between; align-items: center; padding: 0 8px; }
+  .dpad {
+    position: relative;
+    width: 72px; height: 72px;
+  }
+  .dpad::before, .dpad::after {
+    content: ""; position: absolute;
+    background: var(--bg);
+    border-radius: 2px;
+  }
+  .dpad::before { left: 50%; top: 0; transform: translateX(-50%); width: 22px; height: 100%; }
+  .dpad::after { left: 0; top: 50%; transform: translateY(-50%); width: 100%; height: 22px; }
+  .ab-buttons {
+    display: flex; gap: 10px;
+    transform: rotate(-20deg);
+  }
+  .ab-buttons span {
+    width: 32px; height: 32px;
+    background: var(--pop-2);
+    border-radius: 50%;
+    color: var(--bg);
+    font-family: 'Silkscreen', monospace;
+    font-size: 11px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: inset 0 -3px 0 rgba(0,0,0,0.3);
+  }
+
+  .gb-startsel { display: flex; gap: 14px; justify-content: center; margin-top: 22px; }
+  .gb-startsel span {
+    width: 32px; height: 8px;
+    background: var(--ink-dim);
+    border-radius: 4px;
+    transform: rotate(-20deg);
+    position: relative;
+  }
+  .gb-startsel span::after {
+    content: attr(data-label);
+    position: absolute;
+    top: 12px; left: 50%;
+    transform: translateX(-50%) rotate(20deg);
+    font-family: 'Silkscreen', monospace;
+    font-size: 7px;
+    color: var(--ink-dim);
+    letter-spacing: 0.08em;
+  }
+  .gb-brand {
+    position: absolute;
+    bottom: 22px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Silkscreen', monospace;
+    font-size: 11px;
+    color: var(--ink-dim);
+    letter-spacing: 0.04em;
+    font-style: italic;
+  }
+
+  /* Featured copy */
+  .feat-meta .game-tag {
+    font-family: 'Silkscreen', monospace;
+    font-size: 10px;
+    color: var(--bg);
+    background: var(--pop);
+    padding: 6px 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: inline-block;
+    margin-bottom: 22px;
+    box-shadow: 3px 3px 0 var(--bg-2);
+  }
+  .feat-meta h2 {
+    font-family: 'Silkscreen', monospace;
+    font-size: 44px;
+    line-height: 1.05;
+    color: var(--ink-bright);
+    margin-bottom: 10px;
+  }
+  .feat-meta .tagline {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 24px;
+    color: var(--pop);
+    margin-bottom: 20px;
+  }
+  .feat-meta .desc {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .features-list { list-style: none; margin-bottom: 28px; }
+  .features-list li {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 18px;
+    color: var(--ink-bright);
+    padding: 6px 0 6px 26px;
+    position: relative;
+  }
+  .features-list li::before {
+    content: "★";
+    position: absolute; left: 0;
+    color: var(--pop);
+  }
+  .stat-row { display: flex; gap: 24px; margin-bottom: 28px; }
+  .stat {
+    flex: 1;
+    background: var(--panel);
+    padding: 14px 16px;
+    box-shadow: inset 0 -4px 0 var(--bg-2);
+  }
+  .stat .label {
+    font-family: 'Silkscreen', monospace;
+    font-size: 8px;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .stat .value {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 16px;
+    color: var(--ink-bright);
+  }
+
+  /* ============= STUDIO ============= */
+  .studio {
+    padding: 100px 40px;
+    background: var(--bg-2);
+    text-align: center;
+    border-top: 4px solid var(--bg);
+    border-bottom: 4px solid var(--bg);
+  }
+  .studio-inner { max-width: 880px; margin: 0 auto; }
+  .section-eyebrow {
+    font-family: 'Silkscreen', monospace;
+    font-size: 10px;
+    color: var(--pop);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-family: 'Silkscreen', monospace;
+    font-size: 36px;
+    line-height: 1.1;
+    color: var(--ink-bright);
+    margin-bottom: 28px;
+  }
+  .manifesto-text {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--ink-bright);
+    max-width: 700px;
+    margin: 0 auto 48px;
+  }
+  .principles {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+    text-align: left;
+  }
+  .principles li {
+    list-style: none;
+    background: var(--panel);
+    padding: 18px 22px;
+    font-family: 'Silkscreen', monospace;
+    font-size: 12px;
+    color: var(--ink-bright);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    box-shadow: inset 0 -5px 0 var(--bg);
+    position: relative;
+    padding-left: 44px;
+  }
+  .principles li::before {
+    content: "✓";
+    position: absolute;
+    left: 18px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--pop);
+    font-size: 16px;
+  }
+  .portfolio-note {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 18px;
+    color: var(--ink-dim);
+    margin-top: 40px;
+    font-style: italic;
+  }
+
+  /* ============= ROSTER — cartridges ============= */
+  .roster {
+    padding: 100px 40px;
+    background: var(--bg);
+  }
+  .roster-inner { max-width: 1180px; margin: 0 auto; }
+  .roster-head { margin-bottom: 56px; text-align: center; }
+  .roster-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  /* Cartridge card */
+  .cart {
+    background: var(--ink-bright);
+    padding: 18px 16px 24px;
+    position: relative;
+    box-shadow:
+      inset 0 -6px 0 var(--ink),
+      inset 0 6px 0 #f0f3ce,
+      6px 6px 0 var(--bg-2);
+    transition: transform .15s;
+  }
+  [data-theme="light"] .cart {
+    background: #c8c5b0;
+    box-shadow: inset 0 -6px 0 #9e9a82, inset 0 6px 0 #d8d5c0, 6px 6px 0 var(--bg-2);
+  }
+  .cart:hover { transform: translate(-3px, -3px); box-shadow: inset 0 -6px 0 var(--ink), inset 0 6px 0 #f0f3ce, 9px 9px 0 var(--bg-2); }
+  [data-theme="light"] .cart:hover { box-shadow: inset 0 -6px 0 #9e9a82, inset 0 6px 0 #d8d5c0, 9px 9px 0 var(--bg-2); }
+  .cart::before {
+    /* Top dimple where cartridge meets the slot */
+    content: "";
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 40%; height: 6px;
+    background: var(--bg);
+  }
+  .cart-sticker {
+    background: var(--pop);
+    padding: 16px;
+    margin-bottom: 16px;
+    aspect-ratio: 4 / 3;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: inset 0 0 0 2px rgba(0,0,0,0.15);
+  }
+  .cart-sticker.coming { background: var(--panel); }
+  .cart-sticker.coming::after {
+    content: "WIP";
+    position: absolute;
+    top: 8px; right: 8px;
+    font-family: 'Silkscreen', monospace;
+    font-size: 9px;
+    color: var(--pop);
+    letter-spacing: 0.08em;
+  }
+  .cart-sticker image-slot {
+    width: 100%; height: 100%;
+    --is-placeholder-color: var(--bg);
+    --is-placeholder-bg: transparent;
+  }
+  .cart-label {
+    background: var(--ink-bright);
+    margin: 0 4px;
+    padding: 12px 14px 14px;
+    box-shadow: inset 0 0 0 1px var(--ink);
+  }
+  .cart-status {
+    font-family: 'Silkscreen', monospace;
+    font-size: 8px;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .cart.available .cart-status { color: var(--pop-2); }
+  .cart.available .cart-status::before { content: "● "; }
+  .cart h3 {
+    font-family: 'Silkscreen', monospace;
+    font-size: 14px;
+    color: var(--bg);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .cart-desc {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 15px;
+    color: var(--ink-dim);
+    line-height: 1.3;
+    margin-bottom: 12px;
+    min-height: 40px;
+  }
+  .cart-cta {
+    font-family: 'Silkscreen', monospace;
+    font-size: 9px;
+    color: var(--pop-2);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-top: 1px solid var(--ink);
+    padding-top: 8px;
+    display: block;
+  }
+  .cart-cta::after { content: " ▶"; }
+  [data-theme="light"] .cart-status,
+  [data-theme="light"] .cart h3 { color: var(--bg); }
+
+  /* ============= HUB BAND ============= */
+  .hub {
+    padding: 80px 40px;
+    background: var(--bg-2);
+    border-top: 4px solid var(--bg);
+  }
+  .hub-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .hub-card {
+    background: var(--panel);
+    padding: 28px;
+    box-shadow: inset 0 -6px 0 var(--bg-2);
+  }
+  .hub-card h3 {
+    font-family: 'Silkscreen', monospace;
+    font-size: 16px;
+    color: var(--pop);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .hub-card p {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 18px;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 18px;
+    min-height: 80px;
+  }
+  .hub-card a {
+    font-family: 'Silkscreen', monospace;
+    font-size: 10px;
+    color: var(--ink-bright);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 2px solid var(--pop);
+    padding-bottom: 3px;
+  }
+  .hub-card a:hover { color: var(--pop); }
+
+  /* ============= CONTACT ============= */
+  .contact {
+    padding: 100px 40px;
+    background: var(--bg);
+    text-align: center;
+    border-top: 4px solid var(--bg-2);
+  }
+  .contact-inner { max-width: 880px; margin: 0 auto; }
+  .contact .section-title { font-size: 32px; margin-bottom: 12px; }
+  .contact .sub { font-family: 'Pixelify Sans', monospace; font-size: 20px; color: var(--ink); margin-bottom: 40px; }
+  .email-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .email-pill {
+    background: var(--panel);
+    padding: 18px 20px;
+    text-decoration: none;
+    display: flex; flex-direction: column;
+    gap: 6px;
+    text-align: left;
+    box-shadow: inset 0 -5px 0 var(--bg-2);
+    transition: background .15s;
+  }
+  .email-pill:hover { background: var(--ink-dim); }
+  .email-pill .role {
+    font-family: 'Silkscreen', monospace;
+    font-size: 9px;
+    color: var(--pop);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .email-pill .addr {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 16px;
+    color: var(--ink-bright);
+  }
+
+  /* ============= FOOTER ============= */
+  footer {
+    padding: 32px 40px;
+    background: var(--bg-2);
+    border-top: 4px solid var(--bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Silkscreen', monospace;
+    font-size: 10px;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Decorative cluster of pixel hearts/coins */
+  .hearts {
+    display: inline-flex; gap: 4px; margin-left: 10px;
+  }
+  .hearts span {
+    width: 8px; height: 8px;
+    background: var(--pop-2);
+    clip-path: polygon(50% 0, 100% 35%, 100% 70%, 50% 100%, 0 70%, 0 35%);
+  }
+</style>
+</head>
+<body>
+  <!-- ============= TOP BAR ============= -->
+  <div class="topbar" data-screen-label="01 Top Bar">
+    <a href="#" class="brand">
+      <span class="brand-cart"></span>
+      <span>
+        <div class="brand-name">makeit.bot</div>
+        <div class="brand-tag">indie puzzle studio</div>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="#studio" data-i18n="nav.studio">Studio</a>
+      <a href="#games" data-i18n="nav.games">Games</a>
+      <a href="privacy/index.html" data-i18n="nav.privacy">Privacy</a>
+      <a href="press.html" data-i18n="nav.press">Press</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="topbar-right">
+      <div class="lang-switch" id="lang-switch"></div>
+      <button class="theme-toggle" id="theme-toggle">◐ <span id="theme-label">DARK</span></button>
+    </div>
+  </div>
+
+  <!-- ============= HERO ============= -->
+  <section class="hero" data-screen-label="02 Hero">
+    <div class="hero-inner">
+      <div class="eyebrow" data-i18n="hero.eyebrow">Indie puzzle studio · Android</div>
+      <h1 class="hero-title">
+        <span data-i18n="hero.title_a">Puzzles that</span>
+        <span class="row2" data-i18n="hero.title_b">respect your time.</span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero.subtitle">makeit.bot is a one-person studio building calm, considered puzzle games for Android. No timers. No nags. Just logic, made well.</p>
+      <div class="cta-row">
+        <a href="#games" class="btn" data-i18n="hero.cta_play">Get Nonogram Zen</a>
+        <a href="#studio" class="btn btn--ghost" data-i18n="hero.cta_about">Read the manifesto</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= FEATURED GAME ============= -->
+  <section class="featured" id="games" data-screen-label="03 Featured">
+    <div class="featured-inner">
+      <div>
+        <div class="gameboy">
+          <div class="gb-top-strip"></div>
+          <div class="gb-screen-frame">
+            <div class="gb-screen">
+              <div class="gb-pixel-grid" id="gb-grid"></div>
+            </div>
+          </div>
+          <div class="gb-controls">
+            <div class="dpad"></div>
+            <div class="ab-buttons">
+              <span>B</span><span>A</span>
+            </div>
+          </div>
+          <div class="gb-startsel">
+            <span data-label="SELECT"></span>
+            <span data-label="START"></span>
+          </div>
+          <div class="gb-brand">makeit.bot</div>
+        </div>
+      </div>
+      <div class="feat-meta">
+        <span class="game-tag" data-i18n="hero.now_playing">Now shipping</span>
+        <h2 data-i18n="nonogram.title">Nonogram Zen</h2>
+        <p class="tagline" data-i18n="nonogram.tagline">Logic puzzles for slow evenings.</p>
+        <p class="desc" data-i18n="nonogram.description">Classic picross.</p>
+        <ul class="features-list" data-i18n-list="nonogram.features"></ul>
+        <div class="stat-row">
+          <div class="stat">
+            <div class="label" data-i18n="games.genre_label">Genre</div>
+            <div class="value" data-i18n="nonogram.genre">Logic · Picross</div>
+          </div>
+          <div class="stat">
+            <div class="label" data-i18n="games.platform_label">Platform</div>
+            <div class="value">Google Play</div>
+          </div>
+          <div class="stat">
+            <div class="label" data-i18n="games.price_label">Price</div>
+            <div class="value" data-i18n="games.free_with_ads">Free · IAP</div>
+          </div>
+        </div>
+        <a href="#" class="btn" data-i18n="games.view_on_play">View on Google Play</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= STUDIO ============= -->
+  <section class="studio" id="studio" data-screen-label="04 Studio">
+    <div class="studio-inner">
+      <div class="section-eyebrow">─ MANIFESTO ─</div>
+      <h2 class="section-title" data-i18n="studio.heading">A studio of one.</h2>
+      <p class="manifesto-text" data-i18n="studio.manifesto">Solo developer. Working between projects from a motorhome.</p>
+      <ul class="principles" data-i18n-list="studio.principles"></ul>
+      <p class="portfolio-note" data-i18n="studio.portfolio_note">A 10-game portfolio is on the workbench.</p>
+    </div>
+  </section>
+
+  <!-- ============= ROSTER ============= -->
+  <section class="roster" data-screen-label="05 Roster">
+    <div class="roster-inner">
+      <div class="roster-head">
+        <div class="section-eyebrow">─ THE LINEUP ─</div>
+        <h2 class="section-title" data-i18n="games.heading">The roster</h2>
+      </div>
+      <div class="roster-grid">
+        <article class="cart available">
+          <div class="cart-sticker">
+            <image-slot id="gb-nonogram-zen" shape="rect" placeholder="Nonogram Zen icon"></image-slot>
+          </div>
+          <div class="cart-label">
+            <div class="cart-status" data-i18n="games.available">Available now</div>
+            <h3 data-i18n="nonogram.title">Nonogram Zen</h3>
+            <p class="cart-desc" data-i18n="nonogram.tagline">Logic puzzles for slow evenings.</p>
+            <a class="cart-cta" href="#" data-i18n="games.view_on_play">View on Google Play</a>
+          </div>
+        </article>
+        <article class="cart">
+          <div class="cart-sticker coming">
+            <image-slot id="gb-color" shape="rect" placeholder=""></image-slot>
+          </div>
+          <div class="cart-label">
+            <div class="cart-status" data-i18n="games.coming_soon">Coming soon</div>
+            <h3 data-i18n="coming.nonogram_color.title">Nonogram Color</h3>
+            <p class="cart-desc" data-i18n="coming.nonogram_color.desc">Multi-palette picross variant</p>
+            <span class="cart-cta">2026</span>
+          </div>
+        </article>
+        <article class="cart">
+          <div class="cart-sticker coming">
+            <image-slot id="gb-hex" shape="rect" placeholder=""></image-slot>
+          </div>
+          <div class="cart-label">
+            <div class="cart-status" data-i18n="games.coming_soon">Coming soon</div>
+            <h3 data-i18n="coming.sudoku_hex.title">Sudoku Hex</h3>
+            <p class="cart-desc" data-i18n="coming.sudoku_hex.desc">Six-sided Sudoku</p>
+            <span class="cart-cta">2026</span>
+          </div>
+        </article>
+        <article class="cart">
+          <div class="cart-sticker coming">
+            <image-slot id="gb-wordlink" shape="rect" placeholder=""></image-slot>
+          </div>
+          <div class="cart-label">
+            <div class="cart-status" data-i18n="games.coming_soon">Coming soon</div>
+            <h3 data-i18n="coming.wordlink.title">Word Link</h3>
+            <p class="cart-desc" data-i18n="coming.wordlink.desc">Chain words across a hex grid</p>
+            <span class="cart-cta">2027</span>
+          </div>
+        </article>
+        <article class="cart">
+          <div class="cart-sticker coming">
+            <image-slot id="gb-idle" shape="rect" placeholder=""></image-slot>
+          </div>
+          <div class="cart-label">
+            <div class="cart-status" data-i18n="games.coming_soon">Coming soon</div>
+            <h3 data-i18n="coming.idle_cafe.title">Idle Café</h3>
+            <p class="cart-desc" data-i18n="coming.idle_cafe.desc">Cozy idle game · 2027</p>
+            <span class="cart-cta">2027</span>
+          </div>
+        </article>
+        <article class="cart" style="display:flex; align-items:center; justify-content:center; text-align:center; min-height:340px;">
+          <div>
+            <div class="cart-status" style="margin-bottom:8px;">+ 5 more</div>
+            <h3 style="color: var(--bg);">PORTFOLIO<br>2026—2027</h3>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= HUB BAND ============= -->
+  <section class="hub" data-screen-label="06 Hub">
+    <div class="hub-inner">
+      <div class="hub-card">
+        <h3 data-i18n="privacy.heading">Privacy policies</h3>
+        <p data-i18n="privacy.sub">Every game ships with a transparent, plain-language privacy policy.</p>
+        <a href="privacy/index.html" data-i18n="privacy.index_title">All policies</a>
+      </div>
+      <div class="hub-card">
+        <h3 data-i18n="press.heading">Press kit</h3>
+        <p data-i18n="press.sub">Logos, screenshots, factsheets.</p>
+        <a href="press.html" data-i18n="press.download">Download full kit</a>
+      </div>
+      <div class="hub-card">
+        <h3 data-i18n="contact.heading">Say hello</h3>
+        <p data-i18n="contact.sub">Bug reports, business, or just to chat about puzzles.</p>
+        <a href="#contact" data-i18n="contact.general">General</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= CONTACT ============= -->
+  <section class="contact" id="contact" data-screen-label="07 Contact">
+    <div class="contact-inner">
+      <div class="section-eyebrow">─ PRESS START ─</div>
+      <h2 class="section-title" data-i18n="contact.heading">Say hello</h2>
+      <p class="sub" data-i18n="contact.sub">Bug reports, business, or just to chat about puzzles.</p>
+      <div class="email-grid">
+        <a class="email-pill" href="mailto:hello@makeit.bot">
+          <span class="role" data-i18n="contact.general">General</span>
+          <span class="addr">hello@makeit.bot</span>
+        </a>
+        <a class="email-pill" href="mailto:support@makeit.bot">
+          <span class="role" data-i18n="contact.support">Player support</span>
+          <span class="addr">support@makeit.bot</span>
+        </a>
+        <a class="email-pill" href="mailto:press@makeit.bot">
+          <span class="role" data-i18n="contact.pressc">Press</span>
+          <span class="addr">press@makeit.bot</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= FOOTER ============= -->
+  <footer>
+    <div>© 2026 makeit.bot <span class="hearts"><span></span><span></span><span></span></span></div>
+    <div><span data-i18n="footer.made">Made by hand</span> · <span data-i18n="footer.publisher">MIB-Games publisher</span></div>
+  </footer>
+
+  <script src="image-slot.js"></script>
+  <script src="translations.js"></script>
+  <script>
+    // Build Game Boy screen pixel art — stylized "ZEN" picross
+    (function() {
+      const grid = document.getElementById("gb-grid");
+      if (!grid) return;
+      // 10 columns × 9 rows
+      const pattern = [
+        "0011111100",
+        "0000001100",
+        "0000011000",
+        "0000110000",
+        "0001100000",
+        "0011000000",
+        "0011111100",
+        "0000000000",
+        "0220222022", // "score row" mid-dark
+      ];
+      pattern.forEach((row) => {
+        for (let x = 0; x < 10; x++) {
+          const span = document.createElement("span");
+          if (row[x] === "1") span.className = "d";
+          else if (row[x] === "2") span.className = "m";
+          grid.appendChild(span);
+        }
+      });
+    })();
+
+    // Language switcher
+    (function() {
+      const langs = ["en","pt","es","de","fr","it"];
+      const root = document.getElementById("lang-switch");
+      langs.forEach(l => {
+        const b = document.createElement("button");
+        b.textContent = l.toUpperCase();
+        b.dataset.lang = l;
+        b.addEventListener("click", () => {
+          window.MIB_APPLY(l);
+          updateLangButtons(l);
+        });
+        root.appendChild(b);
+      });
+      function updateLangButtons(l) {
+        root.querySelectorAll("button").forEach(b => b.classList.toggle("active", b.dataset.lang === l));
+      }
+      const initial = window.MIB_INIT_LANG("en");
+      window.MIB_APPLY(initial);
+      updateLangButtons(initial);
+    })();
+
+    // Theme toggle
+    (function() {
+      const html = document.documentElement;
+      const btn = document.getElementById("theme-toggle");
+      const label = document.getElementById("theme-label");
+      let theme = "dark";
+      try { theme = localStorage.getItem("mib_theme_v3") || "dark"; } catch (e) {}
+      apply(theme);
+      btn.addEventListener("click", () => apply(theme === "dark" ? "light" : "dark"));
+      function apply(t) {
+        theme = t;
+        html.dataset.theme = t;
+        label.textContent = t === "dark" ? "DARK" : "LIGHT";
+        try { localStorage.setItem("mib_theme_v3", t); } catch (e) {}
+      }
+    })();
+  </script>
+</body>
+</html>

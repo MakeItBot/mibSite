@@ -25,7 +25,8 @@
       "Bash(npx next:*)",
       "Bash(tree -L 2 -d /c/Users/aryha/Documents/MIB/site --ignore node_modules)",
       "Bash(wc -l /c/Users/aryha/Documents/MIB/site/src/i18n/locales/*.ts)",
-      "Bash(node -e \"const d = require\\(''./src/data/clusters/calendario-vacinas.json''\\); console.log\\(''cluster_id:'', d.cluster_id, ''| spokes:'', d.spokes.length\\)\")"
+      "Bash(node -e \"const d = require\\(''./src/data/clusters/calendario-vacinas.json''\\); console.log\\(''cluster_id:'', d.cluster_id, ''| spokes:'', d.spokes.length\\)\")",
+      "mcp__plugin_context-mode_context-mode__ctx_batch_execute"
     ]
   }
 }

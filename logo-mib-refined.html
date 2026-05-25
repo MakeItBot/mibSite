@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>.MIB — Logo System · makeit.bot</title>
+<meta name="viewport" content="width=1280">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Pixelify+Sans:wght@400;500;600;700&family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* GB-inspired palette */
+  :root {
+    --gb-dark: #0f1f0e;
+    --gb-dark-2: #1a3018;
+    --gb-mid: #5d8159;
+    --gb-light: #9ec188;
+    --gb-cream: #d5e4a8;
+    --gb-paper: #e8e9c4;
+    --gb-pop: #f5d76e;
+    --gb-pop-2: #e85d4d;
+    --gb-shell: #c8c5b0;
+    --gb-shell-dark: #9e9a82;
+
+    --page: #f0eee9;
+    --page-rule: #d8d4c8;
+    --ink: #2a251f;
+    --ink-dim: #6b6354;
+    --ink-faint: #b3a890;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: 'Pixelify Sans', system-ui, sans-serif;
+    background: var(--page);
+    color: var(--ink);
+    image-rendering: pixelated;
+  }
+  .silk { font-family: 'Silkscreen', monospace; }
+
+  /* ============= BASE LOGO COMPONENTS ============= */
+  /* The .MIB mark — chunky pixel block with prompt arrow */
+  .mark {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.32em;
+    background: var(--gb-pop);
+    color: var(--gb-dark);
+    padding: 0.5em 0.6em 0.4em;
+    font-family: 'Silkscreen', monospace;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0.14em 0.14em 0 var(--gb-mid);
+    -webkit-font-smoothing: none;
+  }
+  .mark .arrow { font-size: 0.85em; line-height: 1; }
+  .mark .id { font-size: 1em; letter-spacing: 0.02em; }
+
+  /* The wordmark — full URL */
+  .word {
+    font-family: 'Silkscreen', monospace;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: none;
+  }
+  .word .accent { color: var(--gb-pop-2); }
+
+  /* Full lockup = mark + wordmark side-by-side */
+  .lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.1em;
+  }
+  /* Stacked variant */
+  .lockup.stacked { flex-direction: column; align-items: flex-start; gap: 0.4em; }
+
+  /* ============= PAGE CHROME ============= */
+  .topbar {
+    padding: 16px 48px;
+    background: var(--gb-dark);
+    color: var(--gb-cream);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    border-bottom: 4px solid var(--gb-dark-2);
+  }
+  .topbar .brand {
+    font-family: 'Silkscreen', monospace;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--gb-cream);
+    letter-spacing: 0.02em;
+  }
+  .topbar .crumb {
+    font-family: 'Pixelify Sans', sans-serif;
+    color: var(--gb-mid);
+    font-size: 14px;
+  }
+  .topbar .crumb::before { content: "→ "; opacity: 0.6; }
+  .topbar .right { margin-left: auto; display: flex; gap: 10px; }
+  .topbar .right a {
+    font-family: 'Silkscreen', monospace;
+    font-size: 11px;
+    color: var(--gb-cream);
+    text-decoration: none;
+    padding: 10px 14px;
+    letter-spacing: 0.05em;
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--gb-mid);
+  }
+  .topbar .right a.primary {
+    background: var(--gb-pop);
+    color: var(--gb-dark);
+    box-shadow: 3px 3px 0 var(--gb-mid);
+  }
+
+  .page-head {
+    padding: 56px 48px 40px;
+    border-bottom: 1px solid var(--page-rule);
+  }
+  .page-head .eyebrow {
+    font-family: 'Silkscreen', monospace;
+    font-size: 12px;
+    color: var(--gb-pop-2);
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+  }
+  .page-head h1 {
+    font-family: 'Silkscreen', monospace;
+    font-weight: 700;
+    font-size: 56px;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 18px;
+    letter-spacing: 0.01em;
+  }
+  .page-head h1 .ac { color: var(--gb-pop-2); }
+  .page-head p {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-dim);
+    max-width: 720px;
+  }
+
+  /* Section */
+  .section { padding: 56px 48px; border-bottom: 1px solid var(--page-rule); }
+  .section:last-child { border-bottom: 0; }
+  .section-head { margin-bottom: 36px; display: flex; align-items: baseline; gap: 18px; }
+  .section-head .num {
+    font-family: 'Silkscreen', monospace;
+    font-size: 13px;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+  }
+  .section-head h2 {
+    font-family: 'Silkscreen', monospace;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .section-head .desc {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 15px;
+    color: var(--ink-dim);
+    margin-left: auto;
+    max-width: 480px;
+    line-height: 1.4;
+    text-align: right;
+  }
+
+  /* ============= 01 — BRAND SYSTEM EXPLAINER ============= */
+  .system-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .system-card {
+    background: #fff;
+    border: 1px solid var(--page-rule);
+    padding: 56px 56px 32px;
+    position: relative;
+  }
+  .system-card .role-tag {
+    position: absolute;
+    top: 14px; left: 56px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .system-card .role-tag::before { content: "// "; }
+  .system-showcase {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    background: var(--gb-dark);
+    color: var(--gb-cream);
+  }
+  .system-card .role-name {
+    font-family: 'Silkscreen', monospace;
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .system-card .role-desc {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink-dim);
+    line-height: 1.5;
+  }
+
+  /* ============= 02 — LOCKUPS ============= */
+  .lockup-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .board {
+    display: flex;
+    flex-direction: column;
+  }
+  .board-label {
+    font-family: 'Silkscreen', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding: 0 4px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .board-frame {
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+  }
+  .bg-dark { background: var(--gb-dark); }
+  .bg-paper { background: var(--gb-paper); }
+  .bg-yellow { background: var(--gb-pop); }
+  .bg-red { background: var(--gb-pop-2); }
+  .bg-cream { background: var(--gb-cream); }
+  .bg-mid { background: var(--gb-mid); }
+  .bg-shell { background: var(--gb-shell); }
+
+  /* Lockup contextual colors */
+  .ctx-dark .word { color: var(--gb-cream); }
+  .ctx-dark .word .accent { color: var(--gb-pop); }
+  .ctx-dark .mark { background: var(--gb-pop); color: var(--gb-dark); box-shadow: 0.14em 0.14em 0 var(--gb-mid); }
+
+  .ctx-paper .word { color: var(--gb-dark); }
+  .ctx-paper .word .accent { color: var(--gb-pop-2); }
+  .ctx-paper .mark { background: var(--gb-pop); color: var(--gb-dark); box-shadow: 0.14em 0.14em 0 var(--gb-shell-dark); }
+
+  /* Inverted: dark mark on light bg */
+  .ctx-inv .word { color: var(--gb-dark); }
+  .ctx-inv .word .accent { color: var(--gb-pop-2); }
+  .ctx-inv .mark { background: var(--gb-dark); color: var(--gb-pop); box-shadow: 0.14em 0.14em 0 var(--gb-pop-2); }
+
+  /* Mono on cream */
+  .ctx-mono .word { color: var(--gb-dark); }
+  .ctx-mono .word .accent { color: var(--gb-dark); }
+  .ctx-mono .mark { background: var(--gb-dark); color: var(--gb-cream); box-shadow: 0.14em 0.14em 0 var(--gb-mid); }
+
+  /* ============= 03 — MARK-ONLY SCALES ============= */
+  .scale-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .scale-board {
+    background: var(--gb-dark);
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    position: relative;
+  }
+  .scale-board .px-label {
+    position: absolute;
+    bottom: 12px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--gb-mid);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ============= 04 — APP ICONS ============= */
+  .icons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .icon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .icon-canvas {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.12);
+    position: relative;
+  }
+  .icon-canvas.rounded { border-radius: 24%; overflow: hidden; }
+  .icon-canvas .mark { font-size: 34px; }
+  .icon-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .icon-meta .name {
+    font-family: 'Silkscreen', monospace;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 12px;
+  }
+
+  /* ============= 05 — IN-CONTEXT ============= */
+  .context-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 20px;
+  }
+  .context-card {
+    background: #fff;
+    border: 1px solid var(--page-rule);
+    padding: 24px;
+  }
+  .context-card .ctx-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+
+  /* Phone splash mockup */
+  .phone {
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto;
+    aspect-ratio: 9 / 19;
+    background: var(--gb-dark);
+    border-radius: 24px;
+    border: 6px solid #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .phone .notch {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px; height: 16px;
+    background: #1a1a1a;
+    border-radius: 0 0 12px 12px;
+  }
+  .phone .splash-mark { font-size: 32px; }
+  .phone .splash-sub {
+    font-family: 'Silkscreen', monospace;
+    font-size: 10px;
+    color: var(--gb-mid);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* Browser favicon mockup */
+  .browser {
+    background: #f5f3ed;
+    border: 1px solid var(--page-rule);
+    padding: 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .browser .url-bar {
+    background: #fff;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--page-rule);
+  }
+  .browser .url-bar .dots {
+    display: flex; gap: 4px;
+  }
+  .browser .url-bar .dots span {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #d8d4c8;
+  }
+  .browser .url-bar .url {
+    flex: 1;
+    background: #f5f3ed;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .browser .url-bar .url .fav {
+    display: inline-flex;
+    align-items: baseline;
+    background: var(--gb-pop);
+    color: var(--gb-dark);
+    font-family: 'Silkscreen', monospace;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 2px 3px;
+    line-height: 1;
+    gap: 1px;
+    -webkit-font-smoothing: none;
+  }
+  .browser .tab-area {
+    padding: 24px;
+    text-align: center;
+    background: var(--gb-paper);
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Avatar / social */
+  .avatar-row {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .avatar {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  .avatar .mark { font-size: 14px; box-shadow: none; padding: 0.4em 0.5em 0.32em; }
+  .avatar.sq { border-radius: 12px; }
+  .social-text {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink-dim);
+    margin-left: 8px;
+  }
+  .social-text .handle {
+    font-family: 'Silkscreen', monospace;
+    font-size: 13px;
+    color: var(--ink);
+    margin-right: 8px;
+  }
+
+  /* Notes panel */
+  .notes {
+    background: #fffae5;
+    border: 1px solid #f0e6b8;
+    padding: 22px 26px;
+    margin-top: 32px;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    color: #5a4a2a;
+  }
+  .notes .h {
+    font-family: 'Silkscreen', monospace;
+    font-size: 11px;
+    color: #8a7032;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .notes ul { margin-left: 18px; }
+  .notes li { margin-bottom: 4px; }
+  .notes code {
+    font-family: 'Silkscreen', monospace;
+    background: rgba(255,255,255,0.6);
+    padding: 1px 6px;
+    font-size: 12px;
+  }
+
+  /* Animation: pulse arrow */
+  @keyframes pulse-arrow {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(2px); }
+  }
+  .mark .arrow { animation: pulse-arrow 1.6s ease-in-out infinite; transform-origin: center; }
+</style>
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="topbar">
+    <span class="brand">.MIB</span>
+    <span class="crumb">logo system · refined</span>
+    <div class="right">
+      <a href="logo-explorations.html">← all directions</a>
+      <a href="v3-game-boy.html" class="primary">view landing</a>
+    </div>
+  </div>
+
+  <!-- Page header -->
+  <header class="page-head">
+    <div class="eyebrow">LOGO SYSTEM · REFINED</div>
+    <h1>The <span class="ac">.MIB</span> mark</h1>
+    <p>A two-tier identity: <strong>makeit.bot</strong> is the URL and full studio name; <strong>.MIB</strong> is the short mark — used for the app icon, favicon, social avatars and anywhere a small badge needs to read at a glance. The two work together as a lockup, or separately at scale.</p>
+  </header>
+
+  <!-- ============= 01 — SYSTEM ============= -->
+  <section class="section">
+    <div class="section-head">
+      <span class="num">01</span>
+      <h2>The two-tier system</h2>
+      <span class="desc">Long form for context (a webpage header, a credits screen). Short form for surfaces where it needs to be tiny but unmistakable.</span>
+    </div>
+    <div class="system-grid">
+      <div class="system-card">
+        <span class="role-tag">long form · primary</span>
+        <div class="system-showcase">
+          <div class="lockup">
+            <div class="mark" style="font-size: 28px;">
+              <span class="arrow">▶</span>
+              <span class="id">.MIB</span>
+            </div>
+            <div class="word ctx-dark" style="font-size: 42px;">makeit<span class="accent">.bot</span></div>
+          </div>
+        </div>
+        <div class="role-name">Full lockup</div>
+        <div class="role-desc">Use on the website, in slide masters, on email signatures, and anywhere there is enough room. The mark sits to the left, the wordmark to the right.</div>
+      </div>
+      <div class="system-card">
+        <span class="role-tag">short form · mark</span>
+        <div class="system-showcase">
+          <div class="mark" style="font-size: 56px;">
+            <span class="arrow">▶</span>
+            <span class="id">.MIB</span>
+          </div>
+        </div>
+        <div class="role-name">.MIB mark</div>
+        <div class="role-desc">The Play Store icon, browser favicon, X/Bluesky avatar, app launcher tile, sticker. A standalone badge — readable at 16 px and bold at 1024 px.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 02 — LOCKUP COLOR VARIANTS ============= -->
+  <section class="section">
+    <div class="section-head">
+      <span class="num">02</span>
+      <h2>Lockup color variants</h2>
+      <span class="desc">Four guaranteed-safe contexts. The mark always carries the yellow + dark contrast; only the wordmark color changes to suit the background.</span>
+    </div>
+    <div class="lockup-grid">
+      <div class="board">
+        <div class="board-label"><span>A · Dark background</span><span>primary</span></div>
+        <div class="board-frame bg-dark ctx-dark">
+          <div class="lockup">
+            <div class="mark" style="font-size: 26px;"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+            <div class="word" style="font-size: 38px;">makeit<span class="accent">.bot</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="board">
+        <div class="board-label"><span>B · Paper background</span><span>light</span></div>
+        <div class="board-frame bg-paper ctx-paper">
+          <div class="lockup">
+            <div class="mark" style="font-size: 26px;"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+            <div class="word" style="font-size: 38px;">makeit<span class="accent">.bot</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="board">
+        <div class="board-label"><span>C · Inverted</span><span>mark on light</span></div>
+        <div class="board-frame bg-cream ctx-inv">
+          <div class="lockup">
+            <div class="mark" style="font-size: 26px;"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+            <div class="word" style="font-size: 38px;">makeit<span class="accent">.bot</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="board">
+        <div class="board-label"><span>D · Mono</span><span>print / single-ink</span></div>
+        <div class="board-frame bg-shell ctx-mono">
+          <div class="lockup">
+            <div class="mark" style="font-size: 26px;"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+            <div class="word" style="font-size: 38px;">makeit<span class="accent">.bot</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 03 — MARK SCALE ============= -->
+  <section class="section">
+    <div class="section-head">
+      <span class="num">03</span>
+      <h2>Mark at every size</h2>
+      <span class="desc">The same mark, four sizes — from "billboard" to "favicon". Stays legible because Silkscreen was designed to survive at pixel-rounded sizes.</span>
+    </div>
+    <div class="scale-grid">
+      <div class="scale-board">
+        <div class="mark" style="font-size: 56px;"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+        <div class="px-label">Hero · 56pt</div>
+      </div>
+      <div class="scale-board">
+        <div class="mark" style="font-size: 36px;"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+        <div class="px-label">Header · 36pt</div>
+      </div>
+      <div class="scale-board">
+        <div class="mark" style="font-size: 18px;"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+        <div class="px-label">Inline · 18pt</div>
+      </div>
+      <div class="scale-board">
+        <div class="mark" style="font-size: 11px;"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+        <div class="px-label">Favicon · 11pt</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 04 — APP ICONS ============= -->
+  <section class="section">
+    <div class="section-head">
+      <span class="num">04</span>
+      <h2>App icon options</h2>
+      <span class="desc">Four ready-for-Play-Store backgrounds. All 1024×1024 SVG-ready. The mark itself never changes; only the canvas behind it.</span>
+    </div>
+    <div class="icons-grid">
+      <div class="icon-card">
+        <div class="icon-canvas rounded" style="background: var(--gb-dark);">
+          <div class="mark"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+        </div>
+        <div class="icon-meta">
+          <span class="name">Forest</span>
+          <span>Primary — Play Store</span>
+        </div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-canvas rounded" style="background: var(--gb-pop-2);">
+          <div class="mark" style="background: var(--gb-cream); color: var(--gb-dark); box-shadow: 0.14em 0.14em 0 var(--gb-dark);"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+        </div>
+        <div class="icon-meta">
+          <span class="name">Cartridge red</span>
+          <span>Alt — playful</span>
+        </div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-canvas rounded" style="background: var(--gb-cream);">
+          <div class="mark" style="background: var(--gb-dark); color: var(--gb-pop); box-shadow: 0.14em 0.14em 0 var(--gb-pop-2);"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+        </div>
+        <div class="icon-meta">
+          <span class="name">Inverted</span>
+          <span>Alt — light theme</span>
+        </div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-canvas rounded" style="background: linear-gradient(135deg, #9ec188 0%, #5d8159 60%, #0f1f0e 100%);">
+          <div class="mark"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+        </div>
+        <div class="icon-meta">
+          <span class="name">Dusk gradient</span>
+          <span>Alt — cinematic</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="h">App icon recommendation</div>
+      <ul>
+        <li><strong>Forest</strong> (option A) is the recommended primary — it matches the Game Boy landing palette, holds up at all Play Store sizes, and the yellow mark pops on every phone wallpaper.</li>
+        <li>Each individual game gets its <em>own</em> Play Store icon (Nonogram Zen has its own cover art). The .MIB icon is for the <strong>publisher / studio</strong> level — your launcher / dev page / web bookmark.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============= 05 — IN CONTEXT ============= -->
+  <section class="section">
+    <div class="section-head">
+      <span class="num">05</span>
+      <h2>In context</h2>
+      <span class="desc">How the system feels on the surfaces it lives — phone splash, browser tab, social avatar, sticker.</span>
+    </div>
+    <div class="context-grid">
+      <!-- Phone splash -->
+      <div class="context-card">
+        <div class="ctx-label">App splash screen</div>
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="mark splash-mark"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+          <div class="splash-sub">makeit.bot · 2026</div>
+        </div>
+      </div>
+
+      <!-- Browser favicon -->
+      <div class="context-card">
+        <div class="ctx-label">Browser favicon</div>
+        <div class="browser">
+          <div class="url-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="url">
+              <span class="fav"><span>▶</span><span>.M</span></span>
+              <span>makeit.bot</span>
+            </div>
+          </div>
+          <div class="tab-area">
+            <div class="mark" style="font-size: 36px;"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social avatars -->
+      <div class="context-card">
+        <div class="ctx-label">Social avatars</div>
+        <div class="avatar-row" style="margin-bottom: 18px;">
+          <div class="avatar" style="background: var(--gb-dark);">
+            <div class="mark"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+          </div>
+          <div class="social-text"><span class="handle">@makeitbot</span><br>X / Twitter</div>
+        </div>
+        <div class="avatar-row" style="margin-bottom: 18px;">
+          <div class="avatar sq" style="background: var(--gb-pop-2);">
+            <div class="mark" style="background: var(--gb-cream); color: var(--gb-dark); box-shadow: none;"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+          </div>
+          <div class="social-text"><span class="handle">@makeit.bot</span><br>Bluesky</div>
+        </div>
+        <div class="avatar-row">
+          <div class="avatar" style="background: var(--gb-cream);">
+            <div class="mark" style="background: var(--gb-dark); color: var(--gb-pop); box-shadow: none;"><span class="arrow">▶</span><span class="id">.MIB</span></div>
+          </div>
+          <div class="social-text"><span class="handle">makeit.bot</span><br>Itch · Discord</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="h">Brand voice with the mark</div>
+      <ul>
+        <li><strong>Animation idea:</strong> the <code>▶</code> arrow gently pulses (already animating on this page) — like a "now playing" indicator. Subtle, doesn't distract.</li>
+        <li><strong>Short-form copy uses .MIB as a noun:</strong> "<em>A .MIB release</em>", "<em>built at .MIB</em>". The full <code>makeit.bot</code> is for legal / formal contexts.</li>
+        <li><strong>Pairs naturally with terminal language</strong> — fits the Game Boy + dev-CLI hybrid feel of the landing page.</li>
+      </ul>
+    </div>
+  </section>
+
+</body>
+</html>

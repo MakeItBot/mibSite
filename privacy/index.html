@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<title>Privacy · makeit.bot</title>
+<meta name="viewport" content="width=1024">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050a05; --bg-2: #0a140a; --panel: #0e1a0e;
+    --ink: #4aff88; --ink-bright: #aaffbb; --ink-dim: #2c8a4a; --ink-dimmer: #1c4a2a;
+    --rule: #1a3a1a; --amber: #ffb86c; --red: #ff5577;
+  }
+  [data-theme="light"] {
+    --bg: #f4f2e8; --bg-2: #ebe7d5; --panel: #ffffff;
+    --ink: #1a3a1a; --ink-bright: #052005; --ink-dim: #4a6a4a; --ink-dimmer: #7a8a7a;
+    --rule: #c8c8b8; --amber: #8a5a00; --red: #b8334d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink); }
+  body { font-family: 'IBM Plex Mono', monospace; font-size: 15px; line-height: 1.6; min-height: 100vh; }
+  body::before { content: ""; position: fixed; inset: 0; background-image: repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0,0,0,0.18) 2px, rgba(0,0,0,0.18) 3px); pointer-events: none; z-index: 100; mix-blend-mode: multiply; }
+  [data-theme="light"] body::before { opacity: 0.15; }
+
+  .topbar { padding: 18px 40px; display: flex; gap: 28px; align-items: center; background: var(--bg-2); border-bottom: 1px solid var(--rule); }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink-bright); font-weight: 500; }
+  .brand-led { width: 10px; height: 10px; background: var(--ink); border-radius: 50%; box-shadow: 0 0 6px var(--ink); }
+  .brand-name { font-family: 'VT323', monospace; font-size: 22px; }
+  .nav { display: flex; gap: 24px; font-size: 13px; }
+  .nav a { color: var(--ink-dim); text-decoration: none; }
+  .nav a:hover { color: var(--ink-bright); }
+  .nav a::before { content: "/"; color: var(--ink-dimmer); margin-right: 4px; }
+  .nav a.active { color: var(--amber); }
+  .topbar-right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+  .lang-switch { display: flex; gap: 1px; border: 1px solid var(--rule); }
+  .lang-switch button { background: transparent; color: var(--ink-dim); border: 0; padding: 5px 8px; font: inherit; font-size: 11px; cursor: pointer; text-transform: uppercase; }
+  .lang-switch button.active { background: var(--ink); color: var(--bg); }
+  .theme-toggle { background: transparent; border: 1px solid var(--rule); color: var(--ink); font: inherit; font-size: 11px; padding: 5px 10px; cursor: pointer; text-transform: uppercase; }
+
+  .wrap { max-width: 1024px; margin: 0 auto; padding: 64px 40px; }
+
+  .crumb { font-size: 12px; color: var(--ink-dim); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .crumb a { color: var(--ink); text-decoration: none; }
+  .crumb a:hover { color: var(--ink-bright); }
+
+  h1.page-title {
+    font-family: 'VT323', monospace;
+    font-size: 72px;
+    line-height: 1;
+    color: var(--ink-bright);
+    margin-bottom: 12px;
+  }
+  .page-sub {
+    font-family: 'VT323', monospace;
+    font-size: 26px;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 48px;
+    max-width: 760px;
+  }
+
+  .tldr {
+    background: var(--panel);
+    border-left: 4px solid var(--amber);
+    padding: 24px 28px;
+    margin-bottom: 56px;
+  }
+  .tldr-title {
+    font-size: 12px;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .tldr-body { font-family: 'VT323', monospace; font-size: 24px; color: var(--ink-bright); line-height: 1.4; }
+
+  .policies-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 64px;
+  }
+  .policy-card {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 28px;
+    align-items: center;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color .15s;
+  }
+  .policy-card:hover { border-color: var(--ink); }
+  .policy-icon {
+    width: 64px; height: 64px;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'VT323', monospace;
+    font-size: 28px;
+    color: var(--ink-bright);
+  }
+  .policy-name { font-family: 'VT323', monospace; font-size: 32px; color: var(--ink-bright); line-height: 1; margin-bottom: 6px; }
+  .policy-meta { font-size: 12px; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.06em; }
+  .policy-meta .available { color: var(--ink); }
+  .policy-meta .pending { color: var(--ink-dimmer); }
+  .policy-arrow {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--amber);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .policy-arrow::after { content: " →"; }
+  .policy-card.disabled { opacity: 0.55; cursor: not-allowed; pointer-events: none; }
+
+  footer {
+    margin-top: 64px;
+    padding: 28px 40px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <a href="../v2-crt-terminal.html" class="brand">
+      <span class="brand-led"></span>
+      <span class="brand-name">makeit.bot</span>
+    </a>
+    <nav class="nav">
+      <a href="../v2-crt-terminal.html#studio" data-i18n="nav.studio">studio</a>
+      <a href="../v2-crt-terminal.html#games" data-i18n="nav.games">games</a>
+      <a href="index.html" class="active" data-i18n="nav.privacy">privacy</a>
+      <a href="../press.html" data-i18n="nav.press">press</a>
+      <a href="../v2-crt-terminal.html#contact" data-i18n="nav.contact">contact</a>
+    </nav>
+    <div class="topbar-right">
+      <div class="lang-switch" id="lang-switch"></div>
+      <button class="theme-toggle" id="theme-toggle">◐ <span id="theme-label">DARK</span></button>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <div class="crumb"><a href="../v2-crt-terminal.html">~</a> / privacy</div>
+    <h1 class="page-title" data-i18n="privacy.heading">Privacy policies</h1>
+    <p class="page-sub" data-i18n="privacy.sub">Every makeit.bot game ships with a transparent, plain-language privacy policy. Required by the Play Store, written for humans.</p>
+
+    <div class="tldr">
+      <div class="tldr-title" data-i18n="privacy.tldr_title">TL;DR</div>
+      <div class="tldr-body" data-i18n="privacy.tldr">We don't sell your data. Most games run fully offline. Ads (when present) are clearly labelled.</div>
+    </div>
+
+    <div class="policies-list">
+      <a class="policy-card" href="nonogram-zen.html">
+        <div class="policy-icon">▦</div>
+        <div>
+          <div class="policy-name">Nonogram Zen</div>
+          <div class="policy-meta"><span class="available">● Live</span> · Updated 2026-05-23 · v1.0</div>
+        </div>
+        <div class="policy-arrow" data-i18n="privacy.view_policy">Read policy</div>
+      </a>
+      <a class="policy-card disabled">
+        <div class="policy-icon">▣</div>
+        <div>
+          <div class="policy-name">Nonogram Color</div>
+          <div class="policy-meta"><span class="pending">○ In development</span> · ETA 2026 Q4</div>
+        </div>
+        <div class="policy-arrow">Pending</div>
+      </a>
+      <a class="policy-card disabled">
+        <div class="policy-icon">⬡</div>
+        <div>
+          <div class="policy-name">Sudoku Hex</div>
+          <div class="policy-meta"><span class="pending">○ In development</span> · ETA 2026 Q4</div>
+        </div>
+        <div class="policy-arrow">Pending</div>
+      </a>
+      <a class="policy-card disabled">
+        <div class="policy-icon">⌬</div>
+        <div>
+          <div class="policy-name">Word Link</div>
+          <div class="policy-meta"><span class="pending">○ In development</span> · ETA 2027</div>
+        </div>
+        <div class="policy-arrow">Pending</div>
+      </a>
+      <a class="policy-card disabled">
+        <div class="policy-icon">☕</div>
+        <div>
+          <div class="policy-name">Idle Café</div>
+          <div class="policy-meta"><span class="pending">○ In development</span> · ETA 2027</div>
+        </div>
+        <div class="policy-arrow">Pending</div>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <div>© 2026 makeit.bot · all rights reserved</div>
+    <div>privacy@makeit.bot</div>
+  </footer>
+
+  <script src="../translations.js"></script>
+  <script>
+    (function() {
+      const langs = ["en","pt","es","de","fr","it"];
+      const root = document.getElementById("lang-switch");
+      langs.forEach(l => {
+        const b = document.createElement("button");
+        b.textContent = l.toUpperCase();
+        b.dataset.lang = l;
+        b.addEventListener("click", () => { window.MIB_APPLY(l); upd(l); });
+        root.appendChild(b);
+      });
+      function upd(l) { root.querySelectorAll("button").forEach(b => b.classList.toggle("active", b.dataset.lang === l)); }
+      const initial = window.MIB_INIT_LANG("en");
+      window.MIB_APPLY(initial);
+      upd(initial);
+    })();
+    (function() {
+      const html = document.documentElement;
+      const btn = document.getElementById("theme-toggle");
+      const label = document.getElementById("theme-label");
+      let theme = "dark";
+      try { theme = localStorage.getItem("mib_theme_v2") || "dark"; } catch (e) {}
+      apply(theme);
+      btn.addEventListener("click", () => apply(theme === "dark" ? "light" : "dark"));
+      function apply(t) { theme = t; html.dataset.theme = t; label.textContent = t === "dark" ? "DARK" : "LIGHT"; try { localStorage.setItem("mib_theme_v2", t); } catch (e) {} }
+    })();
+  </script>
+</body>
+</html>
