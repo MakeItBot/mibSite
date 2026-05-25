@@ -3,239 +3,484 @@
 <head>
 <meta charset="UTF-8">
 <title>Privacy · makeit.bot</title>
-<meta name="viewport" content="width=1024">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Privacy policies for every makeit.bot game. Plain language, no surprises.">
+<meta name="theme-color" content="#0f1f0e">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* ============= PALETTE — Game Boy DMG ============= */
   :root {
-    --bg: #050a05; --bg-2: #0a140a; --panel: #0e1a0e;
-    --ink: #4aff88; --ink-bright: #aaffbb; --ink-dim: #2c8a4a; --ink-dimmer: #1c4a2a;
-    --rule: #1a3a1a; --amber: #ffb86c; --red: #ff5577;
+    --bg:        #0f1f0e;
+    --bg-2:      #1a3018;
+    --panel:     #234221;
+    --ink-dim:   #5d8159;
+    --ink:       #9ec188;
+    --ink-bright:#d5e4a8;
+    --pop:       #f5d76e;
+    --pop-2:     #e85d4d;
+    --rule:      #305030;
+    --shadow:    rgba(0,0,0,0.4);
   }
   [data-theme="light"] {
-    --bg: #f4f2e8; --bg-2: #ebe7d5; --panel: #ffffff;
-    --ink: #1a3a1a; --ink-bright: #052005; --ink-dim: #4a6a4a; --ink-dimmer: #7a8a7a;
-    --rule: #c8c8b8; --amber: #8a5a00; --red: #b8334d;
+    --bg:        #e8e9c4;
+    --bg-2:      #d9da9c;
+    --panel:     #f4f5d8;
+    --ink-dim:   #6b7a4a;
+    --ink:       #3a4828;
+    --ink-bright:#1a2010;
+    --pop:       #c97c1a;
+    --pop-2:     #9a3a28;
+    --rule:      #b8b878;
+    --shadow:    rgba(58,72,40,0.18);
   }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--bg); color: var(--ink); }
-  body { font-family: 'IBM Plex Mono', monospace; font-size: 15px; line-height: 1.6; min-height: 100vh; }
-  body::before { content: ""; position: fixed; inset: 0; background-image: repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0,0,0,0.18) 2px, rgba(0,0,0,0.18) 3px); pointer-events: none; z-index: 100; mix-blend-mode: multiply; }
-  [data-theme="light"] body::before { opacity: 0.15; }
+  html { scroll-behavior: smooth; }
+  html, body { background: var(--bg); color: var(--ink-bright); }
+  body {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 18px; line-height: 1.4;
+    overflow-x: hidden; min-height: 100vh;
+    image-rendering: pixelated; -webkit-font-smoothing: none;
+  }
 
-  .topbar { padding: 18px 40px; display: flex; gap: 28px; align-items: center; background: var(--bg-2); border-bottom: 1px solid var(--rule); }
-  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink-bright); font-weight: 500; }
-  .brand-led { width: 10px; height: 10px; background: var(--ink); border-radius: 50%; box-shadow: 0 0 6px var(--ink); }
-  .brand-name { font-family: 'VT323', monospace; font-size: 22px; }
-  .nav { display: flex; gap: 24px; font-size: 13px; }
-  .nav a { color: var(--ink-dim); text-decoration: none; }
-  .nav a:hover { color: var(--ink-bright); }
-  .nav a::before { content: "/"; color: var(--ink-dimmer); margin-right: 4px; }
-  .nav a.active { color: var(--amber); }
+  /* Dithered overlay */
+  body::before {
+    content: ""; position: fixed; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.08) 1px, transparent 1px);
+    background-size: 4px 4px; pointer-events: none; z-index: 100;
+  }
+  [data-theme="light"] body::before { opacity: 0.5; }
+
+  /* skip link */
+  .skip-link {
+    position: absolute; left: -9999px; top: auto;
+    width: 1px; height: 1px; overflow: hidden;
+  }
+  .skip-link:focus {
+    position: fixed; top: 8px; left: 8px; z-index: 9999;
+    width: auto; height: auto; overflow: visible;
+    background: var(--pop); color: var(--bg);
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    padding: 8px 12px; text-decoration: none;
+    box-shadow: 3px 3px 0 var(--bg-2);
+  }
+
+  /* ============= TOP BAR ============= */
+  .topbar {
+    padding: 18px 40px; display: flex; align-items: center; gap: 28px;
+    background: var(--bg-2); border-bottom: 4px solid var(--bg);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .topbar::after {
+    content: ""; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px;
+    background: var(--ink-dim); opacity: 0.4;
+  }
+  .logo-lockup {
+    display: inline-flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .logo-mark {
+    display: inline-flex; align-items: baseline; gap: 0.3em;
+    background: var(--pop); color: var(--bg);
+    padding: 0.42em 0.55em 0.36em;
+    font-family: 'Silkscreen', monospace; font-weight: 700;
+    font-size: 13px; line-height: 1;
+    box-shadow: 0.14em 0.14em 0 var(--ink-dim);
+    -webkit-font-smoothing: none; flex-shrink: 0;
+  }
+  .logo-word { display: flex; flex-direction: column; gap: 2px; }
+  .logo-word .name {
+    font-family: 'Silkscreen', monospace; font-weight: 700;
+    font-size: 16px; color: var(--ink-bright); line-height: 1; letter-spacing: 0.02em;
+  }
+  .logo-word .name .accent { color: var(--pop); }
+  .logo-word .tag { font-family: 'Pixelify Sans', monospace; font-size: 11px; color: var(--ink-dim); }
+  .nav { display: flex; gap: 24px; margin-left: 8px; }
+  .nav a {
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    color: var(--ink-dim); text-decoration: none;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 6px 0; transition: color .15s;
+  }
+  .nav a:hover { color: var(--pop); }
+  .nav a.active { color: var(--ink-bright); }
   .topbar-right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
-  .lang-switch { display: flex; gap: 1px; border: 1px solid var(--rule); }
-  .lang-switch button { background: transparent; color: var(--ink-dim); border: 0; padding: 5px 8px; font: inherit; font-size: 11px; cursor: pointer; text-transform: uppercase; }
-  .lang-switch button.active { background: var(--ink); color: var(--bg); }
-  .theme-toggle { background: transparent; border: 1px solid var(--rule); color: var(--ink); font: inherit; font-size: 11px; padding: 5px 10px; cursor: pointer; text-transform: uppercase; }
+  .lang-switch {
+    display: flex; gap: 1px; background: var(--bg); padding: 3px;
+    box-shadow: inset 0 0 0 1px var(--rule);
+  }
+  .lang-switch button {
+    font-family: 'Silkscreen', monospace; font-size: 9px;
+    background: transparent; color: var(--ink-dim);
+    border: 0; padding: 5px 8px; cursor: pointer;
+    transition: background .1s, color .1s;
+  }
+  .lang-switch button.active { background: var(--ink-bright); color: var(--bg); }
+  .theme-toggle {
+    font-family: 'Silkscreen', monospace; font-size: 9px;
+    background: var(--panel); color: var(--ink-bright);
+    border: 0; box-shadow: inset 0 -3px 0 var(--bg);
+    padding: 8px 12px; cursor: pointer; text-transform: uppercase; transition: background .15s;
+  }
+  .theme-toggle:hover { background: var(--ink-dim); }
 
-  .wrap { max-width: 1024px; margin: 0 auto; padding: 64px 40px; }
+  /* hamburger */
+  .nav-toggle {
+    display: none;
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    background: var(--panel); color: var(--ink-bright);
+    border: 0; box-shadow: inset 0 -3px 0 var(--bg);
+    padding: 8px 12px; cursor: pointer; text-transform: uppercase; transition: background .15s;
+  }
+  .nav-toggle:hover { background: var(--ink-dim); }
+  .nav-close {
+    display: none; position: absolute; top: 20px; right: 20px;
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    background: var(--panel); color: var(--ink-bright);
+    border: 0; box-shadow: inset 0 -3px 0 var(--bg);
+    padding: 8px 14px; cursor: pointer; text-transform: uppercase; transition: background .15s;
+  }
+  .nav-close:hover { background: var(--ink-dim); }
 
-  .crumb { font-size: 12px; color: var(--ink-dim); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.06em; }
-  .crumb a { color: var(--ink); text-decoration: none; }
-  .crumb a:hover { color: var(--ink-bright); }
+  /* ============= PAGE ============= */
+  .page { max-width: 900px; margin: 0 auto; padding: 80px 40px 120px; }
 
-  h1.page-title {
-    font-family: 'VT323', monospace;
-    font-size: 72px;
-    line-height: 1;
-    color: var(--ink-bright);
-    margin-bottom: 12px;
+  .crumb {
+    font-family: 'Silkscreen', monospace; font-size: 9px;
+    color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 32px; display: flex; align-items: center; gap: 8px;
+  }
+  .crumb a { color: var(--ink-dim); text-decoration: none; transition: color .15s; }
+  .crumb a:hover { color: var(--pop); }
+  .crumb-sep { opacity: 0.4; }
+
+  .page-eyebrow {
+    font-family: 'Silkscreen', monospace; font-size: 10px;
+    color: var(--pop); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .page-title {
+    font-family: 'Silkscreen', monospace; font-weight: 700;
+    font-size: clamp(28px, 4vw, 48px); line-height: 1.1;
+    color: var(--ink-bright); margin-bottom: 16px;
+    text-shadow: 3px 3px 0 var(--bg), 3px 0 0 var(--bg), 0 3px 0 var(--bg);
   }
   .page-sub {
-    font-family: 'VT323', monospace;
-    font-size: 26px;
-    color: var(--ink);
-    line-height: 1.4;
-    margin-bottom: 48px;
-    max-width: 760px;
+    font-family: 'Pixelify Sans', monospace; font-size: 20px;
+    line-height: 1.55; color: var(--ink);
+    max-width: 640px; margin-bottom: 56px;
   }
 
+  /* TL;DR block — background tint, no side stripe */
   .tldr {
-    background: var(--panel);
-    border-left: 4px solid var(--amber);
-    padding: 24px 28px;
-    margin-bottom: 56px;
-  }
-  .tldr-title {
-    font-size: 12px;
-    color: var(--amber);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 10px;
-    font-weight: 700;
-  }
-  .tldr-body { font-family: 'VT323', monospace; font-size: 24px; color: var(--ink-bright); line-height: 1.4; }
-
-  .policies-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 14px;
+    background: var(--panel); padding: 28px 32px;
+    box-shadow: inset 0 -6px 0 var(--bg-2), inset 0 6px 0 var(--bg);
     margin-bottom: 64px;
   }
-  .policy-card {
-    background: var(--panel);
-    border: 1px solid var(--rule);
-    padding: 24px 28px;
-    display: grid;
-    grid-template-columns: 80px 1fr auto;
-    gap: 28px;
-    align-items: center;
-    text-decoration: none;
-    color: var(--ink);
-    transition: border-color .15s;
+  .tldr-eyebrow {
+    font-family: 'Silkscreen', monospace; font-size: 9px;
+    color: var(--pop); text-transform: uppercase; letter-spacing: 0.12em;
+    margin-bottom: 12px;
   }
-  .policy-card:hover { border-color: var(--ink); }
-  .policy-icon {
-    width: 64px; height: 64px;
-    background: var(--bg);
-    border: 1px solid var(--rule);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'VT323', monospace;
-    font-size: 28px;
-    color: var(--ink-bright);
+  .tldr-eyebrow::before { content: "▰▱ "; color: var(--ink-dim); }
+  .tldr-eyebrow::after  { content: " ▰▱"; color: var(--ink-dim); }
+  .tldr-body {
+    font-family: 'Pixelify Sans', monospace; font-size: 20px;
+    color: var(--ink-bright); line-height: 1.55;
+    max-width: 620px;
   }
-  .policy-name { font-family: 'VT323', monospace; font-size: 32px; color: var(--ink-bright); line-height: 1; margin-bottom: 6px; }
-  .policy-meta { font-size: 12px; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.06em; }
-  .policy-meta .available { color: var(--ink); }
-  .policy-meta .pending { color: var(--ink-dimmer); }
-  .policy-arrow {
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--amber);
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-  .policy-arrow::after { content: " →"; }
-  .policy-card.disabled { opacity: 0.55; cursor: not-allowed; pointer-events: none; }
 
+  /* ============= POLICIES LIST ============= */
+  .list-heading {
+    font-family: 'Silkscreen', monospace; font-size: 10px;
+    color: var(--pop); text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 20px; padding-bottom: 12px;
+    box-shadow: 0 3px 0 var(--rule);
+  }
+  .policies-list { display: flex; flex-direction: column; gap: 0; margin-bottom: 64px; }
+
+  .policy-row {
+    display: grid; grid-template-columns: 56px 1fr auto;
+    gap: 24px; align-items: center;
+    padding: 20px 24px;
+    background: var(--bg-2); text-decoration: none; color: var(--ink-bright);
+    box-shadow: 0 3px 0 var(--bg); position: relative;
+    transition: background .15s;
+  }
+  .policy-row:last-child { box-shadow: none; }
+  .policy-row:hover { background: var(--panel); }
+  .policy-row.disabled {
+    opacity: 0.5; cursor: not-allowed; pointer-events: none;
+  }
+
+  /* slot number */
+  .policy-slot {
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    color: var(--ink-dim); text-align: center; line-height: 1;
+    background: var(--bg); padding: 10px 6px;
+    box-shadow: inset 0 -3px 0 var(--rule);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .policy-slot .slot-num { display: block; font-size: 18px; color: var(--ink-bright); margin-bottom: 3px; }
+  .policy-slot img { width: 40px; height: 40px; object-fit: contain; image-rendering: pixelated; display: block; }
+
+  .policy-info { display: flex; flex-direction: column; gap: 5px; }
+  .policy-name {
+    font-family: 'Silkscreen', monospace; font-size: 16px;
+    color: var(--ink-bright); line-height: 1;
+  }
+  .policy-meta {
+    font-family: 'Pixelify Sans', monospace; font-size: 14px;
+    color: var(--ink-dim); display: flex; align-items: center; gap: 10px;
+    flex-wrap: wrap;
+  }
+  .status-live {
+    font-family: 'Silkscreen', monospace; font-size: 8px;
+    color: var(--pop-2); text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .status-live::before { content: "● "; }
+  .status-pending {
+    font-family: 'Silkscreen', monospace; font-size: 8px;
+    color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .status-pending::before { content: "○ "; }
+
+  .policy-cta {
+    font-family: 'Silkscreen', monospace; font-size: 9px;
+    color: var(--pop-2); text-transform: uppercase; letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .policy-cta::after { content: " ▶"; }
+  .policy-row.disabled .policy-cta { color: var(--ink-dim); }
+  .policy-row.disabled .policy-cta::after { content: ""; }
+
+  /* ============= FOOTER ============= */
   footer {
-    margin-top: 64px;
-    padding: 28px 40px;
-    border-top: 1px solid var(--rule);
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    color: var(--ink-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+    padding: 32px 40px; background: var(--bg-2); border-top: 4px solid var(--bg);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Silkscreen', monospace; font-size: 10px;
+    color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .hearts { display: inline-flex; gap: 4px; margin-left: 10px; vertical-align: middle; }
+  .hearts span {
+    width: 8px; height: 8px; background: var(--pop-2);
+    clip-path: polygon(50% 0, 100% 35%, 100% 70%, 50% 100%, 0 70%, 0 35%);
+  }
+
+  /* ============= RESPONSIVE ============= */
+  @media (max-width: 900px) {
+    .nav { display: none; }
+    .nav.open {
+      display: flex; position: fixed; inset: 0; z-index: 200;
+      background: var(--bg-2); border-bottom: 4px solid var(--bg);
+      flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+    }
+    .nav.open a { font-size: 16px; padding: 8px 0; }
+    .nav-toggle { display: block; }
+    .nav-close { display: block; }
+    .topbar-right { margin-left: 0; }
+    .topbar { gap: 12px; padding: 14px 20px; }
+    footer { flex-direction: column; gap: 10px; text-align: center; }
+  }
+  @media (max-width: 640px) {
+    .page { padding: 48px 20px 80px; }
+    .policy-row { grid-template-columns: 40px 1fr; }
+    .policy-cta { display: none; }
+    .topbar-right .lang-switch { display: none; }
   }
 </style>
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============= TOP BAR ============= -->
   <div class="topbar">
-    <a href="../v2-crt-terminal.html" class="brand">
-      <span class="brand-led"></span>
-      <span class="brand-name">makeit.bot</span>
+    <a href="../index.html" class="logo-lockup" aria-label="makeit.bot — home">
+      <span class="logo-mark">
+        <span>▶</span>
+        <span>.MIB</span>
+      </span>
+      <span class="logo-word">
+        <span class="name">makeit<span class="accent">.bot</span></span>
+        <span class="tag">indie puzzle studio</span>
+      </span>
     </a>
-    <nav class="nav">
-      <a href="../v2-crt-terminal.html#studio" data-i18n="nav.studio">studio</a>
-      <a href="../v2-crt-terminal.html#games" data-i18n="nav.games">games</a>
-      <a href="index.html" class="active" data-i18n="nav.privacy">privacy</a>
-      <a href="../press.html" data-i18n="nav.press">press</a>
-      <a href="../v2-crt-terminal.html#contact" data-i18n="nav.contact">contact</a>
+    <nav class="nav" id="main-nav" aria-label="Main navigation">
+      <button class="nav-close" id="nav-close" aria-label="Close menu">✕ CLOSE</button>
+      <a href="../index.html#studio"  data-i18n="nav.studio">Studio</a>
+      <a href="../index.html#games"   data-i18n="nav.games">Games</a>
+      <a href="index.html" class="active" data-i18n="nav.privacy">Privacy</a>
+      <a href="../press.html"         data-i18n="nav.press">Press</a>
+      <a href="../index.html#contact" data-i18n="nav.contact">Contact</a>
     </nav>
     <div class="topbar-right">
-      <div class="lang-switch" id="lang-switch"></div>
-      <button class="theme-toggle" id="theme-toggle">◐ <span id="theme-label">DARK</span></button>
+      <div class="lang-switch" id="lang-switch" aria-label="Language selector"></div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">◐ <span id="theme-label">DARK</span></button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">☰ MENU</button>
     </div>
   </div>
 
-  <main class="wrap">
-    <div class="crumb"><a href="../v2-crt-terminal.html">~</a> / privacy</div>
+  <main id="main">
+  <div class="page">
+
+    <div class="crumb">
+      <a href="../index.html">makeit.bot</a>
+      <span class="crumb-sep">─</span>
+      <span data-i18n="nav.privacy">Privacy</span>
+    </div>
+
+    <div class="page-eyebrow">─ DATA &amp; PRIVACY ─</div>
     <h1 class="page-title" data-i18n="privacy.heading">Privacy policies</h1>
     <p class="page-sub" data-i18n="privacy.sub">Every makeit.bot game ships with a transparent, plain-language privacy policy. Required by the Play Store, written for humans.</p>
 
+    <!-- TL;DR -->
     <div class="tldr">
-      <div class="tldr-title" data-i18n="privacy.tldr_title">TL;DR</div>
-      <div class="tldr-body" data-i18n="privacy.tldr">We don't sell your data. Most games run fully offline. Ads (when present) are clearly labelled.</div>
+      <div class="tldr-eyebrow" data-i18n="privacy.tldr_title">TL;DR</div>
+      <p class="tldr-body" data-i18n="privacy.tldr">We don't sell your data. Most games run fully offline. Ads (when present) are clearly labelled.</p>
     </div>
 
-    <div class="policies-list">
-      <a class="policy-card" href="nonogram-zen.html">
-        <div class="policy-icon">▦</div>
-        <div>
-          <div class="policy-name">Nonogram Zen</div>
-          <div class="policy-meta"><span class="available">● Live</span> · Updated 2026-05-23 · v1.0</div>
+    <!-- Policies list -->
+    <div class="list-heading" data-i18n="privacy.index_title">All policies</div>
+    <div class="policies-list" role="list">
+
+      <a class="policy-row" href="nonogram-zen.html" role="listitem">
+        <div class="policy-slot" aria-hidden="true">
+          <img src="../assets/nonogram-zen-icon.svg" alt="">
         </div>
-        <div class="policy-arrow" data-i18n="privacy.view_policy">Read policy</div>
-      </a>
-      <a class="policy-card disabled">
-        <div class="policy-icon">▣</div>
-        <div>
-          <div class="policy-name">Nonogram Color</div>
-          <div class="policy-meta"><span class="pending">○ In development</span> · ETA 2026 Q4</div>
+        <div class="policy-info">
+          <span class="policy-name">Nonogram Zen</span>
+          <div class="policy-meta">
+            <span class="status-live">Live</span>
+            <span>Updated 2026-05-23 · v1.0</span>
+          </div>
         </div>
-        <div class="policy-arrow">Pending</div>
+        <span class="policy-cta" data-i18n="privacy.view_policy">Read policy</span>
       </a>
-      <a class="policy-card disabled">
-        <div class="policy-icon">⬡</div>
-        <div>
-          <div class="policy-name">Sudoku Hex</div>
-          <div class="policy-meta"><span class="pending">○ In development</span> · ETA 2026 Q4</div>
+
+      <a class="policy-row disabled" aria-disabled="true" role="listitem">
+        <div class="policy-slot" aria-hidden="true">
+          <span class="slot-num">02</span>
+          CLR
         </div>
-        <div class="policy-arrow">Pending</div>
-      </a>
-      <a class="policy-card disabled">
-        <div class="policy-icon">⌬</div>
-        <div>
-          <div class="policy-name">Word Link</div>
-          <div class="policy-meta"><span class="pending">○ In development</span> · ETA 2027</div>
+        <div class="policy-info">
+          <span class="policy-name">Nonogram Color</span>
+          <div class="policy-meta">
+            <span class="status-pending">In development</span>
+            <span>ETA 2026 Q4</span>
+          </div>
         </div>
-        <div class="policy-arrow">Pending</div>
+        <span class="policy-cta">Pending</span>
       </a>
-      <a class="policy-card disabled">
-        <div class="policy-icon">☕</div>
-        <div>
-          <div class="policy-name">Idle Café</div>
-          <div class="policy-meta"><span class="pending">○ In development</span> · ETA 2027</div>
+
+      <a class="policy-row disabled" aria-disabled="true" role="listitem">
+        <div class="policy-slot" aria-hidden="true">
+          <span class="slot-num">03</span>
+          HEX
         </div>
-        <div class="policy-arrow">Pending</div>
+        <div class="policy-info">
+          <span class="policy-name">Sudoku Hex</span>
+          <div class="policy-meta">
+            <span class="status-pending">In development</span>
+            <span>ETA 2026 Q4</span>
+          </div>
+        </div>
+        <span class="policy-cta">Pending</span>
       </a>
+
+      <a class="policy-row disabled" aria-disabled="true" role="listitem">
+        <div class="policy-slot" aria-hidden="true">
+          <span class="slot-num">04</span>
+          WRD
+        </div>
+        <div class="policy-info">
+          <span class="policy-name">Word Link</span>
+          <div class="policy-meta">
+            <span class="status-pending">In development</span>
+            <span>ETA 2027</span>
+          </div>
+        </div>
+        <span class="policy-cta">Pending</span>
+      </a>
+
+      <a class="policy-row disabled" aria-disabled="true" role="listitem">
+        <div class="policy-slot" aria-hidden="true">
+          <span class="slot-num">05</span>
+          CAF
+        </div>
+        <div class="policy-info">
+          <span class="policy-name">Idle Café</span>
+          <div class="policy-meta">
+            <span class="status-pending">In development</span>
+            <span>ETA 2027</span>
+          </div>
+        </div>
+        <span class="policy-cta">Pending</span>
+      </a>
+
     </div>
+
+  </div>
   </main>
 
+  <!-- ============= FOOTER ============= -->
   <footer>
-    <div>© 2026 makeit.bot · all rights reserved</div>
+    <div>© 2026 makeit.bot <span class="hearts"><span></span><span></span><span></span></span></div>
     <div>privacy@makeit.bot</div>
   </footer>
 
   <script src="../translations.js"></script>
   <script>
-    (function() {
+    // ── Mobile nav toggle ──
+    (function () {
+      const nav    = document.getElementById("main-nav");
+      const toggle = document.getElementById("nav-toggle");
+      const close  = document.getElementById("nav-close");
+      if (!nav || !toggle) return;
+      function open() { nav.classList.add("open"); toggle.setAttribute("aria-expanded","true"); document.body.style.overflow = "hidden"; }
+      function shut() { nav.classList.remove("open"); toggle.setAttribute("aria-expanded","false"); document.body.style.overflow = ""; }
+      toggle.addEventListener("click", open);
+      close.addEventListener("click", shut);
+      nav.querySelectorAll("a").forEach(a => a.addEventListener("click", shut));
+      document.addEventListener("keydown", e => { if (e.key === "Escape") shut(); });
+    })();
+
+    // ── Language switcher ──
+    (function () {
       const langs = ["en","pt","es","de","fr","it"];
-      const root = document.getElementById("lang-switch");
+      const root  = document.getElementById("lang-switch");
       langs.forEach(l => {
         const b = document.createElement("button");
-        b.textContent = l.toUpperCase();
-        b.dataset.lang = l;
-        b.addEventListener("click", () => { window.MIB_APPLY(l); upd(l); });
+        b.textContent = l.toUpperCase(); b.dataset.lang = l;
+        b.addEventListener("click", () => { window.MIB_APPLY(l); sync(l); });
         root.appendChild(b);
       });
-      function upd(l) { root.querySelectorAll("button").forEach(b => b.classList.toggle("active", b.dataset.lang === l)); }
+      function sync(l) {
+        root.querySelectorAll("button").forEach(b => b.classList.toggle("active", b.dataset.lang === l));
+        document.documentElement.lang = l;
+      }
       const initial = window.MIB_INIT_LANG("en");
       window.MIB_APPLY(initial);
-      upd(initial);
+      sync(initial);
     })();
-    (function() {
-      const html = document.documentElement;
-      const btn = document.getElementById("theme-toggle");
+
+    // ── Theme toggle (shared key with main site) ──
+    (function () {
+      const html  = document.documentElement;
+      const btn   = document.getElementById("theme-toggle");
       const label = document.getElementById("theme-label");
       let theme = "dark";
-      try { theme = localStorage.getItem("mib_theme_v2") || "dark"; } catch (e) {}
+      try { theme = localStorage.getItem("mib_theme") || "dark"; } catch (_) {}
       apply(theme);
       btn.addEventListener("click", () => apply(theme === "dark" ? "light" : "dark"));
-      function apply(t) { theme = t; html.dataset.theme = t; label.textContent = t === "dark" ? "DARK" : "LIGHT"; try { localStorage.setItem("mib_theme_v2", t); } catch (e) {} }
+      function apply(t) {
+        theme = t;
+        html.dataset.theme = t;
+        label.textContent  = t === "dark" ? "DARK" : "LIGHT";
+        try { localStorage.setItem("mib_theme", t); } catch (_) {}
+      }
     })();
   </script>
 </body>

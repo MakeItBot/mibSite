@@ -406,6 +406,7 @@
     color: var(--pop); letter-spacing: 0.08em;
   }
   .cart-sticker image-slot { width: 100%; height: 100%; }
+  .cart-sticker img { width: 100%; height: 100%; object-fit: contain; display: block; image-rendering: pixelated; }
   /* pixel placeholder for coming-soon stickers */
   .cart-ph {
     font-family: 'Silkscreen', monospace; font-size: 28px;
@@ -663,7 +664,7 @@
 
         <article class="cart available">
           <div class="cart-sticker">
-            <image-slot id="gb-nonogram-zen" shape="rect" placeholder="Nonogram Zen icon"></image-slot>
+            <img src="assets/nonogram-zen-icon.svg" alt="Nonogram Zen">
           </div>
           <div class="cart-label">
             <div class="cart-status" data-i18n="games.available">Available now</div>
