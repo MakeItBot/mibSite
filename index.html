@@ -5,10 +5,77 @@
 <title>makeit.bot — Indie Puzzle Studio for Android</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="makeit.bot is a one-person studio building calm, considered puzzle games for Android. No timers. No nags. Just logic, made well.">
-<meta property="og:title" content="makeit.bot — Indie Puzzle Studio">
+<meta name="author" content="MIB-Games">
+<link rel="canonical" href="https://makeit.bot/">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="shortcut icon" href="/assets/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/assets/site.webmanifest">
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="makeit.bot">
+<meta property="og:title" content="makeit.bot — Indie Puzzle Studio for Android">
 <meta property="og:description" content="Calm, considered puzzle games for Android. Nonogram Zen available now.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://makeit.bot/">
+<meta property="og:image" content="https://makeit.bot/assets/logo_minimal.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="makeit.bot — Indie Puzzle Studio for Android">
+<meta name="twitter:description" content="Calm, considered puzzle games for Android. Nonogram Zen available now.">
+<meta name="twitter:image" content="https://makeit.bot/assets/logo_minimal.png">
+
 <meta name="theme-color" content="#0f1f0e">
+
+<!-- JSON-LD: Organization + VideoGame -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://makeit.bot/#org",
+      "name": "MIB-Games",
+      "alternateName": "makeit.bot",
+      "url": "https://makeit.bot/",
+      "logo": "https://makeit.bot/assets/logo_full.png",
+      "email": "hello@makeit.bot",
+      "description": "Indie puzzle studio building calm logic games for Android."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://makeit.bot/#website",
+      "url": "https://makeit.bot/",
+      "name": "makeit.bot",
+      "publisher": { "@id": "https://makeit.bot/#org" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "VideoGame",
+      "name": "Nonogram Zen",
+      "description": "Classic picross with procedurally generated grids from 5×5 to 15×15. No timers, no streak pressure.",
+      "image": "https://makeit.bot/assets/nonogram-zen-icon-512.png",
+      "url": "https://makeit.bot/#games",
+      "gamePlatform": "Android",
+      "applicationCategory": "GameApplication",
+      "genre": ["Puzzle", "Logic", "Picross"],
+      "operatingSystem": "Android",
+      "publisher": { "@id": "https://makeit.bot/#org" },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "category": "Free with optional in-app purchases"
+      }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Pixelify+Sans:wght@400;500;600;700&family=DotGothic16&display=swap" rel="stylesheet">
@@ -563,6 +630,7 @@
       <button class="nav-close" id="nav-close" aria-label="Close menu">✕ CLOSE</button>
       <a href="#studio"  data-i18n="nav.studio">Studio</a>
       <a href="#games"   data-i18n="nav.games">Games</a>
+      <a href="manifesto.html">Manifesto</a>
       <a href="privacy/index.html" data-i18n="nav.privacy">Privacy</a>
       <a href="press.html" data-i18n="nav.press">Press</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>

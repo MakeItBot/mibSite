@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<title>Manifesto — makeit.bot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Logic puzzles that respect your time. The four house rules of makeit.bot, written by the one person who builds them.">
+<meta name="author" content="MIB-Games">
+<link rel="canonical" href="https://makeit.bot/manifesto.html">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="shortcut icon" href="/assets/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/assets/site.webmanifest">
+
+<meta property="og:site_name" content="makeit.bot">
+<meta property="og:title" content="Manifesto — makeit.bot">
+<meta property="og:description" content="We make logic puzzles that respect your time. The four house rules, in plain language.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://makeit.bot/manifesto.html">
+<meta property="og:image" content="https://makeit.bot/assets/logo_minimal.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Manifesto — makeit.bot">
+<meta name="twitter:description" content="We make logic puzzles that respect your time. The four house rules, in plain language.">
+<meta name="twitter:image" content="https://makeit.bot/assets/logo_minimal.png">
+
+<meta name="theme-color" content="#0f1f0e">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Manifesto — makeit.bot",
+  "url": "https://makeit.bot/manifesto.html",
+  "description": "The four house rules of makeit.bot, an indie Android puzzle studio.",
+  "publisher": { "@type": "Organization", "name": "MIB-Games", "url": "https://makeit.bot/" }
+}
+</script>
+
+<style>
+  /* ============= PALETTE — Game Boy DMG ============= */
+  :root {
+    --bg:        #0f1f0e;
+    --bg-2:      #1a3018;
+    --panel:     #234221;
+    --ink-dim:   #5d8159;
+    --ink:       #9ec188;
+    --ink-bright:#d5e4a8;
+    --pop:       #f5d76e;
+    --pop-2:     #e85d4d;
+    --rule:      #305030;
+    --shadow:    rgba(0,0,0,0.4);
+  }
+  [data-theme="light"] {
+    --bg:        #e8e9c4;
+    --bg-2:      #d9da9c;
+    --panel:     #f4f5d8;
+    --ink-dim:   #6b7a4a;
+    --ink:       #3a4828;
+    --ink-bright:#1a2010;
+    --pop:       #c97c1a;
+    --pop-2:     #9a3a28;
+    --rule:      #b8b878;
+    --shadow:    rgba(58,72,40,0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  html, body { background: var(--bg); color: var(--ink-bright); }
+  body {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 18px; line-height: 1.55;
+    overflow-x: hidden; min-height: 100vh;
+    image-rendering: pixelated; -webkit-font-smoothing: none;
+  }
+
+  /* Dithered overlay (consistente com privacy pages) */
+  body::before {
+    content: ""; position: fixed; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.08) 1px, transparent 1px);
+    background-size: 4px 4px; pointer-events: none; z-index: 100;
+  }
+  [data-theme="light"] body::before { opacity: 0.5; }
+
+  /* skip link */
+  .skip-link {
+    position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+  }
+  .skip-link:focus {
+    position: fixed; top: 8px; left: 8px; z-index: 9999; width: auto; height: auto;
+    background: var(--pop); color: var(--bg);
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    padding: 8px 12px; text-decoration: none; box-shadow: 3px 3px 0 var(--bg-2);
+  }
+
+  /* ============= TOP BAR ============= */
+  .topbar {
+    padding: 18px 40px; display: flex; align-items: center; gap: 28px;
+    background: var(--bg-2); border-bottom: 4px solid var(--bg);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .topbar::after {
+    content: ""; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px;
+    background: var(--ink-dim); opacity: 0.4;
+  }
+  .logo-lockup { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-mark {
+    display: inline-flex; align-items: baseline; gap: 0.3em;
+    background: var(--pop); color: var(--bg);
+    padding: 0.42em 0.55em 0.36em;
+    font-family: 'Silkscreen', monospace; font-weight: 700; font-size: 13px; line-height: 1;
+    box-shadow: 0.14em 0.14em 0 var(--ink-dim); flex-shrink: 0;
+  }
+  .logo-word { display: flex; flex-direction: column; gap: 2px; }
+  .logo-word .name {
+    font-family: 'Silkscreen', monospace; font-weight: 700;
+    font-size: 16px; color: var(--ink-bright); line-height: 1; letter-spacing: 0.02em;
+  }
+  .logo-word .name .accent { color: var(--pop); }
+  .logo-word .tag { font-family: 'Pixelify Sans', monospace; font-size: 11px; color: var(--ink-dim); }
+  .nav { display: flex; gap: 24px; margin-left: 8px; }
+  .nav a {
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    color: var(--ink-dim); text-decoration: none;
+    text-transform: uppercase; letter-spacing: 0.06em; padding: 6px 0; transition: color .15s;
+  }
+  .nav a:hover { color: var(--pop); }
+  .nav a.active { color: var(--ink-bright); }
+  .topbar-right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+  .lang-switch { display: flex; gap: 1px; background: var(--bg); padding: 3px; box-shadow: inset 0 0 0 1px var(--rule); }
+  .lang-switch button {
+    font-family: 'Silkscreen', monospace; font-size: 9px;
+    background: transparent; color: var(--ink-dim);
+    border: 0; padding: 5px 8px; cursor: pointer; transition: background .1s, color .1s;
+  }
+  .lang-switch button.active { background: var(--ink-bright); color: var(--bg); }
+  .theme-toggle {
+    font-family: 'Silkscreen', monospace; font-size: 9px;
+    background: var(--panel); color: var(--ink-bright);
+    border: 0; box-shadow: inset 0 -3px 0 var(--bg);
+    padding: 8px 12px; cursor: pointer; text-transform: uppercase; transition: background .15s;
+  }
+  .theme-toggle:hover { background: var(--ink-dim); }
+  .nav-toggle {
+    display: none; font-family: 'Silkscreen', monospace; font-size: 11px;
+    background: var(--panel); color: var(--ink-bright);
+    border: 0; box-shadow: inset 0 -3px 0 var(--bg);
+    padding: 8px 12px; cursor: pointer; text-transform: uppercase; transition: background .15s;
+  }
+  .nav-toggle:hover { background: var(--ink-dim); }
+  .nav-close {
+    display: none; position: absolute; top: 20px; right: 20px;
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    background: var(--panel); color: var(--ink-bright);
+    border: 0; box-shadow: inset 0 -3px 0 var(--bg);
+    padding: 8px 14px; cursor: pointer; text-transform: uppercase; transition: background .15s;
+  }
+  .nav-close:hover { background: var(--ink-dim); }
+
+  /* ============= LAYOUT ============= */
+  main { max-width: 760px; margin: 0 auto; padding: 80px 40px 120px; }
+
+  .eyebrow {
+    font-family: 'Silkscreen', monospace; font-size: 10px;
+    color: var(--pop); text-transform: uppercase; letter-spacing: 0.14em;
+    margin-bottom: 28px;
+  }
+  .eyebrow::before { content: "▰▱▰ "; color: var(--ink-dim); }
+
+  h1 {
+    font-family: 'Silkscreen', monospace; font-weight: 700;
+    font-size: clamp(34px, 6vw, 64px); line-height: 1.05;
+    color: var(--ink-bright); margin-bottom: 28px;
+    text-shadow: 3px 3px 0 var(--bg), 3px 0 0 var(--bg), 0 3px 0 var(--bg);
+    max-width: 16ch;
+  }
+  h1 .accent { color: var(--pop); }
+
+  .subhead {
+    font-family: 'Pixelify Sans', monospace; font-size: 20px;
+    color: var(--ink); line-height: 1.55; max-width: 56ch;
+    margin-bottom: 64px;
+  }
+
+  /* ============= MANIFESTO RULES ============= */
+  .rule { margin-bottom: 56px; padding-top: 32px; box-shadow: 0 -3px 0 var(--rule); }
+  .rule:first-of-type { padding-top: 0; box-shadow: none; }
+
+  .rule-head {
+    display: flex; align-items: baseline; gap: 14px;
+    margin-bottom: 18px;
+  }
+  .rule-num {
+    font-family: 'Silkscreen', monospace; font-size: 13px;
+    color: var(--ink-dim); flex-shrink: 0;
+  }
+  .rule-title {
+    font-family: 'Silkscreen', monospace; font-weight: 700;
+    font-size: 22px; line-height: 1.1;
+    color: var(--ink-bright);
+  }
+  .rule p {
+    font-family: 'Pixelify Sans', monospace; font-size: 18px;
+    color: var(--ink); line-height: 1.6; max-width: 60ch;
+    margin-bottom: 14px;
+  }
+  .rule p:last-child { margin-bottom: 0; }
+
+  /* Quotable anchor — visualmente destacado mas dentro do tom */
+  .pull {
+    display: block; margin: 22px 0 4px;
+    padding: 18px 24px;
+    background: var(--panel);
+    box-shadow: inset 0 -4px 0 var(--bg-2), inset 0 4px 0 var(--bg);
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 19px; font-weight: 600; line-height: 1.45;
+    color: var(--ink-bright);
+    max-width: 60ch;
+  }
+  .pull::before { content: "“"; color: var(--pop); margin-right: 4px; }
+  .pull::after  { content: "”"; color: var(--pop); margin-left: 2px; }
+
+  /* ============= CLOSE / CTA ============= */
+  .closing {
+    margin-top: 80px; padding-top: 48px;
+    box-shadow: 0 -3px 0 var(--rule);
+  }
+  .closing p {
+    font-family: 'Pixelify Sans', monospace; font-size: 19px;
+    color: var(--ink); line-height: 1.55; max-width: 60ch;
+    margin-bottom: 32px;
+  }
+  .cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--pop); color: var(--bg);
+    font-family: 'Silkscreen', monospace; font-size: 12px;
+    text-decoration: none; padding: 14px 22px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    box-shadow: 4px 4px 0 var(--bg-2);
+    transition: transform .1s, box-shadow .1s;
+  }
+  .cta:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--bg-2); }
+  .cta:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--bg-2); }
+  .cta .arrow { font-size: 14px; }
+
+  /* ============= FOOTER ============= */
+  footer {
+    padding: 32px 40px; background: var(--bg-2); border-top: 4px solid var(--bg);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Silkscreen', monospace; font-size: 10px;
+    color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .hearts { display: inline-flex; gap: 4px; margin-left: 10px; vertical-align: middle; }
+  .hearts span {
+    width: 8px; height: 8px; background: var(--pop-2);
+    clip-path: polygon(50% 0, 100% 35%, 100% 70%, 50% 100%, 0 70%, 0 35%);
+  }
+  footer a { color: var(--ink-dim); text-decoration: none; }
+  footer a:hover { color: var(--pop); }
+
+  /* ============= RESPONSIVE ============= */
+  @media (max-width: 900px) {
+    .nav { display: none; }
+    .nav.open {
+      display: flex; position: fixed; inset: 0; z-index: 200;
+      background: var(--bg-2); border-bottom: 4px solid var(--bg);
+      flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+    }
+    .nav.open a { font-size: 16px; padding: 8px 0; }
+    .nav-toggle { display: block; }
+    .nav-close { display: block; }
+    .topbar-right { margin-left: 0; }
+    .topbar { gap: 12px; padding: 14px 20px; }
+    main { padding: 48px 24px 80px; }
+    footer { flex-direction: column; gap: 10px; text-align: center; }
+  }
+  @media (max-width: 560px) {
+    .topbar-right .lang-switch { display: none; }
+    .pull { font-size: 17px; padding: 14px 18px; }
+  }
+</style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============= TOP BAR ============= -->
+  <div class="topbar">
+    <a href="index.html" class="logo-lockup" aria-label="makeit.bot — home">
+      <span class="logo-mark"><span>▶</span><span>.MIB</span></span>
+      <span class="logo-word">
+        <span class="name">makeit<span class="accent">.bot</span></span>
+        <span class="tag">indie puzzle studio</span>
+      </span>
+    </a>
+    <nav class="nav" id="main-nav" aria-label="Main navigation">
+      <button class="nav-close" id="nav-close" aria-label="Close menu">✕ CLOSE</button>
+      <a href="index.html#studio"  data-i18n="nav.studio">Studio</a>
+      <a href="index.html#games"   data-i18n="nav.games">Games</a>
+      <a href="manifesto.html" class="active">Manifesto</a>
+      <a href="privacy/index.html" data-i18n="nav.privacy">Privacy</a>
+      <a href="press.html"         data-i18n="nav.press">Press</a>
+      <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="topbar-right">
+      <div class="lang-switch" id="lang-switch" aria-label="Language selector"></div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">◐ <span id="theme-label">DARK</span></button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">☰ MENU</button>
+    </div>
+  </div>
+
+  <!-- ============= MAIN ============= -->
+  <main id="main">
+
+    <div class="eyebrow" data-i18n="manifesto.eyebrow">House Rules</div>
+
+    <h1>
+      <span data-i18n="manifesto.title_a">We make logic puzzles that</span>
+      <span class="accent" data-i18n="manifesto.title_b">respect your time.</span>
+    </h1>
+
+    <p class="subhead" data-i18n="manifesto.subhead">We are one person, working slowly, shipping small games to Android. This page explains what that means in practice.</p>
+
+    <!-- 01 -->
+    <section class="rule">
+      <div class="rule-head">
+        <span class="rule-num">01</span>
+        <h2 class="rule-title" data-i18n="manifesto.r1_title">Logic over luck</h2>
+      </div>
+      <p data-i18n="manifesto.r1_p1">Every puzzle we publish has a single solution, reachable through logic alone. No guessing. No "lucky tap". If the only way to progress is to try and see, we did not finish designing the puzzle.</p>
+      <blockquote class="pull" data-i18n="manifesto.r1_pull">Your time should not be spent gambling against the level designer.</blockquote>
+    </section>
+
+    <!-- 02 -->
+    <section class="rule">
+      <div class="rule-head">
+        <span class="rule-num">02</span>
+        <h2 class="rule-title" data-i18n="manifesto.r2_title">Offline first</h2>
+      </div>
+      <p data-i18n="manifesto.r2_p1">You should be able to play on a plane, in a tunnel, in a campsite with no signal, with airplane mode on for the next eight hours. Our games work without an account, without a login wall, without a network call to "verify your session" before letting you tap a cell.</p>
+      <blockquote class="pull" data-i18n="manifesto.r2_pull">The internet is for downloading the app. After that, the game is yours.</blockquote>
+    </section>
+
+    <!-- 03 -->
+    <section class="rule">
+      <div class="rule-head">
+        <span class="rule-num">03</span>
+        <h2 class="rule-title" data-i18n="manifesto.r3_title">No dark patterns</h2>
+      </div>
+      <p data-i18n="manifesto.r3_p1">We will never use a timer to push you into an in-app purchase. We will never show you a fake "limited offer" that resets every Monday. We will never interrupt a puzzle you are solving with a popup for hints you do not need.</p>
+      <p data-i18n="manifesto.r3_p2">If there is an ad, it is between levels, capped, and labelled. If there is a "Remove Ads" button, one tap removes them forever. If you opt out of analytics in the settings, we stop collecting. The settings screen is not a maze.</p>
+      <blockquote class="pull" data-i18n="manifesto.r3_pull">We assume our players are adults and we behave accordingly.</blockquote>
+    </section>
+
+    <!-- 04 -->
+    <section class="rule">
+      <div class="rule-head">
+        <span class="rule-num">04</span>
+        <h2 class="rule-title" data-i18n="manifesto.r4_title">Made for grown-ups</h2>
+      </div>
+      <p data-i18n="manifesto.r4_p1">Our players are 30 to 55. They have jobs, kids, plants, mortgages, and roughly twenty minutes of quiet in the evening. They do not need a mascot to celebrate a completed level. They do not need a streak shaming them on Tuesday morning.</p>
+      <blockquote class="pull" data-i18n="manifesto.r4_pull">The reward for solving a puzzle is the puzzle being solved.</blockquote>
+    </section>
+
+    <!-- Closing + CTA -->
+    <div class="closing">
+      <p data-i18n="manifesto.closing">We are a small studio with a long backlog and no urgency. If this is the kind of game you have been looking for, we ship them on Google Play.</p>
+      <a class="cta" href="index.html#games">
+        <span data-i18n="manifesto.cta">Browse our games</span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- ============= FOOTER ============= -->
+  <footer>
+    <div>© 2026 makeit.bot <span class="hearts"><span></span><span></span><span></span></span></div>
+    <div><a href="mailto:hello@makeit.bot">hello@makeit.bot</a></div>
+  </footer>
+
+  <script src="translations.js"></script>
+  <script>
+    // ── Mobile nav toggle ──
+    (function () {
+      const nav    = document.getElementById("main-nav");
+      const toggle = document.getElementById("nav-toggle");
+      const close  = document.getElementById("nav-close");
+      if (!nav || !toggle) return;
+      function open() { nav.classList.add("open"); toggle.setAttribute("aria-expanded","true"); document.body.style.overflow = "hidden"; }
+      function shut() { nav.classList.remove("open"); toggle.setAttribute("aria-expanded","false"); document.body.style.overflow = ""; }
+      toggle.addEventListener("click", open);
+      close.addEventListener("click", shut);
+      nav.querySelectorAll("a").forEach(a => a.addEventListener("click", shut));
+      document.addEventListener("keydown", e => { if (e.key === "Escape") shut(); });
+    })();
+
+    // ── Language switcher ──
+    (function () {
+      const langs = ["en","pt","es","de","fr","it"];
+      const root  = document.getElementById("lang-switch");
+      langs.forEach(l => {
+        const b = document.createElement("button");
+        b.textContent = l.toUpperCase(); b.dataset.lang = l;
+        b.addEventListener("click", () => { window.MIB_APPLY(l); sync(l); });
+        root.appendChild(b);
+      });
+      function sync(l) {
+        root.querySelectorAll("button").forEach(b => b.classList.toggle("active", b.dataset.lang === l));
+        document.documentElement.lang = l;
+      }
+      const initial = window.MIB_INIT_LANG("en");
+      window.MIB_APPLY(initial);
+      sync(initial);
+    })();
+
+    // ── Theme toggle ──
+    (function () {
+      const html  = document.documentElement;
+      const btn   = document.getElementById("theme-toggle");
+      const label = document.getElementById("theme-label");
+      let theme = "dark";
+      try { theme = localStorage.getItem("mib_theme") || "dark"; } catch (_) {}
+      apply(theme);
+      btn.addEventListener("click", () => apply(theme === "dark" ? "light" : "dark"));
+      function apply(t) {
+        theme = t;
+        html.dataset.theme = t;
+        label.textContent  = t === "dark" ? "DARK" : "LIGHT";
+        try { localStorage.setItem("mib_theme", t); } catch (_) {}
+      }
+    })();
+  </script>
+</body>
+</html>

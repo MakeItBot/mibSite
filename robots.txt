@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Block dev/scratch files
+Disallow: /_check/
+Disallow: /design-canvas.jsx
+Disallow: /image-slot.js
+Disallow: /tweaks-panel.jsx
+Disallow: /logo-mib-refined.html
+Disallow: /v3-game-boy.html
+Disallow: /skills-lock.json
+
+Sitemap: https://makeit.bot/sitemap.xml
